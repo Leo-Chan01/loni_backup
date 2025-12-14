@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Centralized color system for Ahiaoma app
+/// Centralized color system for Loni Africa app
 /// All colors should be accessed through this class to ensure consistency
 class AppColors {
   // Private constructor to prevent instantiation

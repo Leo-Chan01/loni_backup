@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loni_africa/core/utilities/extension/num_extension.dart';
 
 // ignore: must_be_immutable
-class AhiaomaButton extends StatelessWidget {
+class LaButton extends StatelessWidget {
   final Function()? onPressButton;
   final String buttonText;
   final double buttonWidth;
@@ -12,7 +12,7 @@ class AhiaomaButton extends StatelessWidget {
   bool isLoading;
   double? insidePadding;
 
-  AhiaomaButton({
+  LaButton({
     super.key,
     required this.onPressButton,
     required this.buttonText,

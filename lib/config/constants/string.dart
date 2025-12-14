@@ -5,5 +5,5 @@ class AppStrings {
   static String inputUserNameTxt = "Input Username";
   static String userNameTxt = "Username";
   static String emailTxt = "Email";
-  static String appName = "Ahiaoma";
+  static String appName = "Loni Africa";
 }
