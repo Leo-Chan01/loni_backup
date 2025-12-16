@@ -9,12 +9,20 @@ class LoniSearchBar extends StatelessWidget {
     this.onChanged,
     this.onSubmitted,
     this.onFilterTap,
+    this.onTap,
+    this.readOnly = false,
+    this.autoFocus = false,
+    this.controller,
   });
 
   final String hintText;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final VoidCallback? onFilterTap;
+  final VoidCallback? onTap;
+  final bool readOnly;
+  final bool autoFocus;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +30,7 @@ class LoniSearchBar extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Container(
+      height: MediaQuery.of(context).size.height * 0.06,
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.6),
         borderRadius: BorderRadius.circular(16.r),
@@ -40,6 +49,10 @@ class LoniSearchBar extends StatelessWidget {
           SizedBox(width: 8.w),
           Expanded(
             child: TextField(
+              controller: controller,
+              autofocus: autoFocus,
+              readOnly: readOnly,
+              onTap: onTap,
               onChanged: onChanged,
               onSubmitted: onSubmitted,
               cursorColor: colorScheme.primary,
@@ -51,6 +64,9 @@ class LoniSearchBar extends StatelessWidget {
                 hintStyle: textTheme.bodyMedium?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
+                enabledBorder: InputBorder.none,
+                filled: false,
+                focusedBorder: InputBorder.none,
                 border: InputBorder.none,
                 isDense: true,
               ),

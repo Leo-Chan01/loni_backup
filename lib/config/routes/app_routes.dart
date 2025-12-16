@@ -5,6 +5,7 @@ import 'package:loni_africa/features/dashboard/presentation/screens/main_screen.
 import 'package:loni_africa/features/dashboard/presentation/screens/main_tabs_scaffold.dart';
 import 'package:loni_africa/features/discovery/presentation/screens/explore_root_screen.dart';
 import 'package:loni_africa/features/discovery/presentation/screens/home_screen.dart';
+import 'package:loni_africa/features/discovery/presentation/screens/search_screen.dart';
 import 'package:loni_africa/features/library/presentation/screens/library_screen.dart';
 import 'package:loni_africa/features/onboarding/presentation/screens/language_selection_screen.dart';
 import 'package:loni_africa/features/onboarding/presentation/screens/onboarding_screen.dart';
@@ -81,6 +82,14 @@ class AppRoutes {
                 path: ExploreRootScreen.path,
                 name: ExploreRootScreen.name,
                 builder: (context, state) => const ExploreRootScreen(),
+              ),
+              GoRoute(
+                path: SearchScreen.path,
+                name: SearchScreen.name,
+                builder: (context, state) {
+                  final q = state.uri.queryParameters['q'];
+                  return SearchScreen(initialQuery: q);
+                },
               ),
             ],
           ),

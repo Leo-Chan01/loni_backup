@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/book_tile_vertical.dart';
@@ -107,7 +108,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 18.h),
-                  LoniSearchBar(hintText: 'Search books, authors...'),
+                  LoniSearchBar(
+                    hintText: 'Search books, authors...',
+                    readOnly: true,
+                    onTap: () {
+                      // Navigate to dedicated search UI
+                      context.push('/app/explore/search');
+                    },
+                  ),
                   SizedBox(height: 22.h),
                   SectionHeader(title: 'Continue Reading'),
                   SizedBox(height: 12.h),
