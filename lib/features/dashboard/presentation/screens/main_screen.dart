@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/src/route.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key, required StatefulNavigationShell shell});
+  const MainScreen({super.key});
 
   static const String path = '/main';
   static const String name = 'MainScreen';

@@ -1,117 +1,77 @@
 import 'package:flutter/material.dart';
 
-/// Centralized color system for Loni Africa app
+/// Centralized color system for Loni Mobile app
 /// All colors should be accessed through this class to ensure consistency
 class AppColors {
   // Private constructor to prevent instantiation
   AppColors._();
 
   // ===== PRIMARY BRAND COLORS =====
-  /// Main brand green - used for primary actions, highlights, and brand elements
-  static const Color primaryGreen = Color.fromARGB(255, 4, 165, 111);
+  /// Main brand accent - Terracotta orange used for primary actions and highlights
+  static const Color brandAccent = Color(0xFFB85C38);
+  static const Color brandTerracotta = Color(0xFFC46A3A);
+  static const Color brandRust = Color(0xFF9E4A2F);
 
-  /// Lighter green shades for backgrounds and subtle highlights
-  static const Color lightGreen = Color.fromARGB(255, 76, 175, 80);
-  static const Color paleGreen = Color.fromARGB(255, 232, 245, 233);
-  static const Color mintGreen = Color.fromARGB(255, 200, 230, 201);
+  // ===== DARK MODE COLORS =====
+  /// Dark theme backgrounds and surfaces
+  static const Color darkBg = Color(0xFF0B0B0C);
+  static const Color darkSurface = Color(0xFF161618);
+  static const Color darkBorder = Color(0xFF2A2A2E);
+  static const Color darkText = Color(0xFFF4F4F5);
+  static const Color darkTextMuted = Color(0xFFA1A1AA);
 
-  /// Darker green shades for text and emphasis
-  static const Color darkGreen = Color.fromARGB(255, 2, 125, 85);
-  static const Color forestGreen = Color.fromARGB(255, 1, 95, 65);
+  // ===== LIGHT MODE COLORS =====
+  /// Light theme backgrounds and surfaces
+  static const Color lightBg = Color(0xFFF9F6F3);
+  static const Color lightSurface = Color(0xFFFFFFFF);
+  static const Color lightBorder = Color(0xFFE5E5EA);
+  static const Color lightText = Color(0xFF1C1C1E);
+  static const Color lightTextMuted = Color(0xFF6E6E73);
 
-  // ===== SECONDARY BRAND COLORS =====
-  /// Clean white for backgrounds and cards
-  static const Color white = Color.fromARGB(255, 255, 255, 255);
-
-  /// Soft off-white for subtle backgrounds
-  static const Color offWhite = Color.fromARGB(255, 250, 250, 250);
-
-  /// Light grey for borders and dividers
-  static const Color lightGrey = Color.fromARGB(255, 245, 245, 245);
-
-  // ===== NEUTRAL COLORS =====
-  /// Text colors in order of hierarchy
-  static const Color primaryText = Color.fromARGB(255, 33, 33, 33);
-  static const Color secondaryText = Color.fromARGB(255, 97, 97, 97);
-  static const Color tertiaryText = Color.fromARGB(255, 158, 158, 158);
-
-  /// Border and divider colors
-  static const Color border = Color.fromARGB(255, 224, 224, 224);
-  static const Color divider = Color.fromARGB(255, 238, 238, 238);
+  // ===== COMMON COLORS =====
+  /// Pure black and white
+  static const Color black = Color(0xFF000000);
+  static const Color white = Color(0xFFFFFFFF);
 
   // ===== STATUS COLORS =====
-  /// Success states - use green variants
-  static const Color success = primaryGreen;
-  static const Color successLight = Color.fromARGB(255, 232, 245, 233);
-  static const Color successDark = darkGreen;
+  /// Success states
+  static const Color success = Color(0xFF10B981);
+  static const Color successLight = Color(0xFFD1FAE5);
+  static const Color successDark = Color(0xFF059669);
 
-  /// Warning states - warm orange tones that complement green
-  static const Color warning = Color.fromARGB(255, 255, 152, 0);
-  static const Color warningLight = Color.fromARGB(255, 255, 243, 224);
-  static const Color warningDark = Color.fromARGB(255, 230, 119, 0);
+  /// Warning states
+  static const Color warning = Color(0xFFF59E0B);
+  static const Color warningLight = Color(0xFFFEF3C7);
+  static const Color warningDark = Color(0xFFD97706);
 
-  /// Error states - muted red that works with green
-  static const Color error = Color.fromARGB(255, 211, 47, 47);
-  static const Color errorLight = Color.fromARGB(255, 255, 235, 238);
-  static const Color errorDark = Color.fromARGB(255, 183, 28, 28);
+  /// Error states
+  static const Color error = Color(0xFFEF4444);
+  static const Color errorLight = Color(0xFFFEE2E2);
+  static const Color errorDark = Color(0xFFDC2626);
 
-  /// Info states - subtle blue-grey that complements green
-  static const Color info = Color.fromARGB(255, 2, 136, 209);
-  static const Color infoLight = Color.fromARGB(255, 227, 242, 253);
-  static const Color infoGrey = Colors.blueGrey;
-  static const Color infoDark = Color.fromARGB(255, 1, 87, 155);
+  /// Info states
+  static const Color info = Color(0xFF3B82F6);
+  static const Color infoLight = Color(0xFFDBEAFE);
+  static const Color infoDark = Color(0xFF2563EB);
 
-  // ===== ORDER STATUS COLORS =====
-  /// Pending orders - soft amber
-  static const Color pending = Color.fromARGB(255, 255, 193, 7);
-  static const Color pendingLight = Color.fromARGB(255, 255, 248, 225);
-  static const Color pendingDark = Color.fromARGB(255, 255, 160, 0);
-
-  /// Processing orders - use primary green variants
-  static const Color processing = primaryGreen;
-  static const Color processingLight = successLight;
-  static const Color processingDark = successDark;
-
-  /// Completed orders - deeper green
-  static const Color completed = forestGreen;
-  static const Color completedLight = Color.fromARGB(255, 200, 230, 201);
-  static const Color completedDark = Color.fromARGB(255, 27, 94, 32);
-
-  /// Cancelled/Rejected orders - use error colors
-  static const Color cancelled = error;
-  static const Color cancelledLight = errorLight;
-  static const Color cancelledDark = errorDark;
-
-  // ===== SURFACE COLORS =====
+  // ===== SURFACE COLORS (Contextual) =====
   /// Card and container backgrounds
-  static const Color surface = white;
-  static const Color surfaceVariant = offWhite;
-  static const Color surfaceContainer = lightGrey;
-
-  /// Elevated surfaces (modals, bottom sheets)
-  static const Color surfaceElevated = white;
-
+  static const Color surface = lightSurface;
+  static const Color surfaceVariant = lightBg;
+  
   /// Background colors
-  static const Color background = offWhite;
-  static const Color backgroundVariant = lightGrey;
+  static const Color background = lightBg;
 
   // ===== OVERLAY COLORS =====
   /// Semi-transparent overlays
-  static const Color overlay = Color.fromARGB(128, 0, 0, 0);
-  static const Color lightOverlay = Color.fromARGB(64, 0, 0, 0);
-  static const Color darkOverlay = Color.fromARGB(180, 0, 0, 0);
+  static const Color overlay = Color(0x80000000);
+  static const Color lightOverlay = Color(0x40000000);
+  static const Color darkOverlay = Color(0xB4000000);
 
   // ===== GRADIENT COMBINATIONS =====
-  /// Primary green gradients
-  static const List<Color> primaryGradient = [primaryGreen, lightGreen];
-  static const List<Color> primaryGradientReverse = [lightGreen, primaryGreen];
-
-  /// Success gradients
-  static const List<Color> successGradient = [success, lightGreen];
-
-  /// Subtle background gradients
-  static const List<Color> backgroundGradient = [white, offWhite];
-  static const List<Color> cardGradient = [white, lightGrey];
+  /// Brand gradients
+  static const List<Color> brandGradient = [brandAccent, brandTerracotta];
+  static const List<Color> brandGradientReverse = [brandTerracotta, brandAccent];
 
   // ===== HELPER METHODS =====
   /// Get color with opacity
@@ -124,18 +84,18 @@ class AppColors {
     switch (status.toLowerCase()) {
       case 'pending':
       case 'waiting':
-        return pending;
+        return warning;
       case 'processing':
       case 'in_progress':
-        return processing;
+        return info;
       case 'completed':
       case 'delivered':
       case 'success':
-        return completed;
+        return success;
       case 'cancelled':
       case 'rejected':
       case 'failed':
-        return cancelled;
+        return error;
       default:
         return info;
     }
@@ -146,18 +106,18 @@ class AppColors {
     switch (status.toLowerCase()) {
       case 'pending':
       case 'waiting':
-        return pendingLight;
+        return warningLight;
       case 'processing':
       case 'in_progress':
-        return processingLight;
+        return infoLight;
       case 'completed':
       case 'delivered':
       case 'success':
-        return completedLight;
+        return successLight;
       case 'cancelled':
       case 'rejected':
       case 'failed':
-        return cancelledLight;
+        return errorLight;
       default:
         return infoLight;
     }
@@ -165,8 +125,7 @@ class AppColors {
 
   /// Get contrasting text color for given background
   static Color getContrastingTextColor(Color backgroundColor) {
-    // Calculate luminance to determine if text should be light or dark
     final luminance = backgroundColor.computeLuminance();
-    return luminance > 0.5 ? primaryText : white;
+    return luminance > 0.5 ? lightText : white;
   }
 }

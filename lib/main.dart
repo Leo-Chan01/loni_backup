@@ -28,8 +28,10 @@ class MainApp extends StatelessWidget {
               rebuildFactor: (old, data) => true,
               builder: (context, child) {
                 return MaterialApp.router(
-                  title: 'Loni Africa',
+                  title: 'Loni',
                   theme: AppTheme.instance.lightTheme,
+                  darkTheme: AppTheme.instance.darkTheme,
+                  themeMode: ThemeMode.system,
                   routerConfig: AppRoutes.router,
                   debugShowCheckedModeBanner: false,
                 );

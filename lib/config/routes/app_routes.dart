@@ -19,25 +19,12 @@ class AppRoutes {
           return const SplashScreen();
         },
       ),
-      StatefulShellRoute.indexedStack(
-        builder: (context, state, navigationShell) {
-          AppConstant.shell = navigationShell;
-          return MainScreen(key: state.pageKey, shell: navigationShell);
+      GoRoute(
+        path: MainScreen.path,
+        name: MainScreen.name,
+        builder: (context, state) {
+          return const MainScreen();
         },
-        branches: [
-          StatefulShellBranch(routes: [
-         
-            ],
-          ),
-          StatefulShellBranch(routes: [
-
-            ],
-          ),
-          StatefulShellBranch(routes: [
-       
-            ],
-          ),
-        ],
       ),
     ],
   );
