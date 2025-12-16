@@ -5,12 +5,12 @@ class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     this.isLoading = false,
   });
 
   final String text;
-  final VoidCallback? onPressed;
+  final Future<void> Function()? onPressed;
   final bool isLoading;
 
   @override

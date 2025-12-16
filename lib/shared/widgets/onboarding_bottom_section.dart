@@ -15,7 +15,7 @@ class OnboardingBottomSection extends StatelessWidget {
 
   final int currentPage;
   final int totalPages;
-  final VoidCallback onNext;
+  final Future<void> Function()? onNext;
   final VoidCallback? onSecondaryAction;
 
   @override

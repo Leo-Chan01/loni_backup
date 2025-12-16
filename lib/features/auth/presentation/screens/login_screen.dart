@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:loni_africa/core/utilities/validators.dart';
+import 'package:loni_africa/features/auth/data/services/auth_service.dart';
+import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/auth_text_field.dart';
 import 'package:loni_africa/shared/widgets/divider_with_text.dart';
+import 'package:loni_africa/shared/widgets/global_snackbar.dart';
 import 'package:loni_africa/shared/widgets/primary_button.dart';
 import 'package:loni_africa/shared/widgets/screen_header.dart';
 import 'package:loni_africa/shared/widgets/social_login_row.dart';
@@ -20,10 +25,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _authService = AuthService();
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _rememberMe = false;
   bool _isPasswordVisible = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -32,8 +40,35 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _onSignIn() {
-    // TODO: Implement sign in logic
+  Future<void> _onSignIn() async {
+    // Validate form
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    final result = await _authService.signIn(
+      emailOrPhone: _emailController.text,
+      password: _passwordController.text,
+    );
+
+    if (!mounted) return;
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (result.isSuccess) {
+      GlobalSnackBar.showSuccess(result.message);
+      final emailOrPhone =
+          result.data?['emailOrPhone'] ?? _emailController.text.trim();
+      context.go('${OtpVerificationScreen.path}?email=$emailOrPhone');
+    } else {
+      GlobalSnackBar.showError(result.message);
+    }
   }
 
   void _onGoogleSignIn() {
@@ -66,151 +101,157 @@ class _LoginScreenState extends State<LoginScreen> {
           SafeArea(
             child: SingleChildScrollView(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 24.h),
-                  ScreenHeader(
-                    title: 'Welcome Back',
-                    subtitle: 'Sign in to continue your reading journey',
-                    showBackButton: true,
-                    trailingWidget: ThemeToggleButton(
-                      onToggle: themeNotifier.onToggle,
-                    ),
-                  ),
-                  SizedBox(height: 40.h),
-                  AuthTextField(
-                    label: 'Email or Phone Number',
-                    hintText: 'name@example.com',
-                    prefixIcon: Icons.email_outlined,
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  SizedBox(height: 20.h),
-                  AuthTextField(
-                    label: 'Password',
-                    hintText: 'Enter your password',
-                    prefixIcon: Icons.lock_outline,
-                    controller: _passwordController,
-                    isPassword: !_isPasswordVisible,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _isPasswordVisible = !_isPasswordVisible;
-                        });
-                      },
-                      icon: Icon(
-                        _isPasswordVisible
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
-                        color: colorScheme.onSurface.withValues(alpha: 0.4),
-                        size: 20.sp,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 24.h),
+                    ScreenHeader(
+                      title: 'Welcome Back',
+                      subtitle: 'Sign in to continue your reading journey',
+                      showBackButton: true,
+                      trailingWidget: ThemeToggleButton(
+                        onToggle: themeNotifier.onToggle,
                       ),
                     ),
-                  ),
-                  SizedBox(height: 16.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 20.w,
-                            height: 20.h,
-                            child: Checkbox(
-                              value: _rememberMe,
-                              onChanged: (value) {
-                                setState(() {
-                                  _rememberMe = value ?? false;
-                                });
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.r),
+                    SizedBox(height: 40.h),
+                    AuthTextField(
+                      label: 'Email or Phone Number',
+                      hintText: 'name@example.com',
+                      prefixIcon: Icons.email_outlined,
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      validator: Validators.validateEmailOrPhone,
+                    ),
+                    SizedBox(height: 20.h),
+                    AuthTextField(
+                      label: 'Password',
+                      hintText: 'Enter your password',
+                      prefixIcon: Icons.lock_outline,
+                      controller: _passwordController,
+                      isPassword: !_isPasswordVisible,
+                      validator: Validators.validatePassword,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: colorScheme.onSurface.withValues(alpha: 0.4),
+                          size: 20.sp,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 16.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 20.w,
+                              height: 20.h,
+                              child: Checkbox(
+                                value: _rememberMe,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _rememberMe = value ?? false;
+                                  });
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4.r),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            'Remember me',
-                            style: textTheme.bodySmall?.copyWith(
-                              fontSize: 14.sp,
+                            SizedBox(width: 8.w),
+                            Text(
+                              'Remember me',
+                              style: textTheme.bodySmall?.copyWith(
+                                fontSize: 14.sp,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      TextButton(
-                        onPressed: _onForgotPassword,
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          minimumSize: Size.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        ),
-                        child: Text(
-                          'Forgot Password?',
-                          style: textTheme.bodySmall?.copyWith(
-                            fontSize: 14.sp,
-                            color: colorScheme.primary,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 32.h),
-                  PrimaryButton(
-                    text: 'Sign In',
-                    onPressed: _onSignIn,
-                  ),
-                  SizedBox(height: 24.h),
-                  const DividerWithText(text: 'Or continue with'),
-                  SizedBox(height: 24.h),
-                  SocialLoginRow(
-                    onGooglePressed: _onGoogleSignIn,
-                    onPhonePressed: _onPhoneSignIn,
-                  ),
-                  SizedBox(height: 32.h),
-                  Center(
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Don\'t have an account? ',
-                          style: textTheme.bodySmall?.copyWith(
-                            fontSize: 14.sp,
-                          ),
+                          ],
                         ),
                         TextButton(
-                          onPressed: _onSignUp,
+                          onPressed: _onForgotPassword,
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,
                             minimumSize: Size.zero,
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           ),
                           child: Text(
-                            'Sign Up',
+                            'Forgot Password?',
                             style: textTheme.bodySmall?.copyWith(
                               fontSize: 14.sp,
-                              fontWeight: FontWeight.w600,
                               color: colorScheme.primary,
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(height: 24.h),
-                  Center(
-                    child: Text(
-                      'By continuing, you agree to Loni\'s Terms of Service\nand Privacy Policy',
-                      textAlign: TextAlign.center,
-                      style: textTheme.labelSmall?.copyWith(
-                        fontSize: 10.sp,
-                        color: colorScheme.onSurface.withValues(alpha: 0.4),
-                        height: 1.5,
+                    SizedBox(height: 32.h),
+                    PrimaryButton(
+                      text: 'Sign In',
+                      onPressed: () => _onSignIn(),
+                      isLoading: _isLoading,
+                    ),
+                    SizedBox(height: 24.h),
+                    const DividerWithText(text: 'Or continue with'),
+                    SizedBox(height: 24.h),
+                    SocialLoginRow(
+                      onGooglePressed: _onGoogleSignIn,
+                      onPhonePressed: _onPhoneSignIn,
+                    ),
+                    SizedBox(height: 32.h),
+                    Center(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Don\'t have an account? ',
+                            style: textTheme.bodySmall?.copyWith(
+                              fontSize: 14.sp,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: _onSignUp,
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                              minimumSize: Size.zero,
+                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            ),
+                            child: Text(
+                              'Sign Up',
+                              style: textTheme.bodySmall?.copyWith(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                                color: colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  SizedBox(height: 24.h),
-                ],
+                    SizedBox(height: 24.h),
+                    Center(
+                      child: Text(
+                        'By continuing, you agree to Loni\'s Terms of Service\nand Privacy Policy',
+                        textAlign: TextAlign.center,
+                        style: textTheme.labelSmall?.copyWith(
+                          fontSize: 10.sp,
+                          color: colorScheme.onSurface.withValues(alpha: 0.4),
+                          height: 1.5,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 24.h),
+                  ],
+                ),
               ),
             ),
           ),

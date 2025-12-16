@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:loni_africa/features/auth/presentation/screens/login_screen.dart';
 import 'package:loni_africa/main.dart';
-import 'package:loni_africa/shared/widgets/onboarding_bottom_section.dart';
-import 'package:loni_africa/shared/widgets/onboarding_page.dart';
-import 'package:loni_africa/shared/widgets/onboarding_top_bar.dart';
+import 'package:loni_africa/shared/widgets/onboarding_content.dart';
+import 'package:loni_africa/shared/widgets/onboarding_image_card.dart';
+import 'package:loni_africa/shared/widgets/onboarding_page_indicator.dart';
+import 'package:loni_africa/shared/widgets/primary_button.dart';
+import 'package:loni_africa/shared/widgets/secondary_button.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 import 'package:loni_africa/shared/widgets/theme_toggle_button.dart';
 
@@ -61,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     });
   }
 
-  void _onNext() {
+  Future<void> _onNext()  async {
     if (_currentPage < _pages.length - 1) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),
@@ -77,7 +79,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _navigateToLogin() {
-    context.go(LoginScreen.path);
+    context.go('/login');
   }
 
   @override
@@ -93,37 +95,98 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           SafeArea(
             child: Column(
               children: [
-                OnboardingTopBar(
-                  onSkip: _onSkip,
-                  themeToggleButton: ThemeToggleButton(
-                    onToggle: themeNotifier.onToggle,
-                  ),
-                ),
+                _buildTopBar(themeNotifier),
                 Expanded(
                   child: PageView.builder(
                     controller: _pageController,
                     onPageChanged: _onPageChanged,
                     itemCount: _pages.length,
                     itemBuilder: (context, index) {
-                      final pageData = _pages[index];
-                      return OnboardingPage(
-                        title: pageData['title'],
-                        description: pageData['description'],
-                        imageUrl: pageData['imageUrl'],
-                        icon: pageData['icon'],
-                      );
+                      return _buildPage(_pages[index]);
                     },
                   ),
                 ),
-                OnboardingBottomSection(
-                  currentPage: _currentPage,
-                  totalPages: _pages.length,
-                  onNext: _onNext,
-                  onSecondaryAction: _onSkip,
-                ),
+                _buildBottomSection(),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTopBar(ThemeNotifier themeNotifier) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextButton(
+            onPressed: _onSkip,
+            child: Text(
+              'Skip',
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w500,
+                color: Theme.of(context)
+                    .colorScheme
+                    .onSurface
+                    .withValues(alpha: 0.6),
+              ),
+            ),
+          ),
+          ThemeToggleButton(
+            onToggle: themeNotifier.onToggle,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPage(Map<String, dynamic> pageData) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(height: 24.h),
+          OnboardingImageCard(
+            imageUrl: pageData['imageUrl'],
+            icon: pageData['icon'],
+          ),
+          SizedBox(height: 48.h),
+          OnboardingContent(
+            title: pageData['title'],
+            description: pageData['description'],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBottomSection() {
+    final isLastPage = _currentPage == _pages.length - 1;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+      child: Column(
+        children: [
+          OnboardingPageIndicator(
+            currentPage: _currentPage,
+            totalPages: _pages.length,
+          ),
+          SizedBox(height: 32.h),
+          PrimaryButton(
+            text: isLastPage ? 'Get Started' : 'Next',
+            onPressed: _onNext,
+          ),
+          if (isLastPage) ...[
+            SizedBox(height: 8.h),
+            SecondaryButton(
+              text: 'I already have an account',
+              onPressed: _onSkip,
+            ),
+          ],
         ],
       ),
     );

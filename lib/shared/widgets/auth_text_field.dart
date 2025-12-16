@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AuthTextField extends StatelessWidget {
+class AuthTextField extends StatefulWidget {
   const AuthTextField({
     super.key,
     required this.label,
@@ -11,6 +11,7 @@ class AuthTextField extends StatelessWidget {
     this.isPassword = false,
     this.controller,
     this.keyboardType,
+    this.validator,
   });
 
   final String label;
@@ -20,6 +21,26 @@ class AuthTextField extends StatelessWidget {
   final bool isPassword;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
+
+  @override
+  State<AuthTextField> createState() => _AuthTextFieldState();
+}
+
+class _AuthTextFieldState extends State<AuthTextField> {
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +51,7 @@ class AuthTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          label.toUpperCase(),
+          widget.label.toUpperCase(),
           style: textTheme.labelSmall?.copyWith(
             fontSize: 11.sp,
             fontWeight: FontWeight.w500,
@@ -39,40 +60,72 @@ class AuthTextField extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8.h),
-        Container(
-          decoration: BoxDecoration(
-            color: colorScheme.surface.withValues(alpha: 0.03),
-            borderRadius: BorderRadius.circular(12.r),
-            border: Border.all(
-              color: colorScheme.onSurface.withValues(alpha: 0.1),
-            ),
+        TextFormField(
+          controller: widget.controller,
+          focusNode: _focusNode,
+          obscureText: widget.isPassword,
+          keyboardType: widget.keyboardType,
+          validator: widget.validator,
+          style: textTheme.bodyMedium?.copyWith(
+            fontSize: 15.sp,
           ),
-          child: TextField(
-            controller: controller,
-            obscureText: isPassword,
-            keyboardType: keyboardType,
-            style: textTheme.bodyMedium?.copyWith(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            hintStyle: textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.4),
               fontSize: 15.sp,
             ),
-            decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle: textTheme.bodyMedium?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.4),
-                fontSize: 15.sp,
+            prefixIcon: widget.prefixIcon != null
+                ? Icon(
+                    widget.prefixIcon,
+                    color: colorScheme.onSurface.withValues(alpha: 0.4),
+                    size: 20.sp,
+                  )
+                : null,
+            suffixIcon: widget.suffixIcon,
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 16.w,
+              vertical: 16.h,
+            ),
+            filled: true,
+            fillColor: colorScheme.surface.withValues(alpha: 0.03),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide(
+                color: colorScheme.onSurface.withValues(alpha: 0.1),
               ),
-              prefixIcon: prefixIcon != null
-                  ? Icon(
-                      prefixIcon,
-                      color: colorScheme.onSurface.withValues(alpha: 0.4),
-                      size: 20.sp,
-                    )
-                  : null,
-              suffixIcon: suffixIcon,
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(
-                horizontal: 16.w,
-                vertical: 16.h,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide(
+                color: colorScheme.onSurface.withValues(alpha: 0.1),
               ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide(
+                color: colorScheme.primary,
+                width: 1.5,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide(
+                color: colorScheme.error,
+                width: 1.5,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: BorderSide(
+                color: colorScheme.error,
+                width: 1.5,
+              ),
+            ),
+            errorStyle: textTheme.bodySmall?.copyWith(
+              color: colorScheme.error,
+              fontSize: 12.sp,
             ),
           ),
         ),

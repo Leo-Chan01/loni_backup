@@ -37,7 +37,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
     });
   }
 
-  void _onContinue() {
+  Future<void> _onContinue() async {
     context.go(OnboardingScreen.path);
   }
 
