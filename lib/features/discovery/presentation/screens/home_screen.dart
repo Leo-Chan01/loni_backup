@@ -11,22 +11,10 @@ import 'package:loni_africa/shared/widgets/screen_header.dart';
 import 'package:loni_africa/shared/widgets/section_header.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 import 'package:loni_africa/shared/widgets/theme_toggle_button.dart';
-
-class BookPreview {
-  const BookPreview({
-    required this.title,
-    required this.author,
-    required this.rating,
-    required this.category,
-    this.badge,
-  });
-
-  final String title;
-  final String author;
-  final double rating;
-  final String category;
-  final String? badge;
-}
+import 'package:loni_africa/features/discovery/presentation/controllers/discovery_controller.dart';
+import 'package:loni_africa/features/discovery/data/services/discovery_service.dart';
+import 'package:loni_africa/features/discovery/domain/models/book_item.dart';
+import 'package:loni_africa/features/discovery/domain/models/genre.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,48 +27,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<BookPreview> _trendingBooks = const [
-    BookPreview(
-      title: 'Half of a Yellow Sun',
-      author: 'Chimamanda Adichie',
-      rating: 4.8,
-      category: 'Fiction',
-    ),
-    BookPreview(
-      title: 'Americanah',
-      author: 'Chimamanda Adichie',
-      rating: 4.7,
-      category: 'Fiction',
-    ),
-    BookPreview(
-      title: 'The Famished Road',
-      author: 'Ben Okri',
-      rating: 4.5,
-      category: 'Fiction',
-    ),
-  ];
+  late final DiscoveryController _discovery;
+  List<BookItem> _trendingBooks = const [];
+  List<Genre> _genres = const [];
+  List<BookItem> _newReleases = const [];
 
-  final List<GenreTile> _genres = const [
-    GenreTile(title: 'Fiction', countLabel: '2,340 books'),
-    GenreTile(title: 'History', countLabel: '1,120 books'),
-    GenreTile(title: 'Poetry', countLabel: '890 books'),
-    GenreTile(title: 'Children', countLabel: '1,560 books'),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _discovery = DiscoveryController(DiscoveryService());
+    _loadData();
+  }
 
-  final List<NewRelease> _newReleases = const [
-    NewRelease(
-      title: 'The Joys of Motherhood',
-      author: 'Buchi Emecheta',
-      priceLabel: '\$12.99',
-      formatLabel: 'Digital',
-    ),
-    NewRelease(
-      title: 'Purple Hibiscus',
-      author: 'Chimamanda Adichie',
-      priceLabel: '\$14.99',
-      formatLabel: 'Digital',
-    ),
-  ];
+  Future<void> _loadData() async {
+    final trending = await _discovery.trending();
+    final genres = await _discovery.genres();
+    final releases = await _discovery.newReleases();
+    if (!mounted) return;
+    setState(() {
+      _trendingBooks = trending;
+      _genres = genres;
+      _newReleases = releases;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -158,9 +127,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     runSpacing: 12.h,
                     children: _genres
                         .map(
-                          (genre) => GenreCard(
-                            title: genre.title,
-                            countLabel: genre.countLabel,
+                          (g) => GenreCard(
+                            title: g.title,
+                            countLabel: g.countLabel,
                             onTap: () {},
                           ),
                         )
@@ -179,8 +148,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: NewReleaseTile(
                         title: release.title,
                         author: release.author,
-                        priceLabel: release.priceLabel,
-                        formatLabel: release.formatLabel,
+                        priceLabel: release.priceLabel ?? '',
+                        formatLabel: 'Digital',
                         onTap: () {},
                         onAdd: () {},
                       ),
@@ -197,23 +166,3 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class GenreTile {
-  const GenreTile({required this.title, required this.countLabel});
-
-  final String title;
-  final String countLabel;
-}
-
-class NewRelease {
-  const NewRelease({
-    required this.title,
-    required this.author,
-    required this.priceLabel,
-    required this.formatLabel,
-  });
-
-  final String title;
-  final String author;
-  final String priceLabel;
-  final String formatLabel;
-}
