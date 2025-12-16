@@ -25,47 +25,45 @@ class ScreenHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (showBackButton)
+        if (showBackButton || trailingWidget != null)
           Padding(
             padding: EdgeInsets.only(bottom: 16.h),
-            child: IconButton(
-              onPressed: onBackPressed ?? () => Navigator.of(context).pop(),
-              icon: const Icon(Icons.arrow_back),
-              color: colorScheme.onSurface,
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (showBackButton)
+                  IconButton(
+                    onPressed:
+                        onBackPressed ?? () => Navigator.of(context).pop(),
+                    icon: const Icon(Icons.arrow_back),
+                    color: colorScheme.onSurface,
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  )
+                else
+                  const SizedBox.shrink(),
+                if (trailingWidget != null) trailingWidget!,
+              ],
             ),
           ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: textTheme.headlineLarge?.copyWith(
-                      fontSize: 32.sp,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Merriweather',
-                    ),
-                  ),
-                  SizedBox(height: 12.h),
-                  Text(
-                    subtitle,
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurface.withValues(alpha: 0.6),
-                    ),
-                  ),
-                ],
+            Text(
+              title,
+              style: textTheme.headlineLarge?.copyWith(
+                fontSize: 32.sp,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Merriweather',
               ),
             ),
-            if (trailingWidget != null) ...[
-              SizedBox(width: 16.w),
-              trailingWidget!,
-            ],
+            SizedBox(height: 12.h),
+            Text(
+              subtitle,
+              style: textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+            ),
           ],
         ),
       ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:loni_africa/features/auth/presentation/screens/login_screen.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/onboarding_bottom_section.dart';
 import 'package:loni_africa/shared/widgets/onboarding_page.dart';
@@ -75,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _navigateToLogin() {
-    // TODO: Navigate to login screen
+    context.go(LoginScreen.path);
   }
 
   @override
