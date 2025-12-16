@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loni_africa/main.dart';
+import 'package:loni_africa/shared/widgets/screen_header.dart';
+import 'package:loni_africa/shared/widgets/texture_overlay.dart';
+import 'package:loni_africa/shared/widgets/theme_toggle_button.dart';
+
+class ExploreRootScreen extends StatelessWidget {
+  const ExploreRootScreen({super.key});
+
+  static const String path = '/app/explore';
+  static const String name = 'ExploreRootScreen';
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final themeNotifier = ThemeNotifier.of(context);
+
+    return Scaffold(
+      backgroundColor: colorScheme.surface,
+      body: Stack(
+        children: [
+          const TextureOverlay(),
+          SafeArea(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 24.h),
+                  ScreenHeader(
+                    title: 'Explore',
+                    subtitle: 'Search, categories and more',
+                    showBackButton: false,
+                    trailingWidget: ThemeToggleButton(
+                      onToggle: themeNotifier.onToggle,
+                    ),
+                  ),
+                  SizedBox(height: 24.h),
+                  Text(
+                    'Explore content goes here',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  SizedBox(height: 24.h),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

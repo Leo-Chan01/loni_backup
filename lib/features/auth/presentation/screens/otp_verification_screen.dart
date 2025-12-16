@@ -81,7 +81,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
     if (result.isSuccess) {
       GlobalSnackBar.showSuccess(result.message);
-      context.go('/dashboard');
+      context.go('/app/home');
     } else {
       GlobalSnackBar.showError(result.message);
     }
@@ -108,7 +108,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
     final themeNotifier = ThemeNotifier.of(context);
 
     return Scaffold(
