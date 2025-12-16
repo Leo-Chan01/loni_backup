@@ -84,7 +84,7 @@ class ContinueReadingCard extends StatelessWidget {
                     child: LinearProgressIndicator(
                       value: progress.clamp(0, 1),
                       minHeight: 10.h,
-                      backgroundColor: colorScheme.surfaceVariant.withValues(
+                      backgroundColor: colorScheme.surfaceContainerHighest.withValues(
                         alpha: 0.6,
                       ),
                       valueColor: AlwaysStoppedAnimation<Color>(

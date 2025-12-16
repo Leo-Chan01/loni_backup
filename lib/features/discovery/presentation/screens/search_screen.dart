@@ -98,7 +98,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         : ListView.separated(
                             padding: EdgeInsets.only(bottom: 20.h),
                             itemCount: _results.length,
-                            separatorBuilder: (_, __) => SizedBox(height: 12.h),
+                            separatorBuilder: (context, index) => SizedBox(height: 12.h),
                             itemBuilder: (context, index) {
                               final it = _results[index];
                               return SearchResultCard(

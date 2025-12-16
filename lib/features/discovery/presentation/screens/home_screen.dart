@@ -106,7 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
                       itemCount: _trendingBooks.length,
-                      separatorBuilder: (_, __) => SizedBox(width: 12.w),
+                      separatorBuilder: (context, index) =>
+                          SizedBox(width: 12.w),
                       itemBuilder: (context, index) {
                         final book = _trendingBooks[index];
                         return BookTileVertical(
@@ -165,4 +166,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

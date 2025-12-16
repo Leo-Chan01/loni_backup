@@ -39,7 +39,7 @@ class FilterChipRow extends StatelessWidget {
               selected: isSelected,
               onSelected: (_) => onSelected(index),
               showCheckmark: false,
-              backgroundColor: colorScheme.surfaceVariant.withValues(
+              backgroundColor: colorScheme.surfaceContainerHighest.withValues(
                 alpha: 0.6,
               ),
               selectedColor: colorScheme.primary,
