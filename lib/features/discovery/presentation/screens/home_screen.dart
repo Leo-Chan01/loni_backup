@@ -112,7 +112,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     hintText: 'Search books, authors...',
                     readOnly: true,
                     onTap: () {
-                      // Navigate to dedicated search UI
                       context.push('/app/explore/search');
                     },
                   ),
