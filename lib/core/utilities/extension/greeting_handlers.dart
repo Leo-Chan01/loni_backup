@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loni_africa/config/theme/color.dart';
 import 'package:loni_africa/core/utilities/extension/num_extension.dart';
 
-greetUserAccordingToTimeofDay() {
+String greetUserAccordingToTimeofDay() {
   var hour = DateTime.now().hour;
   if (hour < 12) {
     return 'Good Morning';

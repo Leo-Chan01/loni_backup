@@ -43,7 +43,7 @@ class AppTheme {
         backgroundColor: AppColors.brandAccent,
         foregroundColor: AppColors.white,
         elevation: 0,
-        shadowColor: AppColors.brandAccent.withOpacity(0.2),
+        shadowColor: AppColors.brandAccent.withValues(alpha: 0.2),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.sp),
         ),

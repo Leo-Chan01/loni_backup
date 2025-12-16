@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:loni_africa/config/constants/app_constant.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_screen.dart';
 import 'package:loni_africa/splash_screen.dart';
 
