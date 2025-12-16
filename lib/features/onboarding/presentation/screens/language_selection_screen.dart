@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loni_africa/shared/widgets/language_option_card.dart';
+import 'package:go_router/go_router.dart';
+import 'package:loni_africa/features/onboarding/presentation/screens/onboarding_screen.dart';
+import 'package:loni_africa/main.dart';
+import 'package:loni_africa/shared/widgets/language_option_list.dart';
 import 'package:loni_africa/shared/widgets/primary_button.dart';
 import 'package:loni_africa/shared/widgets/screen_header.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
+import 'package:loni_africa/shared/widgets/theme_toggle_button.dart';
 
 class LanguageSelectionScreen extends StatefulWidget {
   const LanguageSelectionScreen({super.key});
@@ -34,11 +38,13 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   }
 
   void _onContinue() {
-    // TODO: Navigate to onboarding
+    context.go(OnboardingScreen.path);
   }
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = ThemeNotifier.of(context);
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Stack(
@@ -51,46 +57,33 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 24.h),
-                  const ScreenHeader(
+                  ScreenHeader(
                     title: 'Choose Your Language',
                     subtitle: 'Select your preferred reading language',
+                    trailingWidget: ThemeToggleButton(
+                      onToggle: themeNotifier.onToggle,
+                    ),
                   ),
                   SizedBox(height: 40.h),
                   Expanded(
-                    child: _buildLanguageList(),
+                    child: LanguageOptionList(
+                      languages: _languages,
+                      selectedLanguage: _selectedLanguage,
+                      onLanguageSelected: _onLanguageSelected,
+                    ),
                   ),
-                  _buildBottomSection(),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 24.h, top: 16.h),
+                    child: PrimaryButton(
+                      text: 'Continue',
+                      onPressed: _onContinue,
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildLanguageList() {
-    return ListView.separated(
-      itemCount: _languages.length,
-      separatorBuilder: (context, index) => SizedBox(height: 12.h),
-      itemBuilder: (context, index) {
-        final language = _languages[index];
-        return LanguageOptionCard(
-          languageName: language['name']!,
-          languageSubtitle: language['subtitle']!,
-          isSelected: _selectedLanguage == language['name'],
-          onTap: () => _onLanguageSelected(language['name']!),
-        );
-      },
-    );
-  }
-
-  Widget _buildBottomSection() {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 24.h, top: 16.h),
-      child: PrimaryButton(
-        text: 'Continue',
-        onPressed: _onContinue,
       ),
     );
   }

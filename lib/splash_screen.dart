@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:loni_africa/features/onboarding/presentation/screens/language_selection_screen.dart';
 import 'package:loni_africa/shared/widgets/animated_logo.dart';
 import 'package:loni_africa/shared/widgets/app_branding.dart';
 import 'package:loni_africa/shared/widgets/powered_by_footer.dart';
@@ -54,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
   void _scheduleNavigation() {
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        // TODO: Navigate to language selection or onboarding
+        context.go(LanguageSelectionScreen.path);
       }
     });
   }

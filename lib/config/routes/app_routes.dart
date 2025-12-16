@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_screen.dart';
 import 'package:loni_africa/features/onboarding/presentation/screens/language_selection_screen.dart';
+import 'package:loni_africa/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:loni_africa/splash_screen.dart';
 
 class AppRoutes {
@@ -24,6 +25,13 @@ class AppRoutes {
         name: LanguageSelectionScreen.name,
         builder: (context, state) {
           return const LanguageSelectionScreen();
+        },
+      ),
+      GoRoute(
+        path: OnboardingScreen.path,
+        name: OnboardingScreen.name,
+        builder: (context, state) {
+          return const OnboardingScreen();
         },
       ),
       GoRoute(
