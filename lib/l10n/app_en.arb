@@ -1,0 +1,181 @@
+{
+  "@@locale": "en",
+  
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "welcomeBack": "Welcome Back",
+  "createAccount": "Create Account",
+  "enterEmail": "Enter your email",
+  "enterPassword": "Enter your password",
+  "enterName": "Enter your name",
+  "forgotPassword": "Forgot Password?",
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "orContinueWith": "Or continue with",
+  "google": "Google",
+  "apple": "Apple",
+  "emailLabel": "Email",
+  "passwordLabel": "Password",
+  "nameLabel": "Full Name",
+  "phoneLabel": "Phone Number",
+  "verifyPhone": "Verify Phone",
+  "enterOtp": "Enter the code we sent to",
+  "didntReceiveCode": "Didn't receive code?",
+  "verifyYourAccount": "Verify Your Account",
+  "enterSixDigitCode": "Enter the 6-digit code sent to",
+  "verifyAndContinue": "Verify & Continue",
+  "resend": "Resend",
+  "verify": "Verify",
+  "continueButton": "Continue",
+  
+  "onboardingTitle1": "Discover African Literature",
+  "onboardingDesc1": "Explore thousands of books from African authors and publishers",
+  "onboardingTitle2": "Read Anywhere, Anytime",
+  "onboardingDesc2": "Download books and read offline on all your devices",
+  "onboardingTitle3": "Support African Authors",
+  "onboardingDesc3": "Your purchases directly support writers and the literary community",
+  "skip": "Skip",
+  "next": "Next",
+  "getStarted": "Get Started",
+  
+  "goodMorning": "Good morning",
+  "goodAfternoon": "Good afternoon",
+  "goodEvening": "Good evening",
+  "goodNight": "Good night",
+  "searchBooksAuthors": "Search books, authors...",
+  "continueReading": "Continue Reading",
+  "trendingNow": "Trending Now",
+  "browseByGenre": "Browse by Genre",
+  "newReleases": "New Releases",
+  "seeAll": "See All",
+  "hot": "HOT",
+  "digital": "Digital",
+  "booksCount": "{count} books",
+  "@booksCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "searchForBooks": "Search for books...",
+  "foundResults": "Found {count} results for \"{query}\"",
+  "@foundResults": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "all": "All",
+  "books": "Books",
+  "authors": "Authors",
+  "publishers": "Publishers",
+  "view": "View",
+  "reviews": "{count} reviews",
+  "@reviews": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "categories": "Categories",
+  "fiction": "Fiction",
+  "history": "History",
+  "poetry": "Poetry",
+  "children": "Children",
+  "education": "Education",
+  "selfHelp": "Self-Help",
+  "business": "Business",
+  "romance": "Romance",
+  
+  "popular": "Popular",
+  "newFilter": "New",
+  "bestsellers": "Bestsellers",
+  "priceLow": "Price: Low",
+  "booksInCategory": "{count} books in {category}",
+  "@booksInCategory": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "nigerianNovelist": "Nigerian Novelist",
+  "readers": "Readers",
+  "rating": "Rating",
+  "followAuthor": "Follow Author",
+  "about": "About",
+  "popularBooks": "Popular Books",
+  
+  "publisher": "Publisher",
+  "africanWritersSeries": "African Writers Series",
+  "followPublisher": "Follow Publisher",
+  "latestReleases": "Latest Releases",
+  
+  "trending": "Trending",
+  "topBooksThisWeek": "Top books in {country} this week",
+  "@topBooksThisWeek": {
+    "placeholders": {
+      "country": {
+        "type": "String"
+      }
+    }
+  },
+  "nigeria": "Nigeria",
+  "kenya": "Kenya",
+  "southAfrica": "South Africa",
+  "ghana": "Ghana",
+  "fromLastWeek": "{change} from last week",
+  "@fromLastWeek": {
+    "placeholders": {
+      "change": {
+        "type": "String"
+      }
+    }
+  },
+  "noChange": "No change",
+  
+  "featured": "Featured",
+  "collection": "Collection",
+  "aboutThisCollection": "About This Collection",
+  "booksInCollection": "Books in This Collection",
+  "avgRating": "Avg Rating",
+  "add": "Add",
+  
+  "library": "Library",
+  "myBooks": "My Books",
+  "favorites": "Favorites",
+  "downloaded": "Downloaded",
+  
+  "profile": "Profile",
+  "settings": "Settings",
+  "notifications": "Notifications",
+  "language": "Language",
+  "theme": "Theme",
+  "logout": "Logout",
+  
+  "home": "Home",
+  "explore": "Explore",
+  
+  "cancel": "Cancel",
+  "ok": "OK",
+  "delete": "Delete",
+  "edit": "Edit",
+  "save": "Save",
+  "close": "Close",
+  "loading": "Loading...",
+  "error": "Error",
+  "retry": "Retry",
+  "success": "Success"
+}

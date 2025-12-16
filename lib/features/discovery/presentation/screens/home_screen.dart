@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/book_tile_vertical.dart';
 import 'package:loni_africa/shared/widgets/continue_reading_card.dart';
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: 20.h),
                   ScreenHeader(
                     title: 'Kwame',
-                    subtitle: 'Good evening',
+                    subtitle: context.l10n.goodEvening,
                     showBackButton: false,
                     trailingWidget: ThemeToggleButton(
                       onToggle: themeNotifier.onToggle,
@@ -78,15 +79,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 18.h),
                   LoniSearchBar(
-                    hintText: 'Search books, authors...',
+                    hintText: context.l10n.searchBooksAuthors,
                     readOnly: true,
                     onTap: () {
                       context.push('/app/explore/search');
                     },
                   ),
                   SizedBox(height: 22.h),
-                  SectionHeader(title: 'Continue Reading'),
-                  SizedBox(height: 12.h),
+                  SectionHeader(title: context.l10n.continueReading),
+                  SizedBox(height: 14.h),
                   ContinueReadingCard(
                     title: 'Things Fall Apart',
                     author: 'Chinua Achebe',
@@ -95,8 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 24.h),
                   SectionHeader(
-                    title: 'Trending Now',
-                    actionLabel: 'See All',
+                    title: context.l10n.trendingNow,
+                    actionLabel: context.l10n.seeAll,
                     onAction: () {},
                   ),
                   SizedBox(height: 14.h),
@@ -121,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 24.h),
-                  SectionHeader(title: 'Browse by Genre'),
+                  SectionHeader(title: context.l10n.browseByGenre),
                   SizedBox(height: 14.h),
                   Wrap(
                     spacing: 12.w,
@@ -138,8 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(height: 24.h),
                   SectionHeader(
-                    title: 'New Releases',
-                    actionLabel: 'See All',
+                    title: context.l10n.newReleases,
+                    actionLabel: context.l10n.seeAll,
                     onAction: () {},
                   ),
                   SizedBox(height: 14.h),

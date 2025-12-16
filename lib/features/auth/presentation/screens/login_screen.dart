@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loni_africa/core/utilities/validators.dart';
+import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/auth/data/services/auth_service.dart';
 import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:loni_africa/main.dart';
@@ -108,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     SizedBox(height: 24.h),
                     ScreenHeader(
-                      title: 'Welcome Back',
+                      title: context.l10n.welcomeBack,
                       subtitle: 'Sign in to continue your reading journey',
                       showBackButton: true,
                       trailingWidget: ThemeToggleButton(
@@ -117,8 +118,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 40.h),
                     AuthTextField(
-                      label: 'Email or Phone Number',
-                      hintText: 'name@example.com',
+                      label: context.l10n.emailLabel,
+                      hintText: context.l10n.enterEmail,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
@@ -126,8 +127,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 20.h),
                     AuthTextField(
-                      label: 'Password',
-                      hintText: 'Enter your password',
+                      label: context.l10n.passwordLabel,
+                      hintText: context.l10n.enterPassword,
                       prefixIcon: Icons.lock_outline,
                       controller: _passwordController,
                       isPassword: !_isPasswordVisible,
@@ -185,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           ),
                           child: Text(
-                            'Forgot Password?',
+                            context.l10n.forgotPassword,
                             style: textTheme.bodySmall?.copyWith(
                               fontSize: 14.sp,
                               color: colorScheme.primary,
@@ -196,12 +197,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 32.h),
                     PrimaryButton(
-                      text: 'Sign In',
+                      text: context.l10n.signIn,
                       onPressed: () => _onSignIn(),
                       isLoading: _isLoading,
                     ),
                     SizedBox(height: 24.h),
-                    const DividerWithText(text: 'Or continue with'),
+                    DividerWithText(text: context.l10n.orContinueWith),
                     SizedBox(height: 24.h),
                     SocialLoginRow(
                       onGooglePressed: _onGoogleSignIn,
@@ -213,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'Don\'t have an account? ',
+                            context.l10n.dontHaveAccount,
                             style: textTheme.bodySmall?.copyWith(
                               fontSize: 14.sp,
                             ),
@@ -226,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                             ),
                             child: Text(
-                              'Sign Up',
+                              context.l10n.signUp,
                               style: textTheme.bodySmall?.copyWith(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/discovery/data/services/search_service.dart';
 import 'package:loni_africa/features/discovery/domain/models/search_result.dart';
 import 'package:loni_africa/features/discovery/presentation/controllers/search_controller.dart' as discovery;
@@ -28,6 +29,14 @@ class _SearchScreenState extends State<SearchScreen> {
   List<SearchResult> _results = const [];
 
   final _tabs = const ['All', 'Books', 'Authors', 'Publishers'];
+
+  /// Get localized filter tabs
+  List<String> getFilterTabs(BuildContext context) => [
+    context.l10n.all,
+    context.l10n.books,
+    context.l10n.authors,
+    context.l10n.publishers,
+  ];
 
   @override
   void initState() {

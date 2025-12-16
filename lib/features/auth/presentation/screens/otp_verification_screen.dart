@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/auth/data/services/auth_service.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/global_snackbar.dart';
@@ -123,8 +124,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 children: [
                   SizedBox(height: 24.h),
                   ScreenHeader(
-                    title: 'Verify Your Account',
-                    subtitle: 'Enter the 6-digit code sent to $_maskedContact',
+                    title: context.l10n.verifyYourAccount,
+                    subtitle: '${context.l10n.enterSixDigitCode} $_maskedContact',
                     showBackButton: true,
                     trailingWidget: ThemeToggleButton(
                       onToggle: themeNotifier.onToggle,
@@ -151,7 +152,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
                   // Verify Button
                   PrimaryButton(
-                    text: 'Verify & Continue',
+                    text: context.l10n.verifyAndContinue,
                     onPressed: _otp.length == 6 ? _handleVerify : null,
                     isLoading: _isLoading,
                   ),

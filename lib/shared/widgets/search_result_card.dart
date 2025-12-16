@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:loni_africa/core/utilities/localization_extension.dart';
 
 class SearchResultCard extends StatelessWidget {
   const SearchResultCard({
@@ -119,7 +120,7 @@ class SearchResultCard extends StatelessWidget {
               ),
             ),
             child: Text(
-              'View',
+              context.l10n.view,
               style: textTheme.titleSmall?.copyWith(
                 color: colorScheme.onPrimary,
                 fontWeight: FontWeight.w700,

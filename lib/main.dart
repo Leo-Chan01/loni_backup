@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:loni_africa/config/theme/theme.dart';
 import 'package:loni_africa/config/routes/app_routes.dart';
 import 'package:loni_africa/config/theme/screen_size.dart';
 import 'package:loni_africa/core/utilities/theme_service.dart';
+import 'package:loni_africa/core/utilities/language_service.dart';
+import 'package:loni_africa/l10n/app_localizations.dart';
 
 void main() {
   runApp(const MainApp());
@@ -18,12 +21,15 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   final ThemeService _themeService = ThemeService();
+  final LanguageService _languageService = LanguageService();
   ThemeMode _themeMode = ThemeMode.system;
+  Locale? _locale;
 
   @override
   void initState() {
     super.initState();
     _loadTheme();
+    _loadLocale();
   }
 
   Future<void> _loadTheme() async {
@@ -31,6 +37,14 @@ class _MainAppState extends State<MainApp> {
     if (!mounted) return;
     setState(() {
       _themeMode = savedMode;
+    });
+  }
+
+  Future<void> _loadLocale() async {
+    final savedLocale = await _languageService.getSavedLocale();
+    if (!mounted) return;
+    setState(() {
+      _locale = savedLocale;
     });
   }
 
@@ -42,6 +56,13 @@ class _MainAppState extends State<MainApp> {
       _themeMode = nextMode;
     });
     await _themeService.saveThemeMode(nextMode);
+  }
+
+  Future<void> _changeLocale(Locale locale) async {
+    setState(() {
+      _locale = locale;
+    });
+    await _languageService.saveLocale(locale);
   }
 
   @override
@@ -60,16 +81,32 @@ class _MainAppState extends State<MainApp> {
               ensureScreenSize: true,
               rebuildFactor: (old, data) => true,
               builder: (context, child) {
-                return ThemeNotifier(
-                  themeMode: _themeMode,
-                  onToggle: _toggleTheme,
-                  child: MaterialApp.router(
-                    title: 'Loni',
-                    theme: AppTheme.instance.lightTheme,
-                    darkTheme: AppTheme.instance.darkTheme,
+                return LocaleNotifier(
+                  locale: _locale,
+                  onLocaleChange: _changeLocale,
+                  child: ThemeNotifier(
                     themeMode: _themeMode,
-                    routerConfig: AppRoutes.router,
-                    debugShowCheckedModeBanner: false,
+                    onToggle: _toggleTheme,
+                    child: MaterialApp.router(
+                      title: 'Loni',
+                      theme: AppTheme.instance.lightTheme,
+                      darkTheme: AppTheme.instance.darkTheme,
+                      themeMode: _themeMode,
+                      locale: _locale,
+                      routerConfig: AppRoutes.router,
+                      debugShowCheckedModeBanner: false,
+                      localizationsDelegates: const [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      supportedLocales: const [
+                        Locale('en'), // English
+                        Locale('fr'), // French
+                        Locale('es'), // Spanish
+                      ],
+                    ),
                   ),
                 );
               },
@@ -105,5 +142,32 @@ class ThemeNotifier extends InheritedWidget {
   @override
   bool updateShouldNotify(ThemeNotifier oldWidget) {
     return themeMode != oldWidget.themeMode;
+  }
+}
+
+class LocaleNotifier extends InheritedWidget {
+  const LocaleNotifier({
+    super.key,
+    required this.locale,
+    required this.onLocaleChange,
+    required super.child,
+  });
+
+  final Locale? locale;
+  final Function(Locale) onLocaleChange;
+
+  static LocaleNotifier? maybeOf(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<LocaleNotifier>();
+  }
+
+  static LocaleNotifier of(BuildContext context) {
+    final LocaleNotifier? result = maybeOf(context);
+    assert(result != null, 'No LocaleNotifier found in context');
+    return result!;
+  }
+
+  @override
+  bool updateShouldNotify(LocaleNotifier oldWidget) {
+    return locale != oldWidget.locale;
   }
 }
