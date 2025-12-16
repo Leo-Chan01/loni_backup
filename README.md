@@ -1,3 +1,3 @@
-# loni_africa
+# loni_mobile
 
-A new Flutter project.
+A local book inventory for africans
