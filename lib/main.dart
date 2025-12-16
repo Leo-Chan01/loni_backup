@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loni_africa/config/theme/theme.dart';
 import 'package:loni_africa/config/routes/app_routes.dart';
 import 'package:loni_africa/config/theme/screen_size.dart';
+import 'package:loni_africa/core/utilities/theme_service.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,14 +17,31 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  final ThemeService _themeService = ThemeService();
   ThemeMode _themeMode = ThemeMode.system;
 
-  void _toggleTheme() {
+  @override
+  void initState() {
+    super.initState();
+    _loadTheme();
+  }
+
+  Future<void> _loadTheme() async {
+    final savedMode = await _themeService.getSavedThemeMode();
+    if (!mounted) return;
     setState(() {
-      _themeMode = _themeMode == ThemeMode.light 
-          ? ThemeMode.dark 
-          : ThemeMode.light;
+      _themeMode = savedMode;
     });
+  }
+
+  Future<void> _toggleTheme() async {
+    final nextMode = _themeMode == ThemeMode.light
+        ? ThemeMode.dark
+        : ThemeMode.light;
+    setState(() {
+      _themeMode = nextMode;
+    });
+    await _themeService.saveThemeMode(nextMode);
   }
 
   @override
