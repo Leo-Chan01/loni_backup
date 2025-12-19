@@ -98,7 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   SectionHeader(
                     title: context.l10n.trendingNow,
                     actionLabel: context.l10n.seeAll,
-                    onAction: () {},
+                    onAction: () {
+                      context.push('/app/explore/trending');
+                    },
                   ),
                   SizedBox(height: 14.h),
                   SizedBox(
