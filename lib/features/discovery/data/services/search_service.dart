@@ -19,21 +19,21 @@ class SearchService {
         author: 'Chinua Achebe',
         rating: 4.8,
         reviewsLabel: '12.4k reviews',
-            priceLabel: '\$9.99',
+        priceLabel: '\$9.99',
       ),
       const SearchResult(
         title: 'No Longer at Ease',
         author: 'Chinua Achebe',
         rating: 4.6,
         reviewsLabel: '8.2k reviews',
-            priceLabel: '\$8.99',
+        priceLabel: '\$8.99',
       ),
       const SearchResult(
         title: 'Arrow of God',
         author: 'Chinua Achebe',
         rating: 4.7,
         reviewsLabel: '9.8k reviews',
-            priceLabel: '\$10.99',
+        priceLabel: '\$10.99',
       ),
     ];
 

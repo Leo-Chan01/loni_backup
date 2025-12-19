@@ -66,9 +66,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
           obscureText: widget.isPassword,
           keyboardType: widget.keyboardType,
           validator: widget.validator,
-          style: textTheme.bodyMedium?.copyWith(
-            fontSize: 15.sp,
-          ),
+          style: textTheme.bodyMedium?.copyWith(fontSize: 15.sp),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
             hintText: widget.hintText,
@@ -104,24 +102,15 @@ class _AuthTextFieldState extends State<AuthTextField> {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: BorderSide(
-                color: colorScheme.primary,
-                width: 1.5,
-              ),
+              borderSide: BorderSide(color: colorScheme.primary, width: 1.5),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: BorderSide(
-                color: colorScheme.error,
-                width: 1.5,
-              ),
+              borderSide: BorderSide(color: colorScheme.error, width: 1.5),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.r),
-              borderSide: BorderSide(
-                color: colorScheme.error,
-                width: 1.5,
-              ),
+              borderSide: BorderSide(color: colorScheme.error, width: 1.5),
             ),
             errorStyle: textTheme.bodySmall?.copyWith(
               color: colorScheme.error,

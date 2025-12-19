@@ -152,6 +152,15 @@
   "booksInCollection": "Livres dans cette collection",
   "avgRating": "Note moyenne",
   "add": "Ajouter",
+  "celebratingPowerfulVoices": "Célébrer des voix puissantes de tout le continent",
+  "authorsCount": "{count} Auteurs",
+  "@authorsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   
   "library": "Bibliothèque",
   "myBooks": "Mes livres",

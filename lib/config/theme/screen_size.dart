@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum ScreenType {
-  small,
-  medium,
-  large,
-  extraLarge,
-}
+enum ScreenType { small, medium, large, extraLarge }
 
 class DesignSizeConfig {
   Size designSize({

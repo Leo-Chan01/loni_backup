@@ -84,7 +84,7 @@ class AppTheme {
         borderSide: const BorderSide(color: AppColors.error, width: 2),
       ),
       filled: true,
-      fillColor: AppColors.darkSurface.withValues(alpha:0.5),
+      fillColor: AppColors.darkSurface.withValues(alpha: 0.5),
       iconColor: AppColors.darkTextMuted,
       prefixIconColor: AppColors.darkTextMuted,
       suffixIconColor: AppColors.darkTextMuted,

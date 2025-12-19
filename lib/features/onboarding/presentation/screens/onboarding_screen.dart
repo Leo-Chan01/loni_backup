@@ -152,16 +152,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               style: TextStyle(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
-                color: Theme.of(context)
-                    .colorScheme
-                    .onSurface
-                    .withValues(alpha: 0.6),
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ),
-          ThemeToggleButton(
-            onToggle: themeNotifier.onToggle,
-          ),
+          ThemeToggleButton(onToggle: themeNotifier.onToggle),
         ],
       ),
     );
@@ -188,7 +185,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  Widget _buildBottomSection(BuildContext context, List<Map<String, dynamic>> pages) {
+  Widget _buildBottomSection(
+    BuildContext context,
+    List<Map<String, dynamic>> pages,
+  ) {
     final isLastPage = _currentPage == pages.length - 1;
 
     return Padding(

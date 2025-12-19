@@ -664,6 +664,18 @@ abstract class AppLocalizations {
   /// **'Add'**
   String get add;
 
+  /// No description provided for @celebratingPowerfulVoices.
+  ///
+  /// In en, this message translates to:
+  /// **'Celebrating powerful voices from across the continent'**
+  String get celebratingPowerfulVoices;
+
+  /// No description provided for @authorsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Authors'**
+  String authorsCount(int count);
+
   /// No description provided for @library.
   ///
   /// In en, this message translates to:

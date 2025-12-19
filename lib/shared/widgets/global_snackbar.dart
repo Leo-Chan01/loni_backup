@@ -234,13 +234,7 @@ class GlobalSnackBar {
 }
 
 /// SnackBar types
-enum SnackBarType {
-  success,
-  error,
-  warning,
-  info,
-  custom,
-}
+enum SnackBarType { success, error, warning, info, custom }
 
 /// Internal snackbar configuration
 class _SnackBarConfig {

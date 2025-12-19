@@ -62,10 +62,7 @@ class AppRoutes {
         builder: (context, state) {
           final email = state.uri.queryParameters['email'];
           final phoneNumber = state.uri.queryParameters['phoneNumber'];
-          return OtpVerificationScreen(
-            email: email,
-            phoneNumber: phoneNumber,
-          );
+          return OtpVerificationScreen(email: email, phoneNumber: phoneNumber);
         },
       ),
       // App shell with bottom tabs (stateful)
@@ -88,53 +85,55 @@ class AppRoutes {
                 path: ExploreRootScreen.path,
                 name: ExploreRootScreen.name,
                 builder: (context, state) => const ExploreRootScreen(),
-              ),
-              GoRoute(
-                path: SearchScreen.path,
-                name: SearchScreen.name,
-                builder: (context, state) {
-                  final q = state.uri.queryParameters['q'];
-                  return SearchScreen(initialQuery: q);
-                },
-              ),
-              GoRoute(
-                path: CategoriesScreen.path,
-                name: CategoriesScreen.name,
-                builder: (context, state) => const CategoriesScreen(),
-              ),
-              GoRoute(
-                path: CategoryDetailScreen.path,
-                name: CategoryDetailScreen.name,
-                builder: (context, state) {
-                  final categoryId = state.pathParameters['id'];
-                  return CategoryDetailScreen(categoryId: categoryId);
-                },
-              ),
-              GoRoute(
-                path: AuthorScreen.path,
-                name: AuthorScreen.name,
-                builder: (context, state) {
-                  final authorId = state.pathParameters['id'];
-                  return AuthorScreen(authorId: authorId);
-                },
-              ),
-              GoRoute(
-                path: PublisherScreen.path,
-                name: PublisherScreen.name,
-                builder: (context, state) {
-                  final publisherId = state.pathParameters['id'];
-                  return PublisherScreen(publisherId: publisherId);
-                },
-              ),
-              GoRoute(
-                path: TrendingScreen.path,
-                name: TrendingScreen.name,
-                builder: (context, state) => const TrendingScreen(),
-              ),
-              GoRoute(
-                path: FeaturedScreen.path,
-                name: FeaturedScreen.name,
-                builder: (context, state) => const FeaturedScreen(),
+                routes: [
+                  GoRoute(
+                    path: SearchScreen.path,
+                    name: SearchScreen.name,
+                    builder: (context, state) {
+                      final q = state.uri.queryParameters['q'];
+                      return SearchScreen(initialQuery: q);
+                    },
+                  ),
+                  GoRoute(
+                    path: CategoriesScreen.path,
+                    name: CategoriesScreen.name,
+                    builder: (context, state) => const CategoriesScreen(),
+                  ),
+                  GoRoute(
+                    path: CategoryDetailScreen.path,
+                    name: CategoryDetailScreen.name,
+                    builder: (context, state) {
+                      final categoryId = state.pathParameters['id'];
+                      return CategoryDetailScreen(categoryId: categoryId);
+                    },
+                  ),
+                  GoRoute(
+                    path: AuthorScreen.path,
+                    name: AuthorScreen.name,
+                    builder: (context, state) {
+                      final authorId = state.pathParameters['id'];
+                      return AuthorScreen(authorId: authorId);
+                    },
+                  ),
+                  GoRoute(
+                    path: PublisherScreen.path,
+                    name: PublisherScreen.name,
+                    builder: (context, state) {
+                      final publisherId = state.pathParameters['id'];
+                      return PublisherScreen(publisherId: publisherId);
+                    },
+                  ),
+                  GoRoute(
+                    path: TrendingScreen.path,
+                    name: TrendingScreen.name,
+                    builder: (context, state) => const TrendingScreen(),
+                  ),
+                  GoRoute(
+                    path: FeaturedScreen.path,
+                    name: FeaturedScreen.name,
+                    builder: (context, state) => const FeaturedScreen(),
+                  ),
+                ],
               ),
             ],
           ),

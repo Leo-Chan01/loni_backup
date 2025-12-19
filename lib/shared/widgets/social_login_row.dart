@@ -64,9 +64,7 @@ class _SocialButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surface.withValues(alpha: 0.03),
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: colorScheme.onSurface.withValues(alpha: 0.1),
-        ),
+        border: Border.all(color: colorScheme.onSurface.withValues(alpha: 0.1)),
       ),
       child: InkWell(
         onTap: onPressed,

@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/discovery/data/services/search_service.dart';
 import 'package:loni_africa/features/discovery/domain/models/search_result.dart';
-import 'package:loni_africa/features/discovery/presentation/controllers/search_controller.dart' as discovery;
+import 'package:loni_africa/features/discovery/presentation/controllers/search_controller.dart'
+    as discovery;
 import 'package:loni_africa/shared/widgets/filter_chip_row.dart';
 import 'package:loni_africa/shared/widgets/search_result_card.dart';
 import 'package:loni_africa/shared/widgets/search_top_bar.dart';
@@ -12,7 +13,7 @@ import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key, this.initialQuery});
 
-  static const String path = '/app/explore/search';
+  static const String path = 'search';
   static const String name = 'SearchScreen';
 
   final String? initialQuery;
@@ -107,7 +108,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         : ListView.separated(
                             padding: EdgeInsets.only(bottom: 20.h),
                             itemCount: _results.length,
-                            separatorBuilder: (context, index) => SizedBox(height: 12.h),
+                            separatorBuilder: (context, index) =>
+                                SizedBox(height: 12.h),
                             itemBuilder: (context, index) {
                               final it = _results[index];
                               return SearchResultCard(

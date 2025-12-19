@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DividerWithText extends StatelessWidget {
-  const DividerWithText({
-    super.key,
-    required this.text,
-  });
+  const DividerWithText({super.key, required this.text});
 
   final String text;
 

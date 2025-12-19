@@ -2,19 +2,11 @@ import 'package:flutter/material.dart';
 
 class AppColor {
   static Map<Color, Color> get contrast {
-    return {
-      orange: blue,
-      white: black,
-      black: white,
-      grey: darkGrey,
-    };
+    return {orange: blue, white: black, black: white, grey: darkGrey};
   }
 
   static Color contrastColor(Color color) {
-    assert(
-      contrast.containsKey(color),
-      'You have not provided any dark theme',
-    );
+    assert(contrast.containsKey(color), 'You have not provided any dark theme');
     return contrast[color]!;
   }
 

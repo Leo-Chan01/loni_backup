@@ -43,7 +43,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
     // Listen for locale changes from LocaleNotifier
     final localeNotifier = LocaleNotifier.of(context);
     final currentLocale = localeNotifier.locale;
-    
+
     if (currentLocale != null) {
       final newLanguageCode = currentLocale.languageCode;
       if (_selectedLanguageCode != newLanguageCode) {

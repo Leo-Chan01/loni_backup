@@ -152,6 +152,15 @@
   "booksInCollection": "Books in This Collection",
   "avgRating": "Avg Rating",
   "add": "Add",
+  "celebratingPowerfulVoices": "Celebrating powerful voices from across the continent",
+  "authorsCount": "{count} Authors",
+  "@authorsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   
   "library": "Library",
   "myBooks": "My Books",

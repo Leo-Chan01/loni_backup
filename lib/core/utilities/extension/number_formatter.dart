@@ -57,8 +57,9 @@ extension DateAndTimeFormatterFor12Hour on DateTime {
     String day = this.day.toString().padLeft(2, '0');
     String month = this.month.toString().padLeft(2, '0');
     String year = this.year.toString();
-    String hour =
-        (this.hour % 12 == 0 ? 12 : this.hour % 12).toString().padLeft(2, '0');
+    String hour = (this.hour % 12 == 0 ? 12 : this.hour % 12)
+        .toString()
+        .padLeft(2, '0');
     String minute = this.minute.toString().padLeft(2, '0');
     String period = this.hour >= 12 ? 'PM' : 'AM';
     return '$day/$month/$year at $hour:$minute $period';

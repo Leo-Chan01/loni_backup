@@ -306,6 +306,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get add => 'Add';
 
   @override
+  String get celebratingPowerfulVoices =>
+      'Celebrating powerful voices from across the continent';
+
+  @override
+  String authorsCount(int count) {
+    return '$count Authors';
+  }
+
+  @override
   String get library => 'Library';
 
   @override

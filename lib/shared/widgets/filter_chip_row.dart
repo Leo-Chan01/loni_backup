@@ -7,11 +7,13 @@ class FilterChipRow extends StatelessWidget {
     required this.labels,
     required this.selectedIndex,
     required this.onSelected,
+    this.emojis,
   });
 
   final List<String> labels;
   final int selectedIndex;
   final ValueChanged<int> onSelected;
+  final List<String>? emojis;
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +26,30 @@ class FilterChipRow extends StatelessWidget {
       child: Row(
         children: List.generate(labels.length, (index) {
           final isSelected = index == selectedIndex;
+          final hasEmoji = emojis != null && index < emojis!.length;
+
           return Padding(
             padding: EdgeInsets.only(right: 8.w),
             child: ChoiceChip(
-              label: Text(
-                labels[index],
-                style: textTheme.bodyMedium?.copyWith(
-                  color: isSelected
-                      ? colorScheme.onPrimary
-                      : colorScheme.onSurfaceVariant,
-                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                ),
+              label: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (hasEmoji) ...[
+                    Text(emojis![index], style: TextStyle(fontSize: 14.sp)),
+                    SizedBox(width: 6.w),
+                  ],
+                  Text(
+                    labels[index],
+                    style: textTheme.bodyMedium?.copyWith(
+                      color: isSelected
+                          ? colorScheme.onPrimary
+                          : colorScheme.onSurfaceVariant,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
               selected: isSelected,
               onSelected: (_) => onSelected(index),

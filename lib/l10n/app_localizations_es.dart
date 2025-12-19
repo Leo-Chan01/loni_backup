@@ -306,6 +306,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get add => 'Agregar';
 
   @override
+  String get celebratingPowerfulVoices =>
+      'Celebrando voces poderosas de todo el continente';
+
+  @override
+  String authorsCount(int count) {
+    return '$count Autores';
+  }
+
+  @override
   String get library => 'Biblioteca';
 
   @override

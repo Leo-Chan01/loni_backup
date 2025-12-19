@@ -25,15 +25,9 @@ class OnboardingPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 24.h),
-          OnboardingImageCard(
-            imageUrl: imageUrl,
-            icon: icon,
-          ),
+          OnboardingImageCard(imageUrl: imageUrl, icon: icon),
           SizedBox(height: 48.h),
-          OnboardingContent(
-            title: title,
-            description: description,
-          ),
+          OnboardingContent(title: title, description: description),
         ],
       ),
     );

@@ -9,7 +9,10 @@ class MainTabsScaffold extends StatelessWidget {
 
   void _onTap(int index) {
     // Preserve state on re-tap; switch to initialLocation on first visit
-    navigationShell.goBranch(index, initialLocation: index != navigationShell.currentIndex);
+    navigationShell.goBranch(
+      index,
+      initialLocation: index != navigationShell.currentIndex,
+    );
   }
 
   @override
@@ -25,17 +28,26 @@ class MainTabsScaffold extends StatelessWidget {
         destinations: const [
           NavigationDestination(
             icon: HugeIcon(icon: HugeIcons.strokeRoundedHome01, size: 22),
-            selectedIcon: HugeIcon(icon: HugeIcons.strokeRoundedHome01, size: 22),
+            selectedIcon: HugeIcon(
+              icon: HugeIcons.strokeRoundedHome01,
+              size: 22,
+            ),
             label: 'Home',
           ),
           NavigationDestination(
             icon: HugeIcon(icon: HugeIcons.strokeRoundedSearch01, size: 22),
-            selectedIcon: HugeIcon(icon: HugeIcons.strokeRoundedSearch01, size: 22),
+            selectedIcon: HugeIcon(
+              icon: HugeIcons.strokeRoundedSearch01,
+              size: 22,
+            ),
             label: 'Explore',
           ),
           NavigationDestination(
             icon: HugeIcon(icon: HugeIcons.strokeRoundedBook01, size: 22),
-            selectedIcon: HugeIcon(icon: HugeIcons.strokeRoundedBook01, size: 22),
+            selectedIcon: HugeIcon(
+              icon: HugeIcons.strokeRoundedBook01,
+              size: 22,
+            ),
             label: 'Library',
           ),
           NavigationDestination(

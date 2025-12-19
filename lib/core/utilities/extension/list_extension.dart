@@ -5,9 +5,7 @@ extension WidgetExtensions on List<num> {
     assert(length <= 4, 'Length cannot be more than 4');
     assert(length != 3, 'Length cannot be 3');
     if (length == 1) {
-      return EdgeInsets.symmetric(
-        horizontal: this[0].toDouble(),
-      );
+      return EdgeInsets.symmetric(horizontal: this[0].toDouble());
     } else if (length == 4) {
       return EdgeInsets.only(
         left: this[0].toDouble(),
@@ -23,7 +21,8 @@ extension WidgetExtensions on List<num> {
   }
 
   double get getMax {
-    return reduce((value, element) => value > element ? value : element)
-        .toDouble();
+    return reduce(
+      (value, element) => value > element ? value : element,
+    ).toDouble();
   }
 }

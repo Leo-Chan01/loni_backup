@@ -58,7 +58,7 @@ class AppColors {
   /// Card and container backgrounds
   static const Color surface = lightSurface;
   static const Color surfaceVariant = lightBg;
-  
+
   /// Background colors
   static const Color background = lightBg;
 
@@ -71,7 +71,10 @@ class AppColors {
   // ===== GRADIENT COMBINATIONS =====
   /// Brand gradients
   static const List<Color> brandGradient = [brandAccent, brandTerracotta];
-  static const List<Color> brandGradientReverse = [brandTerracotta, brandAccent];
+  static const List<Color> brandGradientReverse = [
+    brandTerracotta,
+    brandAccent,
+  ];
 
   // ===== HELPER METHODS =====
   /// Get color with opacity

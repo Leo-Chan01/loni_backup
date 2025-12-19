@@ -11,7 +11,7 @@ class LanguageService {
     try {
       final prefs = await SharedPreferences.getInstance();
       final localeCode = prefs.getString(_localeKey);
-      
+
       if (localeCode != null) {
         return Locale(localeCode);
       }

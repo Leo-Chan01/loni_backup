@@ -17,10 +17,7 @@ class OnboardingImageCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      constraints: BoxConstraints(
-        maxWidth: 280.w,
-        maxHeight: 280.h,
-      ),
+      constraints: BoxConstraints(maxWidth: 280.w, maxHeight: 280.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24.r),
         boxShadow: [
@@ -77,11 +74,7 @@ class OnboardingImageCard extends StatelessWidget {
                   ),
                 ),
                 child: Center(
-                  child: Icon(
-                    icon,
-                    size: 32.sp,
-                    color: colorScheme.primary,
-                  ),
+                  child: Icon(icon, size: 32.sp, color: colorScheme.primary),
                 ),
               ),
             ),

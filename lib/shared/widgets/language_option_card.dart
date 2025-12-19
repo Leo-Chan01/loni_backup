@@ -28,9 +28,7 @@ class LanguageOptionCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: colorScheme.surface,
           border: Border.all(
-            color: isSelected
-                ? colorScheme.primary
-                : Colors.transparent,
+            color: isSelected ? colorScheme.primary : Colors.transparent,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(16.r),
@@ -79,11 +77,7 @@ class LanguageOptionCard extends StatelessWidget {
         ),
       ),
       child: isSelected
-          ? Icon(
-              Icons.check,
-              size: 14.sp,
-              color: colorScheme.onPrimary,
-            )
+          ? Icon(Icons.check, size: 14.sp, color: colorScheme.onPrimary)
           : null,
     );
   }

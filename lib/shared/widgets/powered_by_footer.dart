@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PoweredByFooter extends StatelessWidget {
-  const PoweredByFooter({
-    super.key,
-    required this.animation,
-  });
+  const PoweredByFooter({super.key, required this.animation});
 
   final Animation<double> animation;
 

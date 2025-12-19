@@ -125,7 +125,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   SizedBox(height: 24.h),
                   ScreenHeader(
                     title: context.l10n.verifyYourAccount,
-                    subtitle: '${context.l10n.enterSixDigitCode} $_maskedContact',
+                    subtitle:
+                        '${context.l10n.enterSixDigitCode} $_maskedContact',
                     showBackButton: true,
                     trailingWidget: ThemeToggleButton(
                       onToggle: themeNotifier.onToggle,

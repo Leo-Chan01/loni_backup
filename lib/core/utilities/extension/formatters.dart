@@ -6,8 +6,9 @@ String formatPrice(double price) {
 }
 
 String formatCurrency(String currencyName) {
-  var formattedCurrency =
-      NumberFormat.simpleCurrency(name: currencyName).currencySymbol;
+  var formattedCurrency = NumberFormat.simpleCurrency(
+    name: currencyName,
+  ).currencySymbol;
   return formattedCurrency;
 }
 
