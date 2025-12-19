@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/discovery/presentation/screens/categories_screen.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/book_tile_vertical.dart';
 import 'package:loni_africa/shared/widgets/continue_reading_card.dart';
