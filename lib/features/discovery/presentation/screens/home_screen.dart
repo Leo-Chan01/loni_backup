@@ -136,11 +136,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     spacing: 12.w,
                     runSpacing: 12.h,
                     children: _genres
+                        .asMap()
+                        .entries
                         .map(
-                          (g) => GenreCard(
-                            title: g.title,
-                            countLabel: g.countLabel,
-                            onTap: () {},
+                          (entry) => GenreCard(
+                            title: entry.value.title,
+                            countLabel: entry.value.countLabel,
+                            onTap: () {
+                              context.push(
+                                '/app/explore/category-detail/genre-${entry.key + 1}',
+                              );
+                            },
                           ),
                         )
                         .toList(),

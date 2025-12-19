@@ -90,20 +90,23 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                         ),
                       ),
                       Container(
-                        width: 40.w,
-                        height: 40.h,
+                        width: 40,
+                        height: 40,
                         decoration: BoxDecoration(
                           color: colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(20.r),
+                          borderRadius: BorderRadius.circular(100),
                           border: Border.all(
                             color: colorScheme.outline.withValues(alpha: 0.2),
                             width: 1,
                           ),
                         ),
-                        child: HugeIcon(
-                          icon: HugeIcons.strokeRoundedSlidersHorizontal,
-                          color: colorScheme.onSurface,
-                          size: 18.sp,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: HugeIcon(
+                            icon: HugeIcons.strokeRoundedSlidersHorizontal,
+                            color: colorScheme.onSurface,
+                            size: 18.sp,
+                          ),
                         ),
                       ),
                     ],

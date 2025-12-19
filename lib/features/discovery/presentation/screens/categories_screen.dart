@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/discovery/data/services/discovery_service.dart';
@@ -115,7 +116,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       final isEven = index % 2 == 0;
 
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context.push(
+                            '/app/explore/category-detail/genre-${index + 1}',
+                          );
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                             color: colorScheme.surfaceContainerHighest,

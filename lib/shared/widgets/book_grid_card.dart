@@ -68,12 +68,15 @@ class BookGridCard extends StatelessWidget {
                       color: Colors.black.withValues(alpha: 0.5),
                       shape: BoxShape.circle,
                     ),
-                    child: HugeIcon(
-                      icon: isFavorite
-                          ? HugeIcons.strokeRoundedFavourite
-                          : HugeIcons.strokeRoundedHeartAdd,
-                      color: isFavorite ? colorScheme.primary : Colors.white,
-                      size: 16.sp,
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: HugeIcon(
+                        icon: isFavorite
+                            ? HugeIcons.strokeRoundedFavourite
+                            : HugeIcons.strokeRoundedHeartAdd,
+                        color: isFavorite ? colorScheme.primary : Colors.white,
+                        size: 16.sp,
+                      ),
                     ),
                   ),
                 ),
