@@ -12,6 +12,7 @@ class TrendingBookItem extends StatelessWidget {
     required this.imageUrl,
     required this.trendChange,
     this.onTap,
+    this.onAuthorTap,
   });
 
   final int rank;
@@ -21,6 +22,7 @@ class TrendingBookItem extends StatelessWidget {
   final String imageUrl;
   final String trendChange;
   final VoidCallback? onTap;
+  final VoidCallback? onAuthorTap;
 
   Color _getRankColor() {
     switch (rank) {
@@ -112,13 +114,19 @@ class TrendingBookItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 4.h),
-                  Text(
-                    author,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
+                  GestureDetector(
+                    onTap: onAuthorTap,
+                    child: Text(
+                      author,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                        decoration: onAuthorTap != null
+                            ? TextDecoration.underline
+                            : null,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 6.h),
                   Row(

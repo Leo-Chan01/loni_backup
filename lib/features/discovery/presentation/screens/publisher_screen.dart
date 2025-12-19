@@ -11,7 +11,7 @@ import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 class PublisherScreen extends StatefulWidget {
   const PublisherScreen({super.key, this.publisherId});
 
-  static const String path = 'publisher';
+  static const String path = 'publisher/:id';
   static const String name = 'PublisherScreen';
 
   final String? publisherId;

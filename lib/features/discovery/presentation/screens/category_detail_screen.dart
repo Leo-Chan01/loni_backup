@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/discovery/data/services/discovery_service.dart';
@@ -12,7 +13,7 @@ import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 class CategoryDetailScreen extends StatefulWidget {
   const CategoryDetailScreen({super.key, this.categoryId});
 
-  static const String path = 'category-detail';
+  static const String path = 'category-detail/:id';
   static const String name = 'CategoryDetailScreen';
 
   final String? categoryId;
@@ -156,6 +157,11 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                               isFavorite: index == 2,
                               onTap: () {},
                               onFavoriteToggle: () {},
+                              onAuthorTap: () {
+                                context.push(
+                                  '/app/explore/author/author-${index + 1}',
+                                );
+                              },
                             );
                           },
                         ),

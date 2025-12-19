@@ -11,7 +11,7 @@ import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 class AuthorScreen extends StatefulWidget {
   const AuthorScreen({super.key, this.authorId});
 
-  static const String path = 'author';
+  static const String path = 'author/:id';
   static const String name = 'AuthorScreen';
 
   final String? authorId;

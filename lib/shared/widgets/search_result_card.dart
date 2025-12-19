@@ -12,6 +12,7 @@ class SearchResultCard extends StatelessWidget {
     required this.reviewsLabel,
     required this.priceLabel,
     this.onView,
+    this.onAuthorTap,
   });
 
   final String title;
@@ -20,6 +21,7 @@ class SearchResultCard extends StatelessWidget {
   final String reviewsLabel;
   final String priceLabel;
   final VoidCallback? onView;
+  final VoidCallback? onAuthorTap;
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +68,16 @@ class SearchResultCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 6.h),
-                Text(
-                  author,
-                  style: textTheme.bodyLarge?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
+                GestureDetector(
+                  onTap: onAuthorTap,
+                  child: Text(
+                    author,
+                    style: textTheme.bodyLarge?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                      decoration: onAuthorTap != null
+                          ? TextDecoration.underline
+                          : null,
+                    ),
                   ),
                 ),
                 SizedBox(height: 10.h),

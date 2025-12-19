@@ -13,6 +13,7 @@ class BookGridCard extends StatelessWidget {
     this.isFavorite = false,
     this.onTap,
     this.onFavoriteToggle,
+    this.onAuthorTap,
   });
 
   final String title;
@@ -23,6 +24,7 @@ class BookGridCard extends StatelessWidget {
   final bool isFavorite;
   final VoidCallback? onTap;
   final VoidCallback? onFavoriteToggle;
+  final VoidCallback? onAuthorTap;
 
   @override
   Widget build(BuildContext context) {
@@ -89,13 +91,19 @@ class BookGridCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 4.h),
-          Text(
-            author,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurfaceVariant,
+          GestureDetector(
+            onTap: onAuthorTap,
+            child: Text(
+              author,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+                decoration: onAuthorTap != null
+                    ? TextDecoration.underline
+                    : null,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
           ),
           SizedBox(height: 6.h),
           Row(

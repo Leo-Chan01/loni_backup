@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/discovery/data/services/discovery_service.dart';
@@ -163,6 +164,11 @@ class _TrendingScreenState extends State<TrendingScreen> {
                                   'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=300',
                               trendChange: _trendChanges[index],
                               onTap: () {},
+                              onAuthorTap: () {
+                                context.push(
+                                  '/app/explore/author/author-${index + 1}',
+                                );
+                              },
                             );
                           },
                         ),

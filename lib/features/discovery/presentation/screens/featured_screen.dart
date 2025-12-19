@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/discovery/data/services/discovery_service.dart';
@@ -269,6 +270,11 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
                                 '${(book.rating * 2500).toInt()} reviews',
                             priceLabel: book.priceLabel ?? '\$9.99',
                             onView: () {},
+                            onAuthorTap: () {
+                              context.push(
+                                '/app/explore/author/author-${index + 1}',
+                              );
+                            },
                           );
                         },
                       ),

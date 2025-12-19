@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/discovery/data/services/search_service.dart';
 import 'package:loni_africa/features/discovery/domain/models/search_result.dart';
@@ -119,6 +120,11 @@ class _SearchScreenState extends State<SearchScreen> {
                                 reviewsLabel: it.reviewsLabel,
                                 priceLabel: it.priceLabel,
                                 onView: () {},
+                                onAuthorTap: () {
+                                  context.push(
+                                    '/app/explore/author/author-${index + 1}',
+                                  );
+                                },
                               );
                             },
                           ),
