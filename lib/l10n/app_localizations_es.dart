@@ -897,4 +897,170 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get deliveryAddress => 'Dirección de entrega';
+
+  @override
+  String get editProfile => 'Editar perfil';
+
+  @override
+  String get fullName => 'Nombre completo';
+
+  @override
+  String get username => 'Nombre de usuario';
+
+  @override
+  String get bio => 'Biografía';
+
+  @override
+  String get email => 'Correo electrónico';
+
+  @override
+  String get location => 'Ubicación';
+
+  @override
+  String get readingPreferences => 'Preferencias de lectura';
+
+  @override
+  String get followers => 'Seguidores';
+
+  @override
+  String get following => 'Siguiendo';
+
+  @override
+  String get activity => 'Actividad';
+
+  @override
+  String get tellUsAboutYourself => 'Cuéntanos sobre ti...';
+
+  @override
+  String get biography => 'Biografía';
+
+  @override
+  String get addNewPreference => '+ Agregar';
+
+  @override
+  String get saveChanges => 'Guardar cambios';
+
+  @override
+  String get savedQuotes => 'Citas guardadas';
+
+  @override
+  String get page => 'Página';
+
+  @override
+  String savedAgo(String time) {
+    return 'Guardado hace $time';
+  }
+
+  @override
+  String get forYou => 'Para ti';
+
+  @override
+  String get bookClubs => 'Clubes de libros';
+
+  @override
+  String likes(int count) {
+    return '$count me gusta';
+  }
+
+  @override
+  String comments(int count) {
+    return '$count comentarios';
+  }
+
+  @override
+  String get reply => 'Responder';
+
+  @override
+  String get attachBook => 'Adjuntar libro';
+
+  @override
+  String get addPhotos => 'Agregar fotos';
+
+  @override
+  String get createPoll => 'Crear encuesta';
+
+  @override
+  String get tagBookClub => 'Etiquetar club de lectura';
+
+  @override
+  String get post => 'Publicar';
+
+  @override
+  String get whatsOnYourMind => '¿Qué estás pensando?';
+
+  @override
+  String get postTooltip => 'Compartir una publicación';
+
+  @override
+  String get writeComment => 'Escribe un comentario...';
+
+  @override
+  String get attachedBook => 'Libro adjunto';
+
+  @override
+  String get removeAttachment => 'Eliminar';
+
+  @override
+  String get markAllRead => 'Marcar todo como leído';
+
+  @override
+  String get mentions => 'Menciones';
+
+  @override
+  String get startedFollowing => 'comenzó a seguirte';
+
+  @override
+  String get likedYourPost => 'le gustó tu publicación';
+
+  @override
+  String get commentedOnPost => 'comentó en tu publicación';
+
+  @override
+  String get repliedToComment => 'respondió a tu comentario';
+
+  @override
+  String get mentionedYou => 'te mencionó en una publicación';
+
+  @override
+  String newBookAdded(String category) {
+    return 'Nuevo libro agregado a $category';
+  }
+
+  @override
+  String newDiscussion(String clubName) {
+    return 'Nueva discusión en $clubName';
+  }
+
+  @override
+  String achievementUnlocked(String achievement) {
+    return 'Logro desbloqueado: $achievement';
+  }
+
+  @override
+  String flashSaleAlert(String bookTitle, int percent) {
+    return '¡$bookTitle tiene $percent% de descuento!';
+  }
+
+  @override
+  String get just => 'Justo ahora';
+
+  @override
+  String minutesAgo(int count) {
+    return 'hace ${count}m';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return 'hace ${count}h';
+  }
+
+  @override
+  String daysAgoShort(int count) {
+    return 'hace ${count}d';
+  }
+
+  @override
+  String weeksAgoShort(int count) {
+    return 'hace ${count}s';
+  }
 }

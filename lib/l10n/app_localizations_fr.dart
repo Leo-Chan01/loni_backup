@@ -897,4 +897,170 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get deliveryAddress => 'Adresse de livraison';
+
+  @override
+  String get editProfile => 'Modifier le profil';
+
+  @override
+  String get fullName => 'Nom complet';
+
+  @override
+  String get username => 'Nom d\'utilisateur';
+
+  @override
+  String get bio => 'Biographie';
+
+  @override
+  String get email => 'E-mail';
+
+  @override
+  String get location => 'Lieu';
+
+  @override
+  String get readingPreferences => 'Préférences de lecture';
+
+  @override
+  String get followers => 'Abonnés';
+
+  @override
+  String get following => 'Abonnements';
+
+  @override
+  String get activity => 'Activité';
+
+  @override
+  String get tellUsAboutYourself => 'Parlez-nous de vous...';
+
+  @override
+  String get biography => 'Biographie';
+
+  @override
+  String get addNewPreference => '+ Ajouter';
+
+  @override
+  String get saveChanges => 'Enregistrer les modifications';
+
+  @override
+  String get savedQuotes => 'Citations sauvegardées';
+
+  @override
+  String get page => 'Page';
+
+  @override
+  String savedAgo(String time) {
+    return 'Sauvegardé il y a $time';
+  }
+
+  @override
+  String get forYou => 'Pour vous';
+
+  @override
+  String get bookClubs => 'Clubs de lecture';
+
+  @override
+  String likes(int count) {
+    return '$count j\'aime';
+  }
+
+  @override
+  String comments(int count) {
+    return '$count commentaires';
+  }
+
+  @override
+  String get reply => 'Répondre';
+
+  @override
+  String get attachBook => 'Joindre un livre';
+
+  @override
+  String get addPhotos => 'Ajouter des photos';
+
+  @override
+  String get createPoll => 'Créer un sondage';
+
+  @override
+  String get tagBookClub => 'Identifier un club de lecture';
+
+  @override
+  String get post => 'Publier';
+
+  @override
+  String get whatsOnYourMind => 'À quoi pensez-vous ?';
+
+  @override
+  String get postTooltip => 'Partager une publication';
+
+  @override
+  String get writeComment => 'Écrire un commentaire...';
+
+  @override
+  String get attachedBook => 'Livre joint';
+
+  @override
+  String get removeAttachment => 'Supprimer';
+
+  @override
+  String get markAllRead => 'Tout marquer comme lu';
+
+  @override
+  String get mentions => 'Mentions';
+
+  @override
+  String get startedFollowing => 'a commencé à vous suivre';
+
+  @override
+  String get likedYourPost => 'a aimé votre publication';
+
+  @override
+  String get commentedOnPost => 'a commenté votre publication';
+
+  @override
+  String get repliedToComment => 'a répondu à votre commentaire';
+
+  @override
+  String get mentionedYou => 'vous a mentionné dans une publication';
+
+  @override
+  String newBookAdded(String category) {
+    return 'Nouveau livre ajouté à $category';
+  }
+
+  @override
+  String newDiscussion(String clubName) {
+    return 'Nouvelle discussion dans $clubName';
+  }
+
+  @override
+  String achievementUnlocked(String achievement) {
+    return 'Succès débloqué : $achievement';
+  }
+
+  @override
+  String flashSaleAlert(String bookTitle, int percent) {
+    return '$bookTitle est à $percent% de réduction !';
+  }
+
+  @override
+  String get just => 'À l\'instant';
+
+  @override
+  String minutesAgo(int count) {
+    return 'il y a ${count}m';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return 'il y a ${count}h';
+  }
+
+  @override
+  String daysAgoShort(int count) {
+    return 'il y a ${count}j';
+  }
+
+  @override
+  String weeksAgoShort(int count) {
+    return 'il y a ${count}s';
+  }
 }

@@ -18,7 +18,7 @@ class ReaderScreen extends StatefulWidget {
 }
 
 class _ReaderScreenState extends State<ReaderScreen> {
-  ReaderSettingsModel _settings = const ReaderSettingsModel();
+  final ReaderSettingsModel _settings = const ReaderSettingsModel();
   final double _progress = 0.42;
 
   // Mock content

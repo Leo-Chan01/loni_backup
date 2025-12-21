@@ -896,4 +896,170 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deliveryAddress => 'Delivery Address';
+
+  @override
+  String get editProfile => 'Edit Profile';
+
+  @override
+  String get fullName => 'Full Name';
+
+  @override
+  String get username => 'Username';
+
+  @override
+  String get bio => 'Bio';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get location => 'Location';
+
+  @override
+  String get readingPreferences => 'Reading Preferences';
+
+  @override
+  String get followers => 'Followers';
+
+  @override
+  String get following => 'Following';
+
+  @override
+  String get activity => 'Activity';
+
+  @override
+  String get tellUsAboutYourself => 'Tell us about yourself...';
+
+  @override
+  String get biography => 'Biography';
+
+  @override
+  String get addNewPreference => '+ Add';
+
+  @override
+  String get saveChanges => 'Save Changes';
+
+  @override
+  String get savedQuotes => 'Saved Quotes';
+
+  @override
+  String get page => 'Page';
+
+  @override
+  String savedAgo(String time) {
+    return 'Saved $time ago';
+  }
+
+  @override
+  String get forYou => 'For You';
+
+  @override
+  String get bookClubs => 'Book Clubs';
+
+  @override
+  String likes(int count) {
+    return '$count likes';
+  }
+
+  @override
+  String comments(int count) {
+    return '$count comments';
+  }
+
+  @override
+  String get reply => 'Reply';
+
+  @override
+  String get attachBook => 'Attach Book';
+
+  @override
+  String get addPhotos => 'Add Photos';
+
+  @override
+  String get createPoll => 'Create Poll';
+
+  @override
+  String get tagBookClub => 'Tag Book Club';
+
+  @override
+  String get post => 'Post';
+
+  @override
+  String get whatsOnYourMind => 'What\'s on your mind?';
+
+  @override
+  String get postTooltip => 'Share a post';
+
+  @override
+  String get writeComment => 'Write a comment...';
+
+  @override
+  String get attachedBook => 'Attached Book';
+
+  @override
+  String get removeAttachment => 'Remove';
+
+  @override
+  String get markAllRead => 'Mark All as Read';
+
+  @override
+  String get mentions => 'Mentions';
+
+  @override
+  String get startedFollowing => 'started following you';
+
+  @override
+  String get likedYourPost => 'liked your post';
+
+  @override
+  String get commentedOnPost => 'commented on your post';
+
+  @override
+  String get repliedToComment => 'replied to your comment';
+
+  @override
+  String get mentionedYou => 'mentioned you in a post';
+
+  @override
+  String newBookAdded(String category) {
+    return 'New book added to $category';
+  }
+
+  @override
+  String newDiscussion(String clubName) {
+    return 'New discussion in $clubName';
+  }
+
+  @override
+  String achievementUnlocked(String achievement) {
+    return 'Achievement unlocked: $achievement';
+  }
+
+  @override
+  String flashSaleAlert(String bookTitle, int percent) {
+    return '$bookTitle is $percent% off!';
+  }
+
+  @override
+  String get just => 'Just now';
+
+  @override
+  String minutesAgo(int count) {
+    return '${count}m ago';
+  }
+
+  @override
+  String hoursAgo(int count) {
+    return '${count}h ago';
+  }
+
+  @override
+  String daysAgoShort(int count) {
+    return '${count}d ago';
+  }
+
+  @override
+  String weeksAgoShort(int count) {
+    return '${count}w ago';
+  }
 }

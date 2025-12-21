@@ -32,6 +32,12 @@ import 'package:loni_africa/features/commerce/presentation/screens/payment_pendi
 import 'package:loni_africa/features/commerce/presentation/screens/payment_success_screen.dart';
 import 'package:loni_africa/features/commerce/presentation/screens/orders_list_screen.dart';
 import 'package:loni_africa/features/commerce/presentation/screens/order_tracking_screen.dart';
+import 'package:loni_africa/features/profile/presentation/screens/edit_profile_screen.dart';
+import 'package:loni_africa/features/profile/presentation/screens/bookmarks_screen.dart';
+import 'package:loni_africa/features/community/presentation/screens/community_screen.dart';
+import 'package:loni_africa/features/community/presentation/screens/discussion_screen.dart';
+import 'package:loni_africa/features/community/presentation/screens/create_post_screen.dart';
+import 'package:loni_africa/features/community/presentation/screens/notifications_screen.dart';
 import 'package:loni_africa/splash_screen.dart';
 
 class AppRoutes {
@@ -307,6 +313,50 @@ class AppRoutes {
         builder: (context, state) {
           final orderId = state.pathParameters['orderId']!;
           return OrderTrackingScreen(orderId: orderId);
+        },
+      ),
+      // Profile & Community routes
+      GoRoute(
+        path: EditProfileScreen.path,
+        name: EditProfileScreen.name,
+        builder: (context, state) {
+          return const EditProfileScreen();
+        },
+      ),
+      GoRoute(
+        path: BookmarksScreen.path,
+        name: BookmarksScreen.name,
+        builder: (context, state) {
+          return const BookmarksScreen();
+        },
+      ),
+      GoRoute(
+        path: CommunityScreen.path,
+        name: CommunityScreen.name,
+        builder: (context, state) {
+          return const CommunityScreen();
+        },
+      ),
+      GoRoute(
+        path: DiscussionScreen.path,
+        name: DiscussionScreen.name,
+        builder: (context, state) {
+          final postId = state.pathParameters['postId']!;
+          return DiscussionScreen(postId: postId);
+        },
+      ),
+      GoRoute(
+        path: CreatePostScreen.path,
+        name: CreatePostScreen.name,
+        builder: (context, state) {
+          return const CreatePostScreen();
+        },
+      ),
+      GoRoute(
+        path: NotificationsScreen.path,
+        name: NotificationsScreen.name,
+        builder: (context, state) {
+          return const NotificationsScreen();
         },
       ),
     ],

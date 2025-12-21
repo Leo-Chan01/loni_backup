@@ -237,7 +237,7 @@ class _ReaderSettingsScreenState extends State<ReaderSettingsScreen> {
                               ),
                               Switch(
                                 value: _settings.autoScroll,
-                                activeColor: colorScheme.primary,
+                                activeThumbColor: colorScheme.primary,
                                 onChanged: (value) {
                                   _updateSettings(
                                     _settings.copyWith(autoScroll: value),

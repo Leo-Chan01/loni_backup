@@ -1743,6 +1743,294 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delivery Address'**
   String get deliveryAddress;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get editProfile;
+
+  /// No description provided for @fullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get fullName;
+
+  /// No description provided for @username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get username;
+
+  /// No description provided for @bio.
+  ///
+  /// In en, this message translates to:
+  /// **'Bio'**
+  String get bio;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get location;
+
+  /// No description provided for @readingPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Preferences'**
+  String get readingPreferences;
+
+  /// No description provided for @followers.
+  ///
+  /// In en, this message translates to:
+  /// **'Followers'**
+  String get followers;
+
+  /// No description provided for @following.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get following;
+
+  /// No description provided for @activity.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get activity;
+
+  /// No description provided for @tellUsAboutYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about yourself...'**
+  String get tellUsAboutYourself;
+
+  /// No description provided for @biography.
+  ///
+  /// In en, this message translates to:
+  /// **'Biography'**
+  String get biography;
+
+  /// No description provided for @addNewPreference.
+  ///
+  /// In en, this message translates to:
+  /// **'+ Add'**
+  String get addNewPreference;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
+
+  /// No description provided for @savedQuotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved Quotes'**
+  String get savedQuotes;
+
+  /// No description provided for @page.
+  ///
+  /// In en, this message translates to:
+  /// **'Page'**
+  String get page;
+
+  /// No description provided for @savedAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved {time} ago'**
+  String savedAgo(String time);
+
+  /// No description provided for @forYou.
+  ///
+  /// In en, this message translates to:
+  /// **'For You'**
+  String get forYou;
+
+  /// No description provided for @bookClubs.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Clubs'**
+  String get bookClubs;
+
+  /// No description provided for @likes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} likes'**
+  String likes(int count);
+
+  /// No description provided for @comments.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} comments'**
+  String comments(int count);
+
+  /// No description provided for @reply.
+  ///
+  /// In en, this message translates to:
+  /// **'Reply'**
+  String get reply;
+
+  /// No description provided for @attachBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Attach Book'**
+  String get attachBook;
+
+  /// No description provided for @addPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Photos'**
+  String get addPhotos;
+
+  /// No description provided for @createPoll.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Poll'**
+  String get createPoll;
+
+  /// No description provided for @tagBookClub.
+  ///
+  /// In en, this message translates to:
+  /// **'Tag Book Club'**
+  String get tagBookClub;
+
+  /// No description provided for @post.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get post;
+
+  /// No description provided for @whatsOnYourMind.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s on your mind?'**
+  String get whatsOnYourMind;
+
+  /// No description provided for @postTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Share a post'**
+  String get postTooltip;
+
+  /// No description provided for @writeComment.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a comment...'**
+  String get writeComment;
+
+  /// No description provided for @attachedBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Attached Book'**
+  String get attachedBook;
+
+  /// No description provided for @removeAttachment.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get removeAttachment;
+
+  /// No description provided for @markAllRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark All as Read'**
+  String get markAllRead;
+
+  /// No description provided for @mentions.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentions'**
+  String get mentions;
+
+  /// No description provided for @startedFollowing.
+  ///
+  /// In en, this message translates to:
+  /// **'started following you'**
+  String get startedFollowing;
+
+  /// No description provided for @likedYourPost.
+  ///
+  /// In en, this message translates to:
+  /// **'liked your post'**
+  String get likedYourPost;
+
+  /// No description provided for @commentedOnPost.
+  ///
+  /// In en, this message translates to:
+  /// **'commented on your post'**
+  String get commentedOnPost;
+
+  /// No description provided for @repliedToComment.
+  ///
+  /// In en, this message translates to:
+  /// **'replied to your comment'**
+  String get repliedToComment;
+
+  /// No description provided for @mentionedYou.
+  ///
+  /// In en, this message translates to:
+  /// **'mentioned you in a post'**
+  String get mentionedYou;
+
+  /// No description provided for @newBookAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'New book added to {category}'**
+  String newBookAdded(String category);
+
+  /// No description provided for @newDiscussion.
+  ///
+  /// In en, this message translates to:
+  /// **'New discussion in {clubName}'**
+  String newDiscussion(String clubName);
+
+  /// No description provided for @achievementUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievement unlocked: {achievement}'**
+  String achievementUnlocked(String achievement);
+
+  /// No description provided for @flashSaleAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'{bookTitle} is {percent}% off!'**
+  String flashSaleAlert(String bookTitle, int percent);
+
+  /// No description provided for @just.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get just;
+
+  /// No description provided for @minutesAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}m ago'**
+  String minutesAgo(int count);
+
+  /// No description provided for @hoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}h ago'**
+  String hoursAgo(int count);
+
+  /// No description provided for @daysAgoShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}d ago'**
+  String daysAgoShort(int count);
+
+  /// No description provided for @weeksAgoShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}w ago'**
+  String weeksAgoShort(int count);
 }
 
 class _AppLocalizationsDelegate

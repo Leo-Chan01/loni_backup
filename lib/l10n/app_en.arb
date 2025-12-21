@@ -531,5 +531,139 @@
   "orderBeingPrepared": "Your order is being prepared",
   "orderConfirmed": "Order Confirmed",
   "paymentReceived": "Payment received successfully",
-  "deliveryAddress": "Delivery Address"
+  "deliveryAddress": "Delivery Address",
+  
+  "editProfile": "Edit Profile",
+  "fullName": "Full Name",
+  "username": "Username",
+  "bio": "Bio",
+  "email": "Email",
+  "location": "Location",
+  "readingPreferences": "Reading Preferences",
+  "followers": "Followers",
+  "following": "Following",
+  "activity": "Activity",
+  "tellUsAboutYourself": "Tell us about yourself...",
+  "biography": "Biography",
+  "addNewPreference": "+ Add",
+  "saveChanges": "Save Changes",
+  
+  "savedQuotes": "Saved Quotes",
+  "page": "Page",
+  "savedAgo": "Saved {time} ago",
+  "@savedAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "forYou": "For You",
+  "following": "Following",
+  "trending": "Trending",
+  "bookClubs": "Book Clubs",
+  "likes": "{count} likes",
+  "@likes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "comments": "{count} comments",
+  "@comments": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reply": "Reply",
+  "attachBook": "Attach Book",
+  "addPhotos": "Add Photos",
+  "createPoll": "Create Poll",
+  "tagBookClub": "Tag Book Club",
+  "post": "Post",
+  "whatsOnYourMind": "What's on your mind?",
+  "postTooltip": "Share a post",
+  "writeComment": "Write a comment...",
+  "attachedBook": "Attached Book",
+  "removeAttachment": "Remove",
+  
+  "markAllRead": "Mark All as Read",
+  "mentions": "Mentions",
+  "startedFollowing": "started following you",
+  "likedYourPost": "liked your post",
+  "commentedOnPost": "commented on your post",
+  "repliedToComment": "replied to your comment",
+  "mentionedYou": "mentioned you in a post",
+  "newBookAdded": "New book added to {category}",
+  "@newBookAdded": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "newDiscussion": "New discussion in {clubName}",
+  "@newDiscussion": {
+    "placeholders": {
+      "clubName": {
+        "type": "String"
+      }
+    }
+  },
+  "achievementUnlocked": "Achievement unlocked: {achievement}",
+  "@achievementUnlocked": {
+    "placeholders": {
+      "achievement": {
+        "type": "String"
+      }
+    }
+  },
+  "flashSaleAlert": "{bookTitle} is {percent}% off!",
+  "@flashSaleAlert": {
+    "placeholders": {
+      "bookTitle": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "just": "Just now",
+  "minutesAgo": "{count}m ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{count}h ago",
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgoShort": "{count}d ago",
+  "@daysAgoShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "weeksAgoShort": "{count}w ago",
+  "@weeksAgoShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
