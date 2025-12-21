@@ -829,7 +829,7 @@ abstract class AppLocalizations {
   /// No description provided for @readOnAnyDevice.
   ///
   /// In en, this message translates to:
-  /// **'Read on any device'**
+  /// **'Instant access • Read anywhere'**
   String get readOnAnyDevice;
 
   /// No description provided for @hardcopy.
@@ -841,7 +841,7 @@ abstract class AppLocalizations {
   /// No description provided for @printedAndDelivered.
   ///
   /// In en, this message translates to:
-  /// **'Printed & delivered'**
+  /// **'Printed book • Home delivery'**
   String get printedAndDelivered;
 
   /// No description provided for @buyNow.
@@ -1233,6 +1233,516 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Downloaded'**
   String get downloadedStatus;
+
+  /// No description provided for @yourReadingStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Reading Stats'**
+  String get yourReadingStats;
+
+  /// No description provided for @readingChallenge.
+  ///
+  /// In en, this message translates to:
+  /// **'{year} Reading Challenge'**
+  String readingChallenge(int year);
+
+  /// No description provided for @booksRead.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Books'**
+  String booksRead(int count);
+
+  /// No description provided for @booksAheadOfGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} books ahead of your goal'**
+  String booksAheadOfGoal(int count);
+
+  /// No description provided for @percentComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% complete'**
+  String percentComplete(int percent);
+
+  /// No description provided for @booksToGo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} books to go'**
+  String booksToGo(int count);
+
+  /// No description provided for @thisMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'This Month'**
+  String get thisMonth;
+
+  /// No description provided for @pagesReadLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pages Read'**
+  String get pagesReadLabel;
+
+  /// No description provided for @readingTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Time'**
+  String get readingTimeLabel;
+
+  /// No description provided for @favoriteGenres.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite Genres'**
+  String get favoriteGenres;
+
+  /// No description provided for @recentlyFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently Finished'**
+  String get recentlyFinished;
+
+  /// No description provided for @finishedAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished {days} days ago'**
+  String finishedAgo(int days);
+
+  /// No description provided for @offlineReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline reading'**
+  String get offlineReading;
+
+  /// No description provided for @syncAcrossDevices.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync across devices'**
+  String get syncAcrossDevices;
+
+  /// No description provided for @highlightsNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlights & notes'**
+  String get highlightsNotes;
+
+  /// No description provided for @premiumPaperQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium paper quality'**
+  String get premiumPaperQuality;
+
+  /// No description provided for @deliveryInDays.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery in 3-5 days'**
+  String get deliveryInDays;
+
+  /// No description provided for @freeShipping.
+  ///
+  /// In en, this message translates to:
+  /// **'Free shipping'**
+  String get freeShipping;
+
+  /// No description provided for @continueToCheckout.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue to Checkout'**
+  String get continueToCheckout;
+
+  /// No description provided for @checkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get checkout;
+
+  /// No description provided for @orderSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Summary'**
+  String get orderSummary;
+
+  /// No description provided for @subtotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtotal'**
+  String get subtotal;
+
+  /// No description provided for @processingFee.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing Fee'**
+  String get processingFee;
+
+  /// No description provided for @total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @promoCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Promo Code'**
+  String get promoCode;
+
+  /// No description provided for @enterCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter code'**
+  String get enterCode;
+
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
+  /// No description provided for @securePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure Payment'**
+  String get securePayment;
+
+  /// No description provided for @securePaymentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment information is encrypted and secure. We support all major mobile money providers.'**
+  String get securePaymentDesc;
+
+  /// No description provided for @proceedToPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Proceed to Payment'**
+  String get proceedToPayment;
+
+  /// No description provided for @paymentMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Method'**
+  String get paymentMethod;
+
+  /// No description provided for @mobileMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Money'**
+  String get mobileMoney;
+
+  /// No description provided for @mtnMobileMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'MTN Mobile Money'**
+  String get mtnMobileMoney;
+
+  /// No description provided for @fastSecurePayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast & secure payment'**
+  String get fastSecurePayment;
+
+  /// No description provided for @orangeMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Orange Money'**
+  String get orangeMoney;
+
+  /// No description provided for @instantTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Instant transfer'**
+  String get instantTransfer;
+
+  /// No description provided for @airtelMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Airtel Money'**
+  String get airtelMoney;
+
+  /// No description provided for @quickCheckout.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick checkout'**
+  String get quickCheckout;
+
+  /// No description provided for @mPesa.
+  ///
+  /// In en, this message translates to:
+  /// **'M-Pesa'**
+  String get mPesa;
+
+  /// No description provided for @trustedPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Trusted payment'**
+  String get trustedPayment;
+
+  /// No description provided for @enterPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Phone Number'**
+  String get enterPhoneNumber;
+
+  /// No description provided for @phoneNumberPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'+233 XX XXX XXXX'**
+  String get phoneNumberPlaceholder;
+
+  /// No description provided for @paymentPromptMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll receive a prompt to approve the payment'**
+  String get paymentPromptMessage;
+
+  /// No description provided for @totalAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Amount'**
+  String get totalAmount;
+
+  /// No description provided for @payNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay Now'**
+  String get payNow;
+
+  /// No description provided for @processingPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing Payment'**
+  String get processingPayment;
+
+  /// No description provided for @checkPhoneApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your phone and approve the payment request from {provider}'**
+  String checkPhoneApprove(String provider);
+
+  /// No description provided for @amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone Number'**
+  String get phoneNumber;
+
+  /// No description provided for @reference.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference'**
+  String get reference;
+
+  /// No description provided for @cancelPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel Payment'**
+  String get cancelPayment;
+
+  /// No description provided for @paymentSuccessful.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Successful!'**
+  String get paymentSuccessful;
+
+  /// No description provided for @bookAddedToLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Your book has been added to your library. Start reading now!'**
+  String get bookAddedToLibrary;
+
+  /// No description provided for @amountPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount Paid'**
+  String get amountPaid;
+
+  /// No description provided for @transactionId.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction ID'**
+  String get transactionId;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @startReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Reading'**
+  String get startReading;
+
+  /// No description provided for @viewReceipt.
+  ///
+  /// In en, this message translates to:
+  /// **'View Receipt'**
+  String get viewReceipt;
+
+  /// No description provided for @myOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'My Orders'**
+  String get myOrders;
+
+  /// No description provided for @filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter;
+
+  /// No description provided for @orderFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Order #'**
+  String get orderFilter;
+
+  /// No description provided for @completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completed;
+
+  /// No description provided for @readNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Now'**
+  String get readNow;
+
+  /// No description provided for @inTransit.
+  ///
+  /// In en, this message translates to:
+  /// **'In Transit'**
+  String get inTransit;
+
+  /// No description provided for @trackOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Track Order'**
+  String get trackOrder;
+
+  /// No description provided for @contactSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Support'**
+  String get contactSupport;
+
+  /// No description provided for @delivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivered'**
+  String get delivered;
+
+  /// No description provided for @rateAndReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate & Review'**
+  String get rateAndReview;
+
+  /// No description provided for @buyAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy Again'**
+  String get buyAgain;
+
+  /// No description provided for @trackOrderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Track Order'**
+  String get trackOrderTitle;
+
+  /// No description provided for @placedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Placed on {date}'**
+  String placedOn(String date);
+
+  /// No description provided for @estimatedDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Delivery'**
+  String get estimatedDelivery;
+
+  /// No description provided for @orderWillArriveIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order will arrive in {days} days'**
+  String orderWillArriveIn(int days);
+
+  /// No description provided for @trackingHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracking History'**
+  String get trackingHistory;
+
+  /// No description provided for @outForDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Out for Delivery'**
+  String get outForDelivery;
+
+  /// No description provided for @packageOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'Your package is on the way'**
+  String get packageOnTheWay;
+
+  /// No description provided for @inTransitStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'In Transit'**
+  String get inTransitStatus;
+
+  /// No description provided for @arrivedAtSortingFacility.
+  ///
+  /// In en, this message translates to:
+  /// **'Package arrived at sorting facility'**
+  String get arrivedAtSortingFacility;
+
+  /// No description provided for @shipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipped'**
+  String get shipped;
+
+  /// No description provided for @pickedUpByCourier.
+  ///
+  /// In en, this message translates to:
+  /// **'Package picked up by courier'**
+  String get pickedUpByCourier;
+
+  /// No description provided for @processing.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing'**
+  String get processing;
+
+  /// No description provided for @orderBeingPrepared.
+  ///
+  /// In en, this message translates to:
+  /// **'Your order is being prepared'**
+  String get orderBeingPrepared;
+
+  /// No description provided for @orderConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Order Confirmed'**
+  String get orderConfirmed;
+
+  /// No description provided for @paymentReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment received successfully'**
+  String get paymentReceived;
+
+  /// No description provided for @deliveryAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Address'**
+  String get deliveryAddress;
 }
 
 class _AppLocalizationsDelegate

@@ -24,6 +24,14 @@ import 'package:loni_africa/features/reading/presentation/screens/table_of_conte
 import 'package:loni_africa/features/reading/presentation/screens/highlights_notes_screen.dart';
 import 'package:loni_africa/features/reading/presentation/screens/reading_progress_screen.dart';
 import 'package:loni_africa/features/reading/presentation/screens/offline_manager_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/reading_stats_screen.dart';
+import 'package:loni_africa/features/commerce/presentation/screens/format_selection_screen.dart';
+import 'package:loni_africa/features/commerce/presentation/screens/checkout_screen.dart';
+import 'package:loni_africa/features/commerce/presentation/screens/payment_method_screen.dart';
+import 'package:loni_africa/features/commerce/presentation/screens/payment_pending_screen.dart';
+import 'package:loni_africa/features/commerce/presentation/screens/payment_success_screen.dart';
+import 'package:loni_africa/features/commerce/presentation/screens/orders_list_screen.dart';
+import 'package:loni_africa/features/commerce/presentation/screens/order_tracking_screen.dart';
 import 'package:loni_africa/splash_screen.dart';
 
 class AppRoutes {
@@ -235,6 +243,70 @@ class AppRoutes {
         name: OfflineManagerScreen.name,
         builder: (context, state) {
           return const OfflineManagerScreen();
+        },
+      ),
+      // Reading stats route
+      GoRoute(
+        path: ReadingStatsScreen.path,
+        name: ReadingStatsScreen.name,
+        builder: (context, state) {
+          return const ReadingStatsScreen();
+        },
+      ),
+      // Commerce & Orders routes
+      GoRoute(
+        path: FormatSelectionScreen.path,
+        name: FormatSelectionScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return FormatSelectionScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: CheckoutScreen.path,
+        name: CheckoutScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return CheckoutScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: PaymentMethodScreen.path,
+        name: PaymentMethodScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return PaymentMethodScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: PaymentPendingScreen.path,
+        name: PaymentPendingScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return PaymentPendingScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: PaymentSuccessScreen.path,
+        name: PaymentSuccessScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return PaymentSuccessScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: OrdersListScreen.path,
+        name: OrdersListScreen.name,
+        builder: (context, state) {
+          return const OrdersListScreen();
+        },
+      ),
+      GoRoute(
+        path: OrderTrackingScreen.path,
+        name: OrderTrackingScreen.name,
+        builder: (context, state) {
+          final orderId = state.pathParameters['orderId']!;
+          return OrderTrackingScreen(orderId: orderId);
         },
       ),
     ],

@@ -390,13 +390,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get digitalEdition => 'Digital Edition';
 
   @override
-  String get readOnAnyDevice => 'Read on any device';
+  String get readOnAnyDevice => 'Instant access • Read anywhere';
 
   @override
   String get hardcopy => 'Hardcopy';
 
   @override
-  String get printedAndDelivered => 'Printed & delivered';
+  String get printedAndDelivered => 'Printed book • Home delivery';
 
   @override
   String buyNow(String price) {
@@ -620,4 +620,280 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get downloadedStatus => 'Downloaded';
+
+  @override
+  String get yourReadingStats => 'Your Reading Stats';
+
+  @override
+  String readingChallenge(int year) {
+    return '$year Reading Challenge';
+  }
+
+  @override
+  String booksRead(int count) {
+    return '$count Books';
+  }
+
+  @override
+  String booksAheadOfGoal(int count) {
+    return '$count books ahead of your goal';
+  }
+
+  @override
+  String percentComplete(int percent) {
+    return '$percent% complete';
+  }
+
+  @override
+  String booksToGo(int count) {
+    return '$count books to go';
+  }
+
+  @override
+  String get thisMonth => 'This Month';
+
+  @override
+  String get pagesReadLabel => 'Pages Read';
+
+  @override
+  String get readingTimeLabel => 'Reading Time';
+
+  @override
+  String get favoriteGenres => 'Favorite Genres';
+
+  @override
+  String get recentlyFinished => 'Recently Finished';
+
+  @override
+  String finishedAgo(int days) {
+    return 'Finished $days days ago';
+  }
+
+  @override
+  String get offlineReading => 'Offline reading';
+
+  @override
+  String get syncAcrossDevices => 'Sync across devices';
+
+  @override
+  String get highlightsNotes => 'Highlights & notes';
+
+  @override
+  String get premiumPaperQuality => 'Premium paper quality';
+
+  @override
+  String get deliveryInDays => 'Delivery in 3-5 days';
+
+  @override
+  String get freeShipping => 'Free shipping';
+
+  @override
+  String get continueToCheckout => 'Continue to Checkout';
+
+  @override
+  String get checkout => 'Checkout';
+
+  @override
+  String get orderSummary => 'Order Summary';
+
+  @override
+  String get subtotal => 'Subtotal';
+
+  @override
+  String get processingFee => 'Processing Fee';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get promoCode => 'Promo Code';
+
+  @override
+  String get enterCode => 'Enter code';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get securePayment => 'Secure Payment';
+
+  @override
+  String get securePaymentDesc =>
+      'Your payment information is encrypted and secure. We support all major mobile money providers.';
+
+  @override
+  String get proceedToPayment => 'Proceed to Payment';
+
+  @override
+  String get paymentMethod => 'Payment Method';
+
+  @override
+  String get mobileMoney => 'Mobile Money';
+
+  @override
+  String get mtnMobileMoney => 'MTN Mobile Money';
+
+  @override
+  String get fastSecurePayment => 'Fast & secure payment';
+
+  @override
+  String get orangeMoney => 'Orange Money';
+
+  @override
+  String get instantTransfer => 'Instant transfer';
+
+  @override
+  String get airtelMoney => 'Airtel Money';
+
+  @override
+  String get quickCheckout => 'Quick checkout';
+
+  @override
+  String get mPesa => 'M-Pesa';
+
+  @override
+  String get trustedPayment => 'Trusted payment';
+
+  @override
+  String get enterPhoneNumber => 'Enter Phone Number';
+
+  @override
+  String get phoneNumberPlaceholder => '+233 XX XXX XXXX';
+
+  @override
+  String get paymentPromptMessage =>
+      'You\'ll receive a prompt to approve the payment';
+
+  @override
+  String get totalAmount => 'Total Amount';
+
+  @override
+  String get payNow => 'Pay Now';
+
+  @override
+  String get processingPayment => 'Processing Payment';
+
+  @override
+  String checkPhoneApprove(String provider) {
+    return 'Please check your phone and approve the payment request from $provider';
+  }
+
+  @override
+  String get amount => 'Amount';
+
+  @override
+  String get phoneNumber => 'Phone Number';
+
+  @override
+  String get reference => 'Reference';
+
+  @override
+  String get cancelPayment => 'Cancel Payment';
+
+  @override
+  String get paymentSuccessful => 'Payment Successful!';
+
+  @override
+  String get bookAddedToLibrary =>
+      'Your book has been added to your library. Start reading now!';
+
+  @override
+  String get amountPaid => 'Amount Paid';
+
+  @override
+  String get transactionId => 'Transaction ID';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get startReading => 'Start Reading';
+
+  @override
+  String get viewReceipt => 'View Receipt';
+
+  @override
+  String get myOrders => 'My Orders';
+
+  @override
+  String get filter => 'Filter';
+
+  @override
+  String get orderFilter => 'Order #';
+
+  @override
+  String get completed => 'Completed';
+
+  @override
+  String get readNow => 'Read Now';
+
+  @override
+  String get inTransit => 'In Transit';
+
+  @override
+  String get trackOrder => 'Track Order';
+
+  @override
+  String get contactSupport => 'Contact Support';
+
+  @override
+  String get delivered => 'Delivered';
+
+  @override
+  String get rateAndReview => 'Rate & Review';
+
+  @override
+  String get buyAgain => 'Buy Again';
+
+  @override
+  String get trackOrderTitle => 'Track Order';
+
+  @override
+  String placedOn(String date) {
+    return 'Placed on $date';
+  }
+
+  @override
+  String get estimatedDelivery => 'Estimated Delivery';
+
+  @override
+  String orderWillArriveIn(int days) {
+    return 'Your order will arrive in $days days';
+  }
+
+  @override
+  String get trackingHistory => 'Tracking History';
+
+  @override
+  String get outForDelivery => 'Out for Delivery';
+
+  @override
+  String get packageOnTheWay => 'Your package is on the way';
+
+  @override
+  String get inTransitStatus => 'In Transit';
+
+  @override
+  String get arrivedAtSortingFacility => 'Package arrived at sorting facility';
+
+  @override
+  String get shipped => 'Shipped';
+
+  @override
+  String get pickedUpByCourier => 'Package picked up by courier';
+
+  @override
+  String get processing => 'Processing';
+
+  @override
+  String get orderBeingPrepared => 'Your order is being prepared';
+
+  @override
+  String get orderConfirmed => 'Order Confirmed';
+
+  @override
+  String get paymentReceived => 'Payment received successfully';
+
+  @override
+  String get deliveryAddress => 'Delivery Address';
 }

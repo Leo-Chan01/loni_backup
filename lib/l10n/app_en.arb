@@ -365,5 +365,171 @@
       }
     }
   },
-  "downloadedStatus": "Downloaded"
+  "downloadedStatus": "Downloaded",
+  
+  "yourReadingStats": "Your Reading Stats",
+  "share": "Share",
+  "readingChallenge": "{year} Reading Challenge",
+  "@readingChallenge": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "booksRead": "{count} Books",
+  "@booksRead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "booksAheadOfGoal": "{count} books ahead of your goal",
+  "@booksAheadOfGoal": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "percentComplete": "{percent}% complete",
+  "@percentComplete": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "booksToGo": "{count} books to go",
+  "@booksToGo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "thisMonth": "This Month",
+  "booksFinished": "Books Finished",
+  "pagesReadLabel": "Pages Read",
+  "readingTimeLabel": "Reading Time",
+  "dayStreak": "Day Streak",
+  "favoriteGenres": "Favorite Genres",
+  "recentlyFinished": "Recently Finished",
+  "finishedAgo": "Finished {days} days ago",
+  "@finishedAgo": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "chooseFormat": "Choose Format",
+  "digitalEdition": "Digital Edition",
+  "readOnAnyDevice": "Instant access • Read anywhere",
+  "hardcopy": "Hardcopy",
+  "printedAndDelivered": "Printed book • Home delivery",
+  "offlineReading": "Offline reading",
+  "syncAcrossDevices": "Sync across devices",
+  "highlightsNotes": "Highlights & notes",
+  "premiumPaperQuality": "Premium paper quality",
+  "deliveryInDays": "Delivery in 3-5 days",
+  "freeShipping": "Free shipping",
+  "continueToCheckout": "Continue to Checkout",
+  
+  "checkout": "Checkout",
+  "orderSummary": "Order Summary",
+  "subtotal": "Subtotal",
+  "processingFee": "Processing Fee",
+  "total": "Total",
+  "promoCode": "Promo Code",
+  "enterCode": "Enter code",
+  "apply": "Apply",
+  "securePayment": "Secure Payment",
+  "securePaymentDesc": "Your payment information is encrypted and secure. We support all major mobile money providers.",
+  "proceedToPayment": "Proceed to Payment",
+  
+  "paymentMethod": "Payment Method",
+  "mobileMoney": "Mobile Money",
+  "mtnMobileMoney": "MTN Mobile Money",
+  "fastSecurePayment": "Fast & secure payment",
+  "orangeMoney": "Orange Money",
+  "instantTransfer": "Instant transfer",
+  "airtelMoney": "Airtel Money",
+  "quickCheckout": "Quick checkout",
+  "mPesa": "M-Pesa",
+  "trustedPayment": "Trusted payment",
+  "enterPhoneNumber": "Enter Phone Number",
+  "phoneNumberPlaceholder": "+233 XX XXX XXXX",
+  "paymentPromptMessage": "You'll receive a prompt to approve the payment",
+  "totalAmount": "Total Amount",
+  "payNow": "Pay Now",
+  
+  "processingPayment": "Processing Payment",
+  "checkPhoneApprove": "Please check your phone and approve the payment request from {provider}",
+  "@checkPhoneApprove": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "amount": "Amount",
+  "phoneNumber": "Phone Number",
+  "reference": "Reference",
+  "cancelPayment": "Cancel Payment",
+  
+  "paymentSuccessful": "Payment Successful!",
+  "bookAddedToLibrary": "Your book has been added to your library. Start reading now!",
+  "amountPaid": "Amount Paid",
+  "transactionId": "Transaction ID",
+  "date": "Date",
+  "startReading": "Start Reading",
+  "viewReceipt": "View Receipt",
+  
+  "myOrders": "My Orders",
+  "filter": "Filter",
+  "orderFilter": "Order #",
+  "completed": "Completed",
+  "digital": "Digital",
+  "hardcopy": "Hardcopy",
+  "readNow": "Read Now",
+  "inTransit": "In Transit",
+  "trackOrder": "Track Order",
+  "contactSupport": "Contact Support",
+  "delivered": "Delivered",
+  "rateAndReview": "Rate & Review",
+  "buyAgain": "Buy Again",
+  
+  "trackOrderTitle": "Track Order",
+  "placedOn": "Placed on {date}",
+  "@placedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "estimatedDelivery": "Estimated Delivery",
+  "orderWillArriveIn": "Your order will arrive in {days} days",
+  "@orderWillArriveIn": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "trackingHistory": "Tracking History",
+  "outForDelivery": "Out for Delivery",
+  "packageOnTheWay": "Your package is on the way",
+  "inTransitStatus": "In Transit",
+  "arrivedAtSortingFacility": "Package arrived at sorting facility",
+  "shipped": "Shipped",
+  "pickedUpByCourier": "Package picked up by courier",
+  "processing": "Processing",
+  "orderBeingPrepared": "Your order is being prepared",
+  "orderConfirmed": "Order Confirmed",
+  "paymentReceived": "Payment received successfully",
+  "deliveryAddress": "Delivery Address"
 }

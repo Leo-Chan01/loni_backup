@@ -390,13 +390,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get digitalEdition => 'Édition numérique';
 
   @override
-  String get readOnAnyDevice => 'Lire sur n\'importe quel appareil';
+  String get readOnAnyDevice => 'Accès instantané • Lisez partout';
 
   @override
   String get hardcopy => 'Copie papier';
 
   @override
-  String get printedAndDelivered => 'Imprimé et livré';
+  String get printedAndDelivered => 'Livre imprimé • Livraison à domicile';
 
   @override
   String buyNow(String price) {
@@ -571,7 +571,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get readingTime => 'Temps de lecture';
 
   @override
-  String get dayStreak => 'Série de jours';
+  String get dayStreak => 'Jours consécutifs';
 
   @override
   String get booksFinished => 'Livres terminés';
@@ -621,4 +621,280 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get downloadedStatus => 'Téléchargé';
+
+  @override
+  String get yourReadingStats => 'Vos statistiques de lecture';
+
+  @override
+  String readingChallenge(int year) {
+    return 'Défi de lecture $year';
+  }
+
+  @override
+  String booksRead(int count) {
+    return '$count livres';
+  }
+
+  @override
+  String booksAheadOfGoal(int count) {
+    return '$count livres en avance sur votre objectif';
+  }
+
+  @override
+  String percentComplete(int percent) {
+    return '$percent% terminé';
+  }
+
+  @override
+  String booksToGo(int count) {
+    return '$count livres restants';
+  }
+
+  @override
+  String get thisMonth => 'Ce mois-ci';
+
+  @override
+  String get pagesReadLabel => 'Pages lues';
+
+  @override
+  String get readingTimeLabel => 'Temps de lecture';
+
+  @override
+  String get favoriteGenres => 'Genres préférés';
+
+  @override
+  String get recentlyFinished => 'Terminés récemment';
+
+  @override
+  String finishedAgo(int days) {
+    return 'Terminé il y a $days jours';
+  }
+
+  @override
+  String get offlineReading => 'Lecture hors ligne';
+
+  @override
+  String get syncAcrossDevices => 'Synchronisation sur tous les appareils';
+
+  @override
+  String get highlightsNotes => 'Surlignages et notes';
+
+  @override
+  String get premiumPaperQuality => 'Papier de qualité premium';
+
+  @override
+  String get deliveryInDays => 'Livraison en 3-5 jours';
+
+  @override
+  String get freeShipping => 'Livraison gratuite';
+
+  @override
+  String get continueToCheckout => 'Continuer vers le paiement';
+
+  @override
+  String get checkout => 'Paiement';
+
+  @override
+  String get orderSummary => 'Récapitulatif de la commande';
+
+  @override
+  String get subtotal => 'Sous-total';
+
+  @override
+  String get processingFee => 'Frais de traitement';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get promoCode => 'Code promo';
+
+  @override
+  String get enterCode => 'Entrez le code';
+
+  @override
+  String get apply => 'Appliquer';
+
+  @override
+  String get securePayment => 'Paiement sécurisé';
+
+  @override
+  String get securePaymentDesc =>
+      'Vos informations de paiement sont cryptées et sécurisées. Nous prenons en charge tous les principaux fournisseurs de paiement mobile.';
+
+  @override
+  String get proceedToPayment => 'Procéder au paiement';
+
+  @override
+  String get paymentMethod => 'Méthode de paiement';
+
+  @override
+  String get mobileMoney => 'Argent mobile';
+
+  @override
+  String get mtnMobileMoney => 'MTN Mobile Money';
+
+  @override
+  String get fastSecurePayment => 'Paiement rapide et sécurisé';
+
+  @override
+  String get orangeMoney => 'Orange Money';
+
+  @override
+  String get instantTransfer => 'Transfert instantané';
+
+  @override
+  String get airtelMoney => 'Airtel Money';
+
+  @override
+  String get quickCheckout => 'Paiement rapide';
+
+  @override
+  String get mPesa => 'M-Pesa';
+
+  @override
+  String get trustedPayment => 'Paiement de confiance';
+
+  @override
+  String get enterPhoneNumber => 'Entrez le numéro de téléphone';
+
+  @override
+  String get phoneNumberPlaceholder => '+233 XX XXX XXXX';
+
+  @override
+  String get paymentPromptMessage =>
+      'Vous recevrez une invite pour approuver le paiement';
+
+  @override
+  String get totalAmount => 'Montant total';
+
+  @override
+  String get payNow => 'Payer maintenant';
+
+  @override
+  String get processingPayment => 'Traitement du paiement';
+
+  @override
+  String checkPhoneApprove(String provider) {
+    return 'Veuillez vérifier votre téléphone et approuver la demande de paiement de $provider';
+  }
+
+  @override
+  String get amount => 'Montant';
+
+  @override
+  String get phoneNumber => 'Numéro de téléphone';
+
+  @override
+  String get reference => 'Référence';
+
+  @override
+  String get cancelPayment => 'Annuler le paiement';
+
+  @override
+  String get paymentSuccessful => 'Paiement réussi!';
+
+  @override
+  String get bookAddedToLibrary =>
+      'Votre livre a été ajouté à votre bibliothèque. Commencez à lire maintenant!';
+
+  @override
+  String get amountPaid => 'Montant payé';
+
+  @override
+  String get transactionId => 'ID de transaction';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get startReading => 'Commencer à lire';
+
+  @override
+  String get viewReceipt => 'Voir le reçu';
+
+  @override
+  String get myOrders => 'Mes commandes';
+
+  @override
+  String get filter => 'Filtrer';
+
+  @override
+  String get orderFilter => 'Commande #';
+
+  @override
+  String get completed => 'Terminé';
+
+  @override
+  String get readNow => 'Lire maintenant';
+
+  @override
+  String get inTransit => 'En transit';
+
+  @override
+  String get trackOrder => 'Suivre la commande';
+
+  @override
+  String get contactSupport => 'Contacter le support';
+
+  @override
+  String get delivered => 'Livré';
+
+  @override
+  String get rateAndReview => 'Noter et commenter';
+
+  @override
+  String get buyAgain => 'Acheter à nouveau';
+
+  @override
+  String get trackOrderTitle => 'Suivre la commande';
+
+  @override
+  String placedOn(String date) {
+    return 'Passée le $date';
+  }
+
+  @override
+  String get estimatedDelivery => 'Livraison estimée';
+
+  @override
+  String orderWillArriveIn(int days) {
+    return 'Votre commande arrivera dans $days jours';
+  }
+
+  @override
+  String get trackingHistory => 'Historique de suivi';
+
+  @override
+  String get outForDelivery => 'En cours de livraison';
+
+  @override
+  String get packageOnTheWay => 'Votre colis est en route';
+
+  @override
+  String get inTransitStatus => 'En transit';
+
+  @override
+  String get arrivedAtSortingFacility => 'Colis arrivé au centre de tri';
+
+  @override
+  String get shipped => 'Expédié';
+
+  @override
+  String get pickedUpByCourier => 'Colis récupéré par le coursier';
+
+  @override
+  String get processing => 'En traitement';
+
+  @override
+  String get orderBeingPrepared => 'Votre commande est en préparation';
+
+  @override
+  String get orderConfirmed => 'Commande confirmée';
+
+  @override
+  String get paymentReceived => 'Paiement reçu avec succès';
+
+  @override
+  String get deliveryAddress => 'Adresse de livraison';
 }
