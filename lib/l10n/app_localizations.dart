@@ -807,6 +807,432 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Success'**
   String get success;
+
+  /// No description provided for @aboutThisBook.
+  ///
+  /// In en, this message translates to:
+  /// **'About This Book'**
+  String get aboutThisBook;
+
+  /// No description provided for @chooseFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Format'**
+  String get chooseFormat;
+
+  /// No description provided for @digitalEdition.
+  ///
+  /// In en, this message translates to:
+  /// **'Digital Edition'**
+  String get digitalEdition;
+
+  /// No description provided for @readOnAnyDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Read on any device'**
+  String get readOnAnyDevice;
+
+  /// No description provided for @hardcopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Hardcopy'**
+  String get hardcopy;
+
+  /// No description provided for @printedAndDelivered.
+  ///
+  /// In en, this message translates to:
+  /// **'Printed & delivered'**
+  String get printedAndDelivered;
+
+  /// No description provided for @buyNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy Now - {price}'**
+  String buyNow(String price);
+
+  /// No description provided for @readFreePreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Free Preview'**
+  String get readFreePreview;
+
+  /// No description provided for @pages.
+  ///
+  /// In en, this message translates to:
+  /// **'Pages'**
+  String get pages;
+
+  /// No description provided for @genre.
+  ///
+  /// In en, this message translates to:
+  /// **'Genre'**
+  String get genre;
+
+  /// No description provided for @published.
+  ///
+  /// In en, this message translates to:
+  /// **'Published'**
+  String get published;
+
+  /// No description provided for @previewMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview Mode'**
+  String get previewMode;
+
+  /// No description provided for @limitedPages.
+  ///
+  /// In en, this message translates to:
+  /// **'Limited Pages'**
+  String get limitedPages;
+
+  /// No description provided for @buyFullBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy Full Book'**
+  String get buyFullBook;
+
+  /// No description provided for @preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get preview;
+
+  /// No description provided for @previewEndsHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview Ends Here'**
+  String get previewEndsHere;
+
+  /// No description provided for @purchaseFullBook.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase the full book to continue reading all {pages} pages'**
+  String purchaseFullBook(int pages);
+
+  /// No description provided for @buyFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy for {price}'**
+  String buyFor(String price);
+
+  /// No description provided for @chapter.
+  ///
+  /// In en, this message translates to:
+  /// **'Chapter'**
+  String get chapter;
+
+  /// No description provided for @contents.
+  ///
+  /// In en, this message translates to:
+  /// **'Contents'**
+  String get contents;
+
+  /// No description provided for @bookmark.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark'**
+  String get bookmark;
+
+  /// No description provided for @highlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight'**
+  String get highlight;
+
+  /// No description provided for @readingSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Settings'**
+  String get readingSettings;
+
+  /// No description provided for @fontSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Font Size'**
+  String get fontSize;
+
+  /// No description provided for @readingTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Theme'**
+  String get readingTheme;
+
+  /// No description provided for @dark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark;
+
+  /// No description provided for @light.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light;
+
+  /// No description provided for @sepia.
+  ///
+  /// In en, this message translates to:
+  /// **'Sepia'**
+  String get sepia;
+
+  /// No description provided for @fontFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Font Family'**
+  String get fontFamily;
+
+  /// No description provided for @serif.
+  ///
+  /// In en, this message translates to:
+  /// **'Serif'**
+  String get serif;
+
+  /// No description provided for @sansSerif.
+  ///
+  /// In en, this message translates to:
+  /// **'Sans-Serif'**
+  String get sansSerif;
+
+  /// No description provided for @lineSpacing.
+  ///
+  /// In en, this message translates to:
+  /// **'Line Spacing'**
+  String get lineSpacing;
+
+  /// No description provided for @compact.
+  ///
+  /// In en, this message translates to:
+  /// **'Compact'**
+  String get compact;
+
+  /// No description provided for @relaxed.
+  ///
+  /// In en, this message translates to:
+  /// **'Relaxed'**
+  String get relaxed;
+
+  /// No description provided for @autoScroll.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-Scroll'**
+  String get autoScroll;
+
+  /// No description provided for @automaticallyScrollPages.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatically scroll pages'**
+  String get automaticallyScrollPages;
+
+  /// No description provided for @tableOfContents.
+  ///
+  /// In en, this message translates to:
+  /// **'Table of Contents'**
+  String get tableOfContents;
+
+  /// No description provided for @chapters.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Chapters'**
+  String chapters(int count);
+
+  /// No description provided for @currentlyReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Currently reading'**
+  String get currentlyReading;
+
+  /// No description provided for @complete.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% complete'**
+  String complete(int percent);
+
+  /// No description provided for @pagesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pages'**
+  String pagesCount(int count);
+
+  /// No description provided for @highlightsAndNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlights & Notes'**
+  String get highlightsAndNotes;
+
+  /// No description provided for @items.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} items'**
+  String items(int count);
+
+  /// No description provided for @highlights.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlights'**
+  String get highlights;
+
+  /// No description provided for @notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @bookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarks'**
+  String get bookmarks;
+
+  /// No description provided for @share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get share;
+
+  /// No description provided for @bookmarkedPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmarked Page'**
+  String get bookmarkedPage;
+
+  /// No description provided for @goToPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Page'**
+  String get goToPage;
+
+  /// No description provided for @daysAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days ago'**
+  String daysAgo(int count);
+
+  /// No description provided for @weeksAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} weeks ago'**
+  String weeksAgo(int count);
+
+  /// No description provided for @readingProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Progress'**
+  String get readingProgress;
+
+  /// No description provided for @pagesRead.
+  ///
+  /// In en, this message translates to:
+  /// **'Pages Read'**
+  String get pagesRead;
+
+  /// No description provided for @pagesLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Pages Left'**
+  String get pagesLeft;
+
+  /// No description provided for @timeLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Time Left'**
+  String get timeLeft;
+
+  /// No description provided for @thisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get thisWeek;
+
+  /// No description provided for @readingTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Time'**
+  String get readingTime;
+
+  /// No description provided for @dayStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Day Streak'**
+  String get dayStreak;
+
+  /// No description provided for @booksFinished.
+  ///
+  /// In en, this message translates to:
+  /// **'Books Finished'**
+  String get booksFinished;
+
+  /// No description provided for @dailyActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Activity'**
+  String get dailyActivity;
+
+  /// No description provided for @weeklyGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Goal'**
+  String get weeklyGoal;
+
+  /// No description provided for @hours.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hours'**
+  String hours(String count);
+
+  /// No description provided for @hoursLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hours left to reach your goal'**
+  String hoursLeft(String count);
+
+  /// No description provided for @offlineStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline Storage'**
+  String get offlineStorage;
+
+  /// No description provided for @storageUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage Used'**
+  String get storageUsed;
+
+  /// No description provided for @gbOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{used} of {total}'**
+  String gbOf(String used, String total);
+
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'{size} available'**
+  String available(String size);
+
+  /// No description provided for @manage.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage'**
+  String get manage;
+
+  /// No description provided for @downloadedBooks.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded Books'**
+  String get downloadedBooks;
+
+  /// No description provided for @booksLowercase.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} books'**
+  String booksLowercase(int count);
+
+  /// No description provided for @downloadedStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded'**
+  String get downloadedStatus;
 }
 
 class _AppLocalizationsDelegate

@@ -16,6 +16,14 @@ import 'package:loni_africa/features/library/presentation/screens/library_screen
 import 'package:loni_africa/features/onboarding/presentation/screens/language_selection_screen.dart';
 import 'package:loni_africa/features/onboarding/presentation/screens/onboarding_screen.dart';
 import 'package:loni_africa/features/profile/presentation/screens/profile_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/book_detail_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/book_preview_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/reader_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/reader_settings_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/table_of_contents_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/highlights_notes_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/reading_progress_screen.dart';
+import 'package:loni_africa/features/reading/presentation/screens/offline_manager_screen.dart';
 import 'package:loni_africa/splash_screen.dart';
 
 class AppRoutes {
@@ -163,6 +171,70 @@ class AppRoutes {
         name: MainScreen.name,
         builder: (context, state) {
           return const MainScreen();
+        },
+      ),
+      // Reading feature routes
+      GoRoute(
+        path: BookDetailScreen.path,
+        name: BookDetailScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return BookDetailScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: BookPreviewScreen.path,
+        name: BookPreviewScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return BookPreviewScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: ReaderScreen.path,
+        name: ReaderScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return ReaderScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: ReaderSettingsScreen.path,
+        name: ReaderSettingsScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return ReaderSettingsScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: TableOfContentsScreen.path,
+        name: TableOfContentsScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return TableOfContentsScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: HighlightsNotesScreen.path,
+        name: HighlightsNotesScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return HighlightsNotesScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: ReadingProgressScreen.path,
+        name: ReadingProgressScreen.name,
+        builder: (context, state) {
+          final bookId = state.pathParameters['bookId']!;
+          return ReadingProgressScreen(bookId: bookId);
+        },
+      ),
+      GoRoute(
+        path: OfflineManagerScreen.path,
+        name: OfflineManagerScreen.name,
+        builder: (context, state) {
+          return const OfflineManagerScreen();
         },
       ),
     ],

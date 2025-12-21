@@ -379,4 +379,245 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get success => 'Éxito';
+
+  @override
+  String get aboutThisBook => 'Sobre este libro';
+
+  @override
+  String get chooseFormat => 'Elegir formato';
+
+  @override
+  String get digitalEdition => 'Edición digital';
+
+  @override
+  String get readOnAnyDevice => 'Leer en cualquier dispositivo';
+
+  @override
+  String get hardcopy => 'Copia física';
+
+  @override
+  String get printedAndDelivered => 'Impreso y entregado';
+
+  @override
+  String buyNow(String price) {
+    return 'Comprar ahora - $price';
+  }
+
+  @override
+  String get readFreePreview => 'Leer vista previa gratis';
+
+  @override
+  String get pages => 'Páginas';
+
+  @override
+  String get genre => 'Género';
+
+  @override
+  String get published => 'Publicado';
+
+  @override
+  String get previewMode => 'Modo vista previa';
+
+  @override
+  String get limitedPages => 'Páginas limitadas';
+
+  @override
+  String get buyFullBook => 'Comprar libro completo';
+
+  @override
+  String get preview => 'Vista previa';
+
+  @override
+  String get previewEndsHere => 'La vista previa termina aquí';
+
+  @override
+  String purchaseFullBook(int pages) {
+    return 'Compra el libro completo para continuar leyendo las $pages páginas';
+  }
+
+  @override
+  String buyFor(String price) {
+    return 'Comprar por $price';
+  }
+
+  @override
+  String get chapter => 'Capítulo';
+
+  @override
+  String get contents => 'Contenidos';
+
+  @override
+  String get bookmark => 'Marcador';
+
+  @override
+  String get highlight => 'Resaltar';
+
+  @override
+  String get readingSettings => 'Configuración de lectura';
+
+  @override
+  String get fontSize => 'Tamaño de fuente';
+
+  @override
+  String get readingTheme => 'Tema de lectura';
+
+  @override
+  String get dark => 'Oscuro';
+
+  @override
+  String get light => 'Claro';
+
+  @override
+  String get sepia => 'Sepia';
+
+  @override
+  String get fontFamily => 'Familia de fuentes';
+
+  @override
+  String get serif => 'Serif';
+
+  @override
+  String get sansSerif => 'Sans-Serif';
+
+  @override
+  String get lineSpacing => 'Espaciado de línea';
+
+  @override
+  String get compact => 'Compacto';
+
+  @override
+  String get relaxed => 'Relajado';
+
+  @override
+  String get autoScroll => 'Desplazamiento automático';
+
+  @override
+  String get automaticallyScrollPages => 'Desplazar páginas automáticamente';
+
+  @override
+  String get tableOfContents => 'Tabla de contenidos';
+
+  @override
+  String chapters(int count) {
+    return '$count Capítulos';
+  }
+
+  @override
+  String get currentlyReading => 'Leyendo actualmente';
+
+  @override
+  String complete(int percent) {
+    return '$percent% completo';
+  }
+
+  @override
+  String pagesCount(int count) {
+    return '$count páginas';
+  }
+
+  @override
+  String get highlightsAndNotes => 'Resaltados y notas';
+
+  @override
+  String items(int count) {
+    return '$count elementos';
+  }
+
+  @override
+  String get highlights => 'Resaltados';
+
+  @override
+  String get notes => 'Notas';
+
+  @override
+  String get bookmarks => 'Marcadores';
+
+  @override
+  String get share => 'Compartir';
+
+  @override
+  String get bookmarkedPage => 'Página marcada';
+
+  @override
+  String get goToPage => 'Ir a la página';
+
+  @override
+  String daysAgo(int count) {
+    return 'hace $count días';
+  }
+
+  @override
+  String weeksAgo(int count) {
+    return 'hace $count semanas';
+  }
+
+  @override
+  String get readingProgress => 'Progreso de lectura';
+
+  @override
+  String get pagesRead => 'Páginas leídas';
+
+  @override
+  String get pagesLeft => 'Páginas restantes';
+
+  @override
+  String get timeLeft => 'Tiempo restante';
+
+  @override
+  String get thisWeek => 'Esta semana';
+
+  @override
+  String get readingTime => 'Tiempo de lectura';
+
+  @override
+  String get dayStreak => 'Racha de días';
+
+  @override
+  String get booksFinished => 'Libros terminados';
+
+  @override
+  String get dailyActivity => 'Actividad diaria';
+
+  @override
+  String get weeklyGoal => 'Meta semanal';
+
+  @override
+  String hours(String count) {
+    return '$count horas';
+  }
+
+  @override
+  String hoursLeft(String count) {
+    return '$count horas restantes para alcanzar tu meta';
+  }
+
+  @override
+  String get offlineStorage => 'Almacenamiento sin conexión';
+
+  @override
+  String get storageUsed => 'Almacenamiento usado';
+
+  @override
+  String gbOf(String used, String total) {
+    return '$used de $total';
+  }
+
+  @override
+  String available(String size) {
+    return '$size disponible';
+  }
+
+  @override
+  String get manage => 'Administrar';
+
+  @override
+  String get downloadedBooks => 'Libros descargados';
+
+  @override
+  String booksLowercase(int count) {
+    return '$count libros';
+  }
+
+  @override
+  String get downloadedStatus => 'Descargado';
 }

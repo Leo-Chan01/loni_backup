@@ -186,5 +186,184 @@
   "loading": "Loading...",
   "error": "Error",
   "retry": "Retry",
-  "success": "Success"
+  "success": "Success",
+  
+  "aboutThisBook": "About This Book",
+  "chooseFormat": "Choose Format",
+  "digitalEdition": "Digital Edition",
+  "readOnAnyDevice": "Read on any device",
+  "hardcopy": "Hardcopy",
+  "printedAndDelivered": "Printed & delivered",
+  "buyNow": "Buy Now - {price}",
+  "@buyNow": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "readFreePreview": "Read Free Preview",
+  "pages": "Pages",
+  "genre": "Genre",
+  "published": "Published",
+  
+  "previewMode": "Preview Mode",
+  "limitedPages": "Limited Pages",
+  "buyFullBook": "Buy Full Book",
+  "preview": "Preview",
+  "previewEndsHere": "Preview Ends Here",
+  "purchaseFullBook": "Purchase the full book to continue reading all {pages} pages",
+  "@purchaseFullBook": {
+    "placeholders": {
+      "pages": {
+        "type": "int"
+      }
+    }
+  },
+  "buyFor": "Buy for {price}",
+  "@buyFor": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "chapter": "Chapter",
+  "contents": "Contents",
+  "bookmark": "Bookmark",
+  "highlight": "Highlight",
+  "readingSettings": "Reading Settings",
+  "fontSize": "Font Size",
+  "readingTheme": "Reading Theme",
+  "dark": "Dark",
+  "light": "Light",
+  "sepia": "Sepia",
+  "fontFamily": "Font Family",
+  "serif": "Serif",
+  "sansSerif": "Sans-Serif",
+  "lineSpacing": "Line Spacing",
+  "compact": "Compact",
+  "relaxed": "Relaxed",
+  "autoScroll": "Auto-Scroll",
+  "automaticallyScrollPages": "Automatically scroll pages",
+  
+  "tableOfContents": "Table of Contents",
+  "chapters": "{count} Chapters",
+  "@chapters": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "currentlyReading": "Currently reading",
+  "complete": "{percent}% complete",
+  "@complete": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "pagesCount": "{count} pages",
+  "@pagesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "highlightsAndNotes": "Highlights & Notes",
+  "items": "{count} items",
+  "@items": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "highlights": "Highlights",
+  "notes": "Notes",
+  "bookmarks": "Bookmarks",
+  "share": "Share",
+  "bookmarkedPage": "Bookmarked Page",
+  "goToPage": "Go to Page",
+  "daysAgo": "{count} days ago",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "weeksAgo": "{count} weeks ago",
+  "@weeksAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  
+  "readingProgress": "Reading Progress",
+  "pagesRead": "Pages Read",
+  "pagesLeft": "Pages Left",
+  "timeLeft": "Time Left",
+  "thisWeek": "This Week",
+  "readingTime": "Reading Time",
+  "dayStreak": "Day Streak",
+  "booksFinished": "Books Finished",
+  "dailyActivity": "Daily Activity",
+  "weeklyGoal": "Weekly Goal",
+  "hours": "{count} hours",
+  "@hours": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "hoursLeft": "{count} hours left to reach your goal",
+  "@hoursLeft": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  
+  "offlineStorage": "Offline Storage",
+  "storageUsed": "Storage Used",
+  "gbOf": "{used} of {total}",
+  "@gbOf": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "available": "{size} available",
+  "@available": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "manage": "Manage",
+  "downloadedBooks": "Downloaded Books",
+  "booksLowercase": "{count} books",
+  "@booksLowercase": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "downloadedStatus": "Downloaded"
 }
