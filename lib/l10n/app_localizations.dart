@@ -2031,6 +2031,600 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count}w ago'**
   String weeksAgoShort(int count);
+
+  /// No description provided for @viewProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'View Profile'**
+  String get viewProfile;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @accountSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Settings'**
+  String get accountSettings;
+
+  /// No description provided for @privacySecurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Security'**
+  String get privacySecurity;
+
+  /// No description provided for @app.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get app;
+
+  /// No description provided for @appPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'App Preferences'**
+  String get appPreferences;
+
+  /// No description provided for @storageDownloads.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage & Downloads'**
+  String get storageDownloads;
+
+  /// No description provided for @languageRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Language & Region'**
+  String get languageRegion;
+
+  /// No description provided for @support.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get support;
+
+  /// No description provided for @helpSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & Support'**
+  String get helpSupport;
+
+  /// No description provided for @aboutLoni.
+  ///
+  /// In en, this message translates to:
+  /// **'About Loni'**
+  String get aboutLoni;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get logOut;
+
+  /// No description provided for @personalInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInformation;
+
+  /// No description provided for @dateOfBirth.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of Birth'**
+  String get dateOfBirth;
+
+  /// No description provided for @accountManagement.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Management'**
+  String get accountManagement;
+
+  /// No description provided for @changePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePassword;
+
+  /// No description provided for @connectedAccounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected Accounts'**
+  String get connectedAccounts;
+
+  /// No description provided for @paymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Methods'**
+  String get paymentMethods;
+
+  /// No description provided for @subscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription'**
+  String get subscription;
+
+  /// No description provided for @premium.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium'**
+  String get premium;
+
+  /// No description provided for @dangerZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger Zone'**
+  String get dangerZone;
+
+  /// No description provided for @deactivateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Deactivate Account'**
+  String get deactivateAccount;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account'**
+  String get deleteAccount;
+
+  /// No description provided for @security.
+  ///
+  /// In en, this message translates to:
+  /// **'Security'**
+  String get security;
+
+  /// No description provided for @biometricAuth.
+  ///
+  /// In en, this message translates to:
+  /// **'Biometric Authentication'**
+  String get biometricAuth;
+
+  /// No description provided for @biometricAuthDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use fingerprint or face ID to unlock'**
+  String get biometricAuthDesc;
+
+  /// No description provided for @twoFactorAuth.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-Factor Authentication'**
+  String get twoFactorAuth;
+
+  /// No description provided for @twoFactorAuthDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an extra layer of security'**
+  String get twoFactorAuthDesc;
+
+  /// No description provided for @activeSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Active Sessions'**
+  String get activeSessions;
+
+  /// No description provided for @loginHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Login History'**
+  String get loginHistory;
+
+  /// No description provided for @privacy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy'**
+  String get privacy;
+
+  /// No description provided for @profileVisibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile Visibility'**
+  String get profileVisibility;
+
+  /// No description provided for @publicVisibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get publicVisibility;
+
+  /// No description provided for @readingActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Activity'**
+  String get readingActivity;
+
+  /// No description provided for @visibleToFollowers.
+  ///
+  /// In en, this message translates to:
+  /// **'Visible to followers'**
+  String get visibleToFollowers;
+
+  /// No description provided for @blockedUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked Users'**
+  String get blockedUsers;
+
+  /// No description provided for @mutedConversations.
+  ///
+  /// In en, this message translates to:
+  /// **'Muted Conversations'**
+  String get mutedConversations;
+
+  /// No description provided for @dataPermissions.
+  ///
+  /// In en, this message translates to:
+  /// **'Data & Permissions'**
+  String get dataPermissions;
+
+  /// No description provided for @downloadYourData.
+  ///
+  /// In en, this message translates to:
+  /// **'Download Your Data'**
+  String get downloadYourData;
+
+  /// No description provided for @appPermissions.
+  ///
+  /// In en, this message translates to:
+  /// **'App Permissions'**
+  String get appPermissions;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @termsOfService.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Service'**
+  String get termsOfService;
+
+  /// No description provided for @searchHelpArticles.
+  ///
+  /// In en, this message translates to:
+  /// **'Search Help Articles'**
+  String get searchHelpArticles;
+
+  /// No description provided for @findAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'Find answers to common questions'**
+  String get findAnswers;
+
+  /// No description provided for @whatCanWeHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'What can we help you with?'**
+  String get whatCanWeHelp;
+
+  /// No description provided for @quickActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get quickActions;
+
+  /// No description provided for @liveChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Chat'**
+  String get liveChat;
+
+  /// No description provided for @emailUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Us'**
+  String get emailUs;
+
+  /// No description provided for @callSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Call Support'**
+  String get callSupport;
+
+  /// No description provided for @userGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'User Guide'**
+  String get userGuide;
+
+  /// No description provided for @popularTopics.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Topics'**
+  String get popularTopics;
+
+  /// No description provided for @howToDownloadBooks.
+  ///
+  /// In en, this message translates to:
+  /// **'How to download books'**
+  String get howToDownloadBooks;
+
+  /// No description provided for @paymentMethodsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment methods'**
+  String get paymentMethodsHelp;
+
+  /// No description provided for @refundPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Refund policy'**
+  String get refundPolicy;
+
+  /// No description provided for @premiumSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium subscription'**
+  String get premiumSubscription;
+
+  /// No description provided for @shippingDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Shipping & delivery'**
+  String get shippingDelivery;
+
+  /// No description provided for @contactInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Information'**
+  String get contactInformation;
+
+  /// No description provided for @supportEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'support@loni.com'**
+  String get supportEmail;
+
+  /// No description provided for @supportPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'+233 30 123 4567'**
+  String get supportPhone;
+
+  /// No description provided for @supportHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Mon-Fri: 8AM - 6PM GMT'**
+  String get supportHours;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// No description provided for @copyright.
+  ///
+  /// In en, this message translates to:
+  /// **'© 2024 Loni LLC. All rights reserved.'**
+  String get copyright;
+
+  /// No description provided for @ourMission.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Mission'**
+  String get ourMission;
+
+  /// No description provided for @missionStatement.
+  ///
+  /// In en, this message translates to:
+  /// **'Loni is dedicated to promoting African literature and connecting readers with the rich tapestry of stories from across the continent. We believe in the power of books to educate, inspire, and transform lives.'**
+  String get missionStatement;
+
+  /// No description provided for @appInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'App Information'**
+  String get appInformation;
+
+  /// No description provided for @whatsNew.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s New'**
+  String get whatsNew;
+
+  /// No description provided for @releaseNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Release Notes'**
+  String get releaseNotes;
+
+  /// No description provided for @licenses.
+  ///
+  /// In en, this message translates to:
+  /// **'Licenses'**
+  String get licenses;
+
+  /// No description provided for @legal.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal'**
+  String get legal;
+
+  /// No description provided for @cookiePolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cookie Policy'**
+  String get cookiePolicy;
+
+  /// No description provided for @followUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow Us'**
+  String get followUs;
+
+  /// No description provided for @rateLoniOnAppStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate Loni on App Store'**
+  String get rateLoniOnAppStore;
+
+  /// No description provided for @appearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearance;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// No description provided for @lightMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode'**
+  String get lightMode;
+
+  /// No description provided for @medium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get medium;
+
+  /// No description provided for @displayLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Display Language'**
+  String get displayLanguage;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @reading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading'**
+  String get reading;
+
+  /// No description provided for @pageTurnAnimation.
+  ///
+  /// In en, this message translates to:
+  /// **'Page Turn Animation'**
+  String get pageTurnAnimation;
+
+  /// No description provided for @slide.
+  ///
+  /// In en, this message translates to:
+  /// **'Slide'**
+  String get slide;
+
+  /// No description provided for @screenBrightness.
+  ///
+  /// In en, this message translates to:
+  /// **'Screen Brightness'**
+  String get screenBrightness;
+
+  /// No description provided for @autoAdjustBrightness.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-adjust while reading'**
+  String get autoAdjustBrightness;
+
+  /// No description provided for @keepScreenAwake.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep Screen Awake'**
+  String get keepScreenAwake;
+
+  /// No description provided for @preventScreenTimeout.
+  ///
+  /// In en, this message translates to:
+  /// **'Prevent screen timeout while reading'**
+  String get preventScreenTimeout;
+
+  /// No description provided for @downloads.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloads'**
+  String get downloads;
+
+  /// No description provided for @autoDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-Download'**
+  String get autoDownload;
+
+  /// No description provided for @autoDownloadDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Download purchased books automatically'**
+  String get autoDownloadDesc;
+
+  /// No description provided for @downloadQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'Download Quality'**
+  String get downloadQuality;
+
+  /// No description provided for @highQuality.
+  ///
+  /// In en, this message translates to:
+  /// **'High Quality'**
+  String get highQuality;
+
+  /// No description provided for @storageLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage Location'**
+  String get storageLocation;
+
+  /// No description provided for @internalStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Internal Storage'**
+  String get internalStorage;
+
+  /// No description provided for @pushNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Push Notifications'**
+  String get pushNotifications;
+
+  /// No description provided for @receiveNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive app notifications'**
+  String get receiveNotifications;
+
+  /// No description provided for @notificationPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification Preferences'**
+  String get notificationPreferences;
+
+  /// No description provided for @dataUsage.
+  ///
+  /// In en, this message translates to:
+  /// **'Data Usage'**
+  String get dataUsage;
+
+  /// No description provided for @dataSaverMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Data Saver Mode'**
+  String get dataSaverMode;
+
+  /// No description provided for @reduceDataUsage.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce data usage'**
+  String get reduceDataUsage;
+
+  /// No description provided for @clearCache.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Cache'**
+  String get clearCache;
 }
 
 class _AppLocalizationsDelegate

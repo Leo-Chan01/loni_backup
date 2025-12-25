@@ -1063,4 +1063,308 @@ class AppLocalizationsFr extends AppLocalizations {
   String weeksAgoShort(int count) {
     return 'il y a ${count}s';
   }
+
+  @override
+  String get viewProfile => 'Voir le profil';
+
+  @override
+  String get account => 'Compte';
+
+  @override
+  String get accountSettings => 'Paramètres du compte';
+
+  @override
+  String get privacySecurity => 'Confidentialité et sécurité';
+
+  @override
+  String get app => 'Application';
+
+  @override
+  String get appPreferences => 'Préférences de l\'application';
+
+  @override
+  String get storageDownloads => 'Stockage et téléchargements';
+
+  @override
+  String get languageRegion => 'Langue et région';
+
+  @override
+  String get support => 'Support';
+
+  @override
+  String get helpSupport => 'Aide et support';
+
+  @override
+  String get aboutLoni => 'À propos de Loni';
+
+  @override
+  String get logOut => 'Se déconnecter';
+
+  @override
+  String get personalInformation => 'Informations personnelles';
+
+  @override
+  String get dateOfBirth => 'Date de naissance';
+
+  @override
+  String get accountManagement => 'Gestion du compte';
+
+  @override
+  String get changePassword => 'Changer le mot de passe';
+
+  @override
+  String get connectedAccounts => 'Comptes connectés';
+
+  @override
+  String get paymentMethods => 'Moyens de paiement';
+
+  @override
+  String get subscription => 'Abonnement';
+
+  @override
+  String get premium => 'Premium';
+
+  @override
+  String get dangerZone => 'Zone dangereuse';
+
+  @override
+  String get deactivateAccount => 'Désactiver le compte';
+
+  @override
+  String get deleteAccount => 'Supprimer le compte';
+
+  @override
+  String get security => 'Sécurité';
+
+  @override
+  String get biometricAuth => 'Authentification biométrique';
+
+  @override
+  String get biometricAuthDesc =>
+      'Utiliser l\'empreinte digitale ou Face ID pour déverrouiller';
+
+  @override
+  String get twoFactorAuth => 'Authentification à deux facteurs';
+
+  @override
+  String get twoFactorAuthDesc =>
+      'Ajouter une couche de sécurité supplémentaire';
+
+  @override
+  String get activeSessions => 'Sessions actives';
+
+  @override
+  String get loginHistory => 'Historique de connexion';
+
+  @override
+  String get privacy => 'Confidentialité';
+
+  @override
+  String get profileVisibility => 'Visibilité du profil';
+
+  @override
+  String get publicVisibility => 'Public';
+
+  @override
+  String get readingActivity => 'Activité de lecture';
+
+  @override
+  String get visibleToFollowers => 'Visible pour les abonnés';
+
+  @override
+  String get blockedUsers => 'Utilisateurs bloqués';
+
+  @override
+  String get mutedConversations => 'Conversations en sourdine';
+
+  @override
+  String get dataPermissions => 'Données et autorisations';
+
+  @override
+  String get downloadYourData => 'Télécharger vos données';
+
+  @override
+  String get appPermissions => 'Autorisations de l\'application';
+
+  @override
+  String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String get termsOfService => 'Conditions d\'utilisation';
+
+  @override
+  String get searchHelpArticles => 'Rechercher des articles d\'aide';
+
+  @override
+  String get findAnswers => 'Trouvez des réponses aux questions courantes';
+
+  @override
+  String get whatCanWeHelp => 'Comment pouvons-nous vous aider ?';
+
+  @override
+  String get quickActions => 'Actions rapides';
+
+  @override
+  String get liveChat => 'Chat en direct';
+
+  @override
+  String get emailUs => 'Envoyez-nous un e-mail';
+
+  @override
+  String get callSupport => 'Appeler le support';
+
+  @override
+  String get userGuide => 'Guide de l\'utilisateur';
+
+  @override
+  String get popularTopics => 'Sujets populaires';
+
+  @override
+  String get howToDownloadBooks => 'Comment télécharger des livres';
+
+  @override
+  String get paymentMethodsHelp => 'Moyens de paiement';
+
+  @override
+  String get refundPolicy => 'Politique de remboursement';
+
+  @override
+  String get premiumSubscription => 'Abonnement premium';
+
+  @override
+  String get shippingDelivery => 'Livraison et expédition';
+
+  @override
+  String get contactInformation => 'Informations de contact';
+
+  @override
+  String get supportEmail => 'support@loni.com';
+
+  @override
+  String get supportPhone => '+233 30 123 4567';
+
+  @override
+  String get supportHours => 'Lun-Ven : 8h - 18h GMT';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get copyright => '© 2024 Loni LLC. Tous droits réservés.';
+
+  @override
+  String get ourMission => 'Notre mission';
+
+  @override
+  String get missionStatement =>
+      'Loni se consacre à la promotion de la littérature africaine et à la connexion des lecteurs avec la riche tapisserie d\'histoires du continent. Nous croyons au pouvoir des livres pour éduquer, inspirer et transformer des vies.';
+
+  @override
+  String get appInformation => 'Informations sur l\'application';
+
+  @override
+  String get whatsNew => 'Nouveautés';
+
+  @override
+  String get releaseNotes => 'Notes de version';
+
+  @override
+  String get licenses => 'Licences';
+
+  @override
+  String get legal => 'Légal';
+
+  @override
+  String get cookiePolicy => 'Politique relative aux cookies';
+
+  @override
+  String get followUs => 'Suivez-nous';
+
+  @override
+  String get rateLoniOnAppStore => 'Noter Loni sur l\'App Store';
+
+  @override
+  String get appearance => 'Apparence';
+
+  @override
+  String get darkMode => 'Mode sombre';
+
+  @override
+  String get lightMode => 'Mode clair';
+
+  @override
+  String get medium => 'Moyen';
+
+  @override
+  String get displayLanguage => 'Langue d\'affichage';
+
+  @override
+  String get english => 'Anglais';
+
+  @override
+  String get reading => 'Lecture';
+
+  @override
+  String get pageTurnAnimation => 'Animation de tournage de page';
+
+  @override
+  String get slide => 'Glisser';
+
+  @override
+  String get screenBrightness => 'Luminosité de l\'écran';
+
+  @override
+  String get autoAdjustBrightness =>
+      'Ajustement automatique pendant la lecture';
+
+  @override
+  String get keepScreenAwake => 'Maintenir l\'écran actif';
+
+  @override
+  String get preventScreenTimeout =>
+      'Empêcher la mise en veille de l\'écran pendant la lecture';
+
+  @override
+  String get downloads => 'Téléchargements';
+
+  @override
+  String get autoDownload => 'Téléchargement automatique';
+
+  @override
+  String get autoDownloadDesc =>
+      'Télécharger automatiquement les livres achetés';
+
+  @override
+  String get downloadQuality => 'Qualité de téléchargement';
+
+  @override
+  String get highQuality => 'Haute qualité';
+
+  @override
+  String get storageLocation => 'Emplacement de stockage';
+
+  @override
+  String get internalStorage => 'Stockage interne';
+
+  @override
+  String get pushNotifications => 'Notifications push';
+
+  @override
+  String get receiveNotifications =>
+      'Recevoir les notifications de l\'application';
+
+  @override
+  String get notificationPreferences => 'Préférences de notification';
+
+  @override
+  String get dataUsage => 'Utilisation des données';
+
+  @override
+  String get dataSaverMode => 'Mode économiseur de données';
+
+  @override
+  String get reduceDataUsage => 'Réduire l\'utilisation des données';
+
+  @override
+  String get clearCache => 'Vider le cache';
 }

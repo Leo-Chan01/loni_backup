@@ -1062,4 +1062,302 @@ class AppLocalizationsEn extends AppLocalizations {
   String weeksAgoShort(int count) {
     return '${count}w ago';
   }
+
+  @override
+  String get viewProfile => 'View Profile';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get accountSettings => 'Account Settings';
+
+  @override
+  String get privacySecurity => 'Privacy & Security';
+
+  @override
+  String get app => 'App';
+
+  @override
+  String get appPreferences => 'App Preferences';
+
+  @override
+  String get storageDownloads => 'Storage & Downloads';
+
+  @override
+  String get languageRegion => 'Language & Region';
+
+  @override
+  String get support => 'Support';
+
+  @override
+  String get helpSupport => 'Help & Support';
+
+  @override
+  String get aboutLoni => 'About Loni';
+
+  @override
+  String get logOut => 'Log Out';
+
+  @override
+  String get personalInformation => 'Personal Information';
+
+  @override
+  String get dateOfBirth => 'Date of Birth';
+
+  @override
+  String get accountManagement => 'Account Management';
+
+  @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get connectedAccounts => 'Connected Accounts';
+
+  @override
+  String get paymentMethods => 'Payment Methods';
+
+  @override
+  String get subscription => 'Subscription';
+
+  @override
+  String get premium => 'Premium';
+
+  @override
+  String get dangerZone => 'Danger Zone';
+
+  @override
+  String get deactivateAccount => 'Deactivate Account';
+
+  @override
+  String get deleteAccount => 'Delete Account';
+
+  @override
+  String get security => 'Security';
+
+  @override
+  String get biometricAuth => 'Biometric Authentication';
+
+  @override
+  String get biometricAuthDesc => 'Use fingerprint or face ID to unlock';
+
+  @override
+  String get twoFactorAuth => 'Two-Factor Authentication';
+
+  @override
+  String get twoFactorAuthDesc => 'Add an extra layer of security';
+
+  @override
+  String get activeSessions => 'Active Sessions';
+
+  @override
+  String get loginHistory => 'Login History';
+
+  @override
+  String get privacy => 'Privacy';
+
+  @override
+  String get profileVisibility => 'Profile Visibility';
+
+  @override
+  String get publicVisibility => 'Public';
+
+  @override
+  String get readingActivity => 'Reading Activity';
+
+  @override
+  String get visibleToFollowers => 'Visible to followers';
+
+  @override
+  String get blockedUsers => 'Blocked Users';
+
+  @override
+  String get mutedConversations => 'Muted Conversations';
+
+  @override
+  String get dataPermissions => 'Data & Permissions';
+
+  @override
+  String get downloadYourData => 'Download Your Data';
+
+  @override
+  String get appPermissions => 'App Permissions';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get termsOfService => 'Terms of Service';
+
+  @override
+  String get searchHelpArticles => 'Search Help Articles';
+
+  @override
+  String get findAnswers => 'Find answers to common questions';
+
+  @override
+  String get whatCanWeHelp => 'What can we help you with?';
+
+  @override
+  String get quickActions => 'Quick Actions';
+
+  @override
+  String get liveChat => 'Live Chat';
+
+  @override
+  String get emailUs => 'Email Us';
+
+  @override
+  String get callSupport => 'Call Support';
+
+  @override
+  String get userGuide => 'User Guide';
+
+  @override
+  String get popularTopics => 'Popular Topics';
+
+  @override
+  String get howToDownloadBooks => 'How to download books';
+
+  @override
+  String get paymentMethodsHelp => 'Payment methods';
+
+  @override
+  String get refundPolicy => 'Refund policy';
+
+  @override
+  String get premiumSubscription => 'Premium subscription';
+
+  @override
+  String get shippingDelivery => 'Shipping & delivery';
+
+  @override
+  String get contactInformation => 'Contact Information';
+
+  @override
+  String get supportEmail => 'support@loni.com';
+
+  @override
+  String get supportPhone => '+233 30 123 4567';
+
+  @override
+  String get supportHours => 'Mon-Fri: 8AM - 6PM GMT';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get copyright => '© 2024 Loni LLC. All rights reserved.';
+
+  @override
+  String get ourMission => 'Our Mission';
+
+  @override
+  String get missionStatement =>
+      'Loni is dedicated to promoting African literature and connecting readers with the rich tapestry of stories from across the continent. We believe in the power of books to educate, inspire, and transform lives.';
+
+  @override
+  String get appInformation => 'App Information';
+
+  @override
+  String get whatsNew => 'What\'s New';
+
+  @override
+  String get releaseNotes => 'Release Notes';
+
+  @override
+  String get licenses => 'Licenses';
+
+  @override
+  String get legal => 'Legal';
+
+  @override
+  String get cookiePolicy => 'Cookie Policy';
+
+  @override
+  String get followUs => 'Follow Us';
+
+  @override
+  String get rateLoniOnAppStore => 'Rate Loni on App Store';
+
+  @override
+  String get appearance => 'Appearance';
+
+  @override
+  String get darkMode => 'Dark Mode';
+
+  @override
+  String get lightMode => 'Light Mode';
+
+  @override
+  String get medium => 'Medium';
+
+  @override
+  String get displayLanguage => 'Display Language';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get reading => 'Reading';
+
+  @override
+  String get pageTurnAnimation => 'Page Turn Animation';
+
+  @override
+  String get slide => 'Slide';
+
+  @override
+  String get screenBrightness => 'Screen Brightness';
+
+  @override
+  String get autoAdjustBrightness => 'Auto-adjust while reading';
+
+  @override
+  String get keepScreenAwake => 'Keep Screen Awake';
+
+  @override
+  String get preventScreenTimeout => 'Prevent screen timeout while reading';
+
+  @override
+  String get downloads => 'Downloads';
+
+  @override
+  String get autoDownload => 'Auto-Download';
+
+  @override
+  String get autoDownloadDesc => 'Download purchased books automatically';
+
+  @override
+  String get downloadQuality => 'Download Quality';
+
+  @override
+  String get highQuality => 'High Quality';
+
+  @override
+  String get storageLocation => 'Storage Location';
+
+  @override
+  String get internalStorage => 'Internal Storage';
+
+  @override
+  String get pushNotifications => 'Push Notifications';
+
+  @override
+  String get receiveNotifications => 'Receive app notifications';
+
+  @override
+  String get notificationPreferences => 'Notification Preferences';
+
+  @override
+  String get dataUsage => 'Data Usage';
+
+  @override
+  String get dataSaverMode => 'Data Saver Mode';
+
+  @override
+  String get reduceDataUsage => 'Reduce data usage';
+
+  @override
+  String get clearCache => 'Clear Cache';
 }
