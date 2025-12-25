@@ -29,10 +29,7 @@ class SettingsTile extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         child: Row(
           children: [
-            if (leadingIcon != null) ...[
-              leadingIcon!,
-              SizedBox(width: 12.w),
-            ],
+            if (leadingIcon != null) ...[leadingIcon!, SizedBox(width: 12.w)],
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,10 +56,7 @@ class SettingsTile extends StatelessWidget {
                 ],
               ),
             ),
-            if (trailing != null) ...[
-              SizedBox(width: 8.w),
-              trailing!,
-            ],
+            if (trailing != null) ...[SizedBox(width: 8.w), trailing!],
             if (showChevron && onTap != null) ...[
               SizedBox(width: 8.w),
               Icon(

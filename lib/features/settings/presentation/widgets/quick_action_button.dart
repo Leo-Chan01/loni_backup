@@ -25,9 +25,7 @@ class QuickActionButton extends StatelessWidget {
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
           color: colorScheme.surface,
-          border: Border.all(
-            color: colorScheme.outline.withValues(alpha: 0.2),
-          ),
+          border: Border.all(color: colorScheme.outline.withValues(alpha: 0.2)),
           borderRadius: BorderRadius.circular(16.r),
         ),
         child: Column(
@@ -41,11 +39,7 @@ class QuickActionButton extends StatelessWidget {
                 color: iconColor.withValues(alpha: 0.1),
               ),
               child: Center(
-                child: Icon(
-                  icon,
-                  color: iconColor,
-                  size: 24.sp,
-                ),
+                child: Icon(icon, color: iconColor, size: 24.sp),
               ),
             ),
             SizedBox(height: 8.h),

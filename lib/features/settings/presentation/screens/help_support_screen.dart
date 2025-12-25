@@ -26,31 +26,15 @@ class HelpSupportScreen extends StatelessWidget {
     );
 
     final popularTopics = [
-      HelpTopic(
-        id: '1',
-        title: l10n.howToDownloadBooks,
-        iconName: 'book',
-      ),
+      HelpTopic(id: '1', title: l10n.howToDownloadBooks, iconName: 'book'),
       HelpTopic(
         id: '2',
         title: l10n.paymentMethodsHelp,
         iconName: 'credit-card',
       ),
-      HelpTopic(
-        id: '3',
-        title: l10n.refundPolicy,
-        iconName: 'undo',
-      ),
-      HelpTopic(
-        id: '4',
-        title: l10n.premiumSubscription,
-        iconName: 'crown',
-      ),
-      HelpTopic(
-        id: '5',
-        title: l10n.shippingDelivery,
-        iconName: 'truck',
-      ),
+      HelpTopic(id: '3', title: l10n.refundPolicy, iconName: 'undo'),
+      HelpTopic(id: '4', title: l10n.premiumSubscription, iconName: 'crown'),
+      HelpTopic(id: '5', title: l10n.shippingDelivery, iconName: 'truck'),
     ];
 
     return Scaffold(
@@ -60,10 +44,7 @@ class HelpSupportScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(
-            Icons.arrow_back,
-            color: colorScheme.onSurface,
-          ),
+          icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
         ),
         title: Text(
           l10n.helpSupport,
@@ -124,7 +105,9 @@ class HelpSupportScreen extends StatelessWidget {
                             l10n.findAnswers,
                             style: TextStyle(
                               fontSize: 12.sp,
-                              color: colorScheme.onSurface.withValues(alpha: 0.6),
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.6,
+                              ),
                             ),
                           ),
                         ],

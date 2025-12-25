@@ -25,9 +25,7 @@ class ProfilePreviewCard extends StatelessWidget {
       padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.2)),
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: Row(

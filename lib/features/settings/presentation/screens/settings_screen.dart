@@ -318,10 +318,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               child: Text(
                 l10n.logOut,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
               ),
             ),
           ),

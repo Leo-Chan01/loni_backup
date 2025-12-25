@@ -22,10 +22,7 @@ class AccountSettingsScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(
-            Icons.arrow_back,
-            color: colorScheme.onSurface,
-          ),
+          icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
         ),
         title: Text(
           l10n.accountSettings,
@@ -141,7 +138,10 @@ class AccountSettingsScreen extends StatelessWidget {
                 SettingsTile(
                   title: l10n.subscription,
                   trailing: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 4.h,
+                    ),
                     decoration: BoxDecoration(
                       color: colorScheme.primary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12.r),
@@ -165,9 +165,7 @@ class AccountSettingsScreen extends StatelessWidget {
           SizedBox(height: 24.h),
 
           // Danger Zone
-          SettingsSectionHeader(
-            title: l10n.dangerZone,
-          ),
+          SettingsSectionHeader(title: l10n.dangerZone),
           Container(
             decoration: BoxDecoration(
               color: colorScheme.surface,

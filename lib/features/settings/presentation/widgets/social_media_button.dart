@@ -5,11 +5,7 @@ class SocialMediaButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onTap;
 
-  const SocialMediaButton({
-    super.key,
-    required this.icon,
-    required this.onTap,
-  });
+  const SocialMediaButton({super.key, required this.icon, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +21,7 @@ class SocialMediaButton extends StatelessWidget {
           color: colorScheme.primary.withValues(alpha: 0.1),
         ),
         child: Center(
-          child: Icon(
-            icon,
-            color: colorScheme.primary,
-            size: 20.sp,
-          ),
+          child: Icon(icon, color: colorScheme.primary, size: 20.sp),
         ),
       ),
     );
