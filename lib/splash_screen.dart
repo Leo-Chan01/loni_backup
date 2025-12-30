@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
+import 'package:loni_africa/features/discovery/presentation/screens/home_screen.dart';
 import 'package:loni_africa/features/onboarding/presentation/screens/language_selection_screen.dart';
 import 'package:loni_africa/shared/widgets/animated_logo.dart';
 import 'package:loni_africa/shared/widgets/app_branding.dart';
+import 'package:loni_africa/shared/widgets/global_snackbar.dart';
 import 'package:loni_africa/shared/widgets/powered_by_footer.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     _initializeAnimations();
-    _scheduleNavigation();
+    _bootstrap();
   }
 
   void _initializeAnimations() {
@@ -53,12 +57,21 @@ class _SplashScreenState extends State<SplashScreen>
     _animationController.forward();
   }
 
-  void _scheduleNavigation() {
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        context.go(LanguageSelectionScreen.path);
-      }
-    });
+  Future<void> _bootstrap() async {
+    final authProvider = context.read<AuthProvider>();
+    try {
+      await authProvider.loadSession();
+      if (!mounted) return;
+
+      final target = authProvider.session != null
+          ? HomeScreen.path
+          : LanguageSelectionScreen.path;
+      context.go(target);
+    } catch (error) {
+      if (!mounted) return;
+      GlobalSnackBar.showError(error.toString());
+      context.go(LanguageSelectionScreen.path);
+    }
   }
 
   @override

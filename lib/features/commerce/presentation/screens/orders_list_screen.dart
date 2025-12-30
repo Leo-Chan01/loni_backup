@@ -33,7 +33,8 @@ class _OrdersListScreenState extends State<OrdersListScreen>
         bookId: 'book1',
         bookTitle: 'Things Fall Apart',
         bookAuthor: 'Chinua Achebe',
-        bookCoverUrl: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop',
+        bookCoverUrl:
+            'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop',
         orderType: OrderType.digital,
         price: 9.99,
       ),
@@ -58,7 +59,8 @@ class _OrdersListScreenState extends State<OrdersListScreen>
         bookId: 'book2',
         bookTitle: 'Half of a Yellow Sun',
         bookAuthor: 'Chimamanda Ngozi Adichie',
-        bookCoverUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=200&auto=format&fit=crop',
+        bookCoverUrl:
+            'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=200&auto=format&fit=crop',
         orderType: OrderType.physical,
         price: 24.99,
       ),
@@ -92,7 +94,8 @@ class _OrdersListScreenState extends State<OrdersListScreen>
         bookId: 'book3',
         bookTitle: 'Americanah',
         bookAuthor: 'Chimamanda Ngozi Adichie',
-        bookCoverUrl: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=200&auto=format&fit=crop',
+        bookCoverUrl:
+            'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=200&auto=format&fit=crop',
         orderType: OrderType.digital,
         price: 12.99,
       ),
@@ -167,7 +170,9 @@ class _OrdersListScreenState extends State<OrdersListScreen>
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.w),
               decoration: BoxDecoration(
-                color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                color: colorScheme.surfaceContainerHighest.withValues(
+                  alpha: 0.5,
+                ),
                 borderRadius: BorderRadius.circular(16.r),
               ),
               child: TabBar(
@@ -203,7 +208,9 @@ class _OrdersListScreenState extends State<OrdersListScreen>
                           Icon(
                             Icons.shopping_bag_outlined,
                             size: 80.sp,
-                            color: colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
+                            color: colorScheme.onSurfaceVariant.withValues(
+                              alpha: 0.3,
+                            ),
                           ),
                           SizedBox(height: 16.h),
                           Text(

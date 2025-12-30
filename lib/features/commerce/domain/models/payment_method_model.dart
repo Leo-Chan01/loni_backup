@@ -1,11 +1,4 @@
-enum PaymentProvider {
-  mtn,
-  orange,
-  airtel,
-  mpesa,
-  card,
-  bankTransfer,
-}
+enum PaymentProvider { mtn, orange, airtel, mpesa, card, bankTransfer }
 
 extension PaymentProviderExtension on PaymentProvider {
   String get displayName {

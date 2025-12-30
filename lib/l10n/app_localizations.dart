@@ -256,6 +256,30 @@ abstract class AppLocalizations {
   /// **'Continue'**
   String get continueButton;
 
+  /// No description provided for @signInSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue your reading journey'**
+  String get signInSubtitle;
+
+  /// No description provided for @rememberMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get rememberMe;
+
+  /// No description provided for @verificationCodeSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification code sent to {contact}'**
+  String verificationCodeSent(String contact);
+
+  /// No description provided for @authTermsNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing, you agree to our {terms} and {privacy}.'**
+  String authTermsNotice(String terms, String privacy);
+
   /// No description provided for @onboardingTitle1.
   ///
   /// In en, this message translates to:

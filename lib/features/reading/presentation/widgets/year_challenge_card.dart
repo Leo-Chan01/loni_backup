@@ -29,10 +29,7 @@ class YearChallengeCard extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            colorScheme.primary,
-            Color(0xFF9E4A2F),
-          ],
+          colors: [colorScheme.primary, Color(0xFF9E4A2F)],
         ),
         borderRadius: BorderRadius.circular(24.r),
       ),

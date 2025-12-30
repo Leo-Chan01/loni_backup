@@ -39,14 +39,16 @@ class _ReadingStatsScreenState extends State<ReadingStatsScreen> {
     {
       'title': 'Things Fall Apart',
       'author': 'Chinua Achebe',
-      'coverUrl': 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop',
+      'coverUrl':
+          'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop',
       'daysAgo': 2,
       'rating': 5.0,
     },
     {
       'title': 'Half of a Yellow Sun',
       'author': 'Chimamanda Adichie',
-      'coverUrl': 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=200&auto=format&fit=crop',
+      'coverUrl':
+          'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=200&auto=format&fit=crop',
       'daysAgo': 5,
       'rating': 4.8,
     },
@@ -79,10 +81,7 @@ class _ReadingStatsScreenState extends State<ReadingStatsScreen> {
                 onBackPressed: () => context.pop(),
                 trailingWidget: IconButton(
                   onPressed: _handleShare,
-                  icon: Icon(
-                    Icons.share,
-                    color: colorScheme.onSurfaceVariant,
-                  ),
+                  icon: Icon(Icons.share, color: colorScheme.onSurfaceVariant),
                 ),
               ),
             ),

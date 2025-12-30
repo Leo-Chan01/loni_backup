@@ -31,11 +31,7 @@ class BookFormatFeatures extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(
-                  Icons.check,
-                  color: iconColor,
-                  size: 16.sp,
-                ),
+                Icon(Icons.check, color: iconColor, size: 16.sp),
                 SizedBox(width: 12.w),
                 Expanded(
                   child: Text(

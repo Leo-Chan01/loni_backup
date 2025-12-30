@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loni_africa/core/utilities/validators.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/auth/data/services/auth_service.dart';
+import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
 import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
+import 'package:loni_africa/features/discovery/presentation/screens/home_screen.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/auth_text_field.dart';
 import 'package:loni_africa/shared/widgets/divider_with_text.dart';
@@ -14,6 +15,7 @@ import 'package:loni_africa/shared/widgets/screen_header.dart';
 import 'package:loni_africa/shared/widgets/social_login_row.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 import 'package:loni_africa/shared/widgets/theme_toggle_button.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,13 +28,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _rememberMe = false;
   bool _isPasswordVisible = false;
-  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -42,33 +42,22 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _onSignIn() async {
-    // Validate form
     if (!_formKey.currentState!.validate()) {
       return;
     }
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    final result = await _authService.signIn(
-      emailOrPhone: _emailController.text,
+    final authProvider = context.read<AuthProvider>();
+    final result = await authProvider.signInWithPassword(
+      identifier: _emailController.text,
       password: _passwordController.text,
     );
 
     if (!mounted) return;
 
-    setState(() {
-      _isLoading = false;
-    });
-
     if (result.isSuccess) {
-      GlobalSnackBar.showSuccess(result.message);
-      final emailOrPhone =
-          result.data?['emailOrPhone'] ?? _emailController.text.trim();
-      context.go('${OtpVerificationScreen.path}?email=$emailOrPhone');
+      GlobalSnackBar.showSuccess(result.message ?? context.l10n.success);
+      context.go(HomeScreen.path);
     } else {
-      GlobalSnackBar.showError(result.message);
+      GlobalSnackBar.showError(result.message ?? context.l10n.error);
     }
   }
 
@@ -76,8 +65,26 @@ class _LoginScreenState extends State<LoginScreen> {
     // TODO: Implement Google sign in
   }
 
-  void _onPhoneSignIn() {
-    // TODO: Implement phone sign in
+  Future<void> _onPhoneSignIn() async {
+    final identifier = _emailController.text.trim();
+    final validationError = Validators.validateEmailOrPhone(identifier);
+    if (validationError != null) {
+      GlobalSnackBar.showError(validationError);
+      return;
+    }
+
+    final authProvider = context.read<AuthProvider>();
+    if (authProvider.isSendingOtp) return;
+    final result = await authProvider.sendOtp(identifier: identifier);
+
+    if (!mounted) return;
+
+    if (result.isSuccess) {
+      GlobalSnackBar.showInfo(context.l10n.verificationCodeSent(identifier));
+      context.go('${OtpVerificationScreen.path}?email=$identifier');
+    } else {
+      GlobalSnackBar.showError(result.message ?? context.l10n.error);
+    }
   }
 
   void _onForgotPassword() {
@@ -93,6 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final themeNotifier = ThemeNotifier.of(context);
+    final authProvider = context.watch<AuthProvider>();
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -110,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 24.h),
                     ScreenHeader(
                       title: context.l10n.welcomeBack,
-                      subtitle: 'Sign in to continue your reading journey',
+                      subtitle: context.l10n.signInSubtitle,
                       showBackButton: true,
                       trailingWidget: ThemeToggleButton(
                         onToggle: themeNotifier.onToggle,
@@ -171,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             SizedBox(width: 8.w),
                             Text(
-                              'Remember me',
+                              context.l10n.rememberMe,
                               style: textTheme.bodySmall?.copyWith(
                                 fontSize: 14.sp,
                               ),
@@ -199,7 +207,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     PrimaryButton(
                       text: context.l10n.signIn,
                       onPressed: () => _onSignIn(),
-                      isLoading: _isLoading,
+                      isLoading: authProvider.isSigningIn,
                     ),
                     SizedBox(height: 24.h),
                     DividerWithText(text: context.l10n.orContinueWith),
@@ -207,6 +215,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     SocialLoginRow(
                       onGooglePressed: _onGoogleSignIn,
                       onPhonePressed: _onPhoneSignIn,
+                      googleLabel: context.l10n.google,
+                      phoneLabel: context.l10n.phoneLabel,
+                      isPhoneLoading: authProvider.isSendingOtp,
                     ),
                     SizedBox(height: 32.h),
                     Center(
@@ -241,7 +252,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 24.h),
                     Center(
                       child: Text(
-                        'By continuing, you agree to Loni\'s Terms of Service\nand Privacy Policy',
+                        context.l10n.authTermsNotice(
+                          context.l10n.termsOfService,
+                          context.l10n.privacyPolicy,
+                        ),
                         textAlign: TextAlign.center,
                         style: textTheme.labelSmall?.copyWith(
                           fontSize: 10.sp,

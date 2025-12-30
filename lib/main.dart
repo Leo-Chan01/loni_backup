@@ -6,7 +6,12 @@ import 'package:loni_africa/config/routes/app_routes.dart';
 import 'package:loni_africa/config/theme/screen_size.dart';
 import 'package:loni_africa/core/utilities/theme_service.dart';
 import 'package:loni_africa/core/utilities/language_service.dart';
+import 'package:loni_africa/features/auth/data/repository/auth_repository_impl.dart';
+import 'package:loni_africa/features/auth/domain/repository/auth_repository.dart';
+import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
 import 'package:loni_africa/l10n/app_localizations.dart';
+import 'package:loni_africa/shared/widgets/global_snackbar.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MainApp());
@@ -22,12 +27,14 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   final ThemeService _themeService = ThemeService();
   final LanguageService _languageService = LanguageService();
+  late final AuthRepository _authRepository;
   ThemeMode _themeMode = ThemeMode.system;
   Locale? _locale;
 
   @override
   void initState() {
     super.initState();
+    _authRepository = AuthRepositoryImpl();
     _loadTheme();
     _loadLocale();
   }
@@ -87,25 +94,35 @@ class _MainAppState extends State<MainApp> {
                   child: ThemeNotifier(
                     themeMode: _themeMode,
                     onToggle: _toggleTheme,
-                    child: MaterialApp.router(
-                      title: 'Loni',
-                      theme: AppTheme.instance.lightTheme,
-                      darkTheme: AppTheme.instance.darkTheme,
-                      themeMode: _themeMode,
-                      locale: _locale,
-                      routerConfig: AppRoutes.router,
-                      debugShowCheckedModeBanner: false,
-                      localizationsDelegates: const [
-                        AppLocalizations.delegate,
-                        GlobalMaterialLocalizations.delegate,
-                        GlobalWidgetsLocalizations.delegate,
-                        GlobalCupertinoLocalizations.delegate,
+                    child: MultiProvider(
+                      providers: [
+                        ChangeNotifierProvider<AuthProvider>(
+                          create: (_) =>
+                              AuthProvider(authRepository: _authRepository),
+                        ),
                       ],
-                      supportedLocales: const [
-                        Locale('en'), // English
-                        Locale('fr'), // French
-                        Locale('es'), // Spanish
-                      ],
+                      child: MaterialApp.router(
+                        title: 'Loni',
+                        theme: AppTheme.instance.lightTheme,
+                        darkTheme: AppTheme.instance.darkTheme,
+                        themeMode: _themeMode,
+                        locale: _locale,
+                        routerConfig: AppRoutes.router,
+                        scaffoldMessengerKey:
+                            GlobalSnackBar.scaffoldMessengerKey,
+                        debugShowCheckedModeBanner: false,
+                        localizationsDelegates: const [
+                          AppLocalizations.delegate,
+                          GlobalMaterialLocalizations.delegate,
+                          GlobalWidgetsLocalizations.delegate,
+                          GlobalCupertinoLocalizations.delegate,
+                        ],
+                        supportedLocales: const [
+                          Locale('en'), // English
+                          Locale('fr'), // French
+                          Locale('es'), // Spanish
+                        ],
+                      ),
                     ),
                   ),
                 );

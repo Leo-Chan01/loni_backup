@@ -13,10 +13,7 @@ class PaymentMethodScreen extends StatefulWidget {
 
   final String bookId;
 
-  const PaymentMethodScreen({
-    super.key,
-    required this.bookId,
-  });
+  const PaymentMethodScreen({super.key, required this.bookId});
 
   @override
   State<PaymentMethodScreen> createState() => _PaymentMethodScreenState();
@@ -143,7 +140,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     Container(
                       padding: EdgeInsets.all(20.w),
                       decoration: BoxDecoration(
-                        color: colorScheme.primaryContainer.withValues(alpha: 0.3),
+                        color: colorScheme.primaryContainer.withValues(
+                          alpha: 0.3,
+                        ),
                         borderRadius: BorderRadius.circular(24.r),
                         border: Border.all(
                           color: colorScheme.primary.withValues(alpha: 0.3),
@@ -157,7 +156,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                 width: 48.w,
                                 height: 48.w,
                                 decoration: BoxDecoration(
-                                  color: colorScheme.primary.withValues(alpha: 0.2),
+                                  color: colorScheme.primary.withValues(
+                                    alpha: 0.2,
+                                  ),
                                   borderRadius: BorderRadius.circular(12.r),
                                 ),
                                 child: Icon(

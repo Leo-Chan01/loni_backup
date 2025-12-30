@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/auth/data/services/auth_service.dart';
+import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
+import 'package:loni_africa/features/discovery/presentation/screens/home_screen.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/global_snackbar.dart';
 import 'package:loni_africa/shared/widgets/otp_input_row.dart';
@@ -11,6 +12,7 @@ import 'package:loni_africa/shared/widgets/resend_code_button.dart';
 import 'package:loni_africa/shared/widgets/screen_header.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 import 'package:loni_africa/shared/widgets/theme_toggle_button.dart';
+import 'package:provider/provider.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key, this.email, this.phoneNumber});
@@ -26,10 +28,8 @@ class OtpVerificationScreen extends StatefulWidget {
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
-  final _authService = AuthService();
   final GlobalKey<OtpInputRowState> _otpKey = GlobalKey<OtpInputRowState>();
   String _otp = '';
-  bool _isLoading = false;
 
   String get _maskedContact {
     if (widget.email != null) {
@@ -65,44 +65,52 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   }
 
   Future<void> _handleVerify() async {
-    setState(() {
-      _isLoading = true;
-    });
+    final identifier = widget.email ?? widget.phoneNumber ?? '';
+    if (identifier.isEmpty) {
+      GlobalSnackBar.showError(context.l10n.error);
+      return;
+    }
 
-    final result = await _authService.verifyOtp(
-      otp: _otp,
-      emailOrPhone: widget.email ?? widget.phoneNumber ?? '',
+    final authProvider = context.read<AuthProvider>();
+    if (authProvider.isVerifyingOtp) return;
+
+    final result = await authProvider.verifyOtp(
+      identifier: identifier,
+      otpCode: _otp,
     );
 
     if (!mounted) return;
 
-    setState(() {
-      _isLoading = false;
-    });
-
     if (result.isSuccess) {
-      GlobalSnackBar.showSuccess(result.message);
-      context.go('/app/home');
+      GlobalSnackBar.showSuccess(result.message ?? context.l10n.success);
+      context.go(HomeScreen.path);
     } else {
-      GlobalSnackBar.showError(result.message);
+      GlobalSnackBar.showError(result.message ?? context.l10n.error);
     }
   }
 
   void _handleResendCode() async {
-    final result = await _authService.resendOtp(
-      emailOrPhone: widget.email ?? widget.phoneNumber ?? '',
-    );
+    final identifier = widget.email ?? widget.phoneNumber ?? '';
+    if (identifier.isEmpty) {
+      GlobalSnackBar.showError(context.l10n.error);
+      return;
+    }
+
+    final authProvider = context.read<AuthProvider>();
+    if (authProvider.isSendingOtp) return;
+
+    final result = await authProvider.sendOtp(identifier: identifier);
 
     if (!mounted) return;
 
     if (result.isSuccess) {
-      GlobalSnackBar.showInfo(result.message);
+      GlobalSnackBar.showInfo(context.l10n.verificationCodeSent(identifier));
       _otpKey.currentState?.clear();
       setState(() {
         _otp = '';
       });
     } else {
-      GlobalSnackBar.showError(result.message);
+      GlobalSnackBar.showError(result.message ?? context.l10n.error);
     }
   }
 
@@ -110,6 +118,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final themeNotifier = ThemeNotifier.of(context);
+    final authProvider = context.watch<AuthProvider>();
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -155,7 +164,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   PrimaryButton(
                     text: context.l10n.verifyAndContinue,
                     onPressed: _otp.length == 6 ? _handleVerify : null,
-                    isLoading: _isLoading,
+                    isLoading: authProvider.isVerifyingOtp,
                   ),
 
                   SizedBox(height: 24.h),

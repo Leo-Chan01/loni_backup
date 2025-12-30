@@ -27,9 +27,7 @@ class OrderSummaryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surface,
         borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -45,10 +43,7 @@ class OrderSummaryCard extends StatelessWidget {
                   width: 72.w,
                   height: 92.h,
                   color: colorScheme.surfaceContainerHighest,
-                  child: Icon(
-                    Icons.book,
-                    color: colorScheme.onSurfaceVariant,
-                  ),
+                  child: Icon(Icons.book, color: colorScheme.onSurfaceVariant),
                 );
               },
             ),

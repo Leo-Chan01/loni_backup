@@ -11,10 +11,7 @@ class PaymentSuccessScreen extends StatelessWidget {
 
   final String bookId;
 
-  const PaymentSuccessScreen({
-    super.key,
-    required this.bookId,
-  });
+  const PaymentSuccessScreen({super.key, required this.bookId});
 
   // Mock data
   static const String _bookTitle = 'Things Fall Apart';
@@ -92,7 +89,9 @@ class PaymentSuccessScreen extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(24.w),
                       decoration: BoxDecoration(
-                        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                        color: colorScheme.surfaceContainerHighest.withValues(
+                          alpha: 0.3,
+                        ),
                         borderRadius: BorderRadius.circular(24.r),
                       ),
                       child: Column(

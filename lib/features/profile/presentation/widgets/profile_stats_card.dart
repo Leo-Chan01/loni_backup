@@ -5,11 +5,7 @@ class ProfileStatsCard extends StatelessWidget {
   final String label;
   final String value;
 
-  const ProfileStatsCard({
-    super.key,
-    required this.label,
-    required this.value,
-  });
+  const ProfileStatsCard({super.key, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +16,7 @@ class ProfileStatsCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: colorScheme.surface,
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.1),
-        ),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.1)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

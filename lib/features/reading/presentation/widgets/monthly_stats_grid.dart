@@ -24,9 +24,7 @@ class MonthlyStatItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.2)),
         borderRadius: BorderRadius.circular(16.r),
       ),
       padding: EdgeInsets.all(20.w),
@@ -40,11 +38,7 @@ class MonthlyStatItem extends StatelessWidget {
               color: iconColor.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(12.r),
             ),
-            child: Icon(
-              icon,
-              color: iconColor,
-              size: 24.sp,
-            ),
+            child: Icon(icon, color: iconColor, size: 24.sp),
           ),
           SizedBox(height: 12.h),
           Text(

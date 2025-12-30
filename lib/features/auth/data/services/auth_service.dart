@@ -1,105 +1,63 @@
-import 'package:loni_africa/core/utilities/validators.dart';
+import 'package:dio/dio.dart';
+import 'package:loni_africa/core/network/api_client.dart';
+import 'package:loni_africa/core/network/api_exception.dart';
+import 'package:loni_africa/core/utilities/device_info_service.dart';
+import 'package:loni_africa/features/auth/data/models/auth_session_model.dart';
 
-/// Authentication service to handle all auth-related business logic
 class AuthService {
-  /// Sign in with email/phone and password
-  Future<AuthResult> signIn({
-    required String emailOrPhone,
+  AuthService({Dio? dio, DeviceInfoService? deviceInfoService})
+    : _dio = dio ?? ApiClient.instance.dio,
+      _deviceInfoService = deviceInfoService ?? DeviceInfoService();
+
+  final Dio _dio;
+  final DeviceInfoService _deviceInfoService;
+
+  Future<AuthSessionModel> signInWithPassword({
+    required String identifier,
     required String password,
   }) async {
-    // Validate inputs
-    final emailOrPhoneError = Validators.validateEmailOrPhone(emailOrPhone);
-    if (emailOrPhoneError != null) {
-      return AuthResult.failure(emailOrPhoneError);
-    }
+    final device = await _deviceInfoService.getDeviceInfo();
+    final payload = {
+      'identifier': identifier.trim(),
+      'password': password,
+      'device': device.toJson(),
+    };
 
-    final passwordError = Validators.validatePassword(password);
-    if (passwordError != null) {
-      return AuthResult.failure(passwordError);
-    }
-
-    try {
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
-
-      // TODO: Implement actual API call
-      // final response = await _apiClient.post('/auth/login', {
-      //   'emailOrPhone': emailOrPhone.trim(),
-      //   'password': password,
-      // });
-
-      return AuthResult.success(
-        message: 'Login successful! Please verify your account.',
-        data: {'emailOrPhone': emailOrPhone.trim()},
-      );
-    } catch (e) {
-      return AuthResult.failure('Login failed. Please check your credentials.');
-    }
+    return _postLogin(payload);
   }
 
-  /// Verify OTP code
-  Future<AuthResult> verifyOtp({
-    required String otp,
-    required String emailOrPhone,
+  Future<AuthSessionModel> signInWithOtp({
+    required String identifier,
+    required String otpCode,
   }) async {
-    // Validate OTP
-    final otpError = Validators.validateOtp(otp);
-    if (otpError != null) {
-      return AuthResult.failure(otpError);
-    }
+    final device = await _deviceInfoService.getDeviceInfo();
+    final payload = {
+      'identifier': identifier.trim(),
+      'otpCode': otpCode.trim(),
+      'device': device.toJson(),
+    };
 
-    try {
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
-
-      // TODO: Implement actual API call
-      // final response = await _apiClient.post('/auth/verify-otp', {
-      //   'otp': otp,
-      //   'emailOrPhone': emailOrPhone,
-      // });
-
-      return AuthResult.success(message: 'Verification successful!');
-    } catch (e) {
-      return AuthResult.failure('Verification failed. Please try again.');
-    }
+    return _postLogin(payload);
   }
 
-  /// Resend OTP code
-  Future<AuthResult> resendOtp({required String emailOrPhone}) async {
+  Future<void> sendOtp({required String identifier}) async {
     try {
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 1));
-
-      // TODO: Implement actual API call
-      // final response = await _apiClient.post('/auth/resend-otp', {
-      //   'emailOrPhone': emailOrPhone,
-      // });
-
-      return AuthResult.success(
-        message: 'Verification code sent to $emailOrPhone',
+      await _dio.post(
+        '/auth/otp/send',
+        data: {'identifier': identifier.trim()},
       );
-    } catch (e) {
-      return AuthResult.failure('Failed to resend code. Please try again.');
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
     }
   }
-}
 
-/// Authentication result wrapper
-class AuthResult {
-  final bool isSuccess;
-  final String message;
-  final Map<String, dynamic>? data;
-
-  AuthResult._({required this.isSuccess, required this.message, this.data});
-
-  factory AuthResult.success({
-    required String message,
-    Map<String, dynamic>? data,
-  }) {
-    return AuthResult._(isSuccess: true, message: message, data: data);
-  }
-
-  factory AuthResult.failure(String message) {
-    return AuthResult._(isSuccess: false, message: message);
+  Future<AuthSessionModel> _postLogin(Map<String, dynamic> payload) async {
+    try {
+      final response = await _dio.post('/auth/login', data: payload);
+      final data = response.data as Map<String, dynamic>;
+      return AuthSessionModel.fromJson(data);
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
+    }
   }
 }

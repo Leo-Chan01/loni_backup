@@ -13,10 +13,7 @@ class OrderTrackingScreen extends StatelessWidget {
 
   final String orderId;
 
-  const OrderTrackingScreen({
-    super.key,
-    required this.orderId,
-  });
+  const OrderTrackingScreen({super.key, required this.orderId});
 
   // Mock data
   static const String _bookTitle = 'Half of a Yellow Sun';
@@ -122,10 +119,7 @@ class OrderTrackingScreen extends StatelessWidget {
                       padding: EdgeInsets.all(20.w),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [
-                            colorScheme.primary,
-                            colorScheme.tertiary,
-                          ],
+                          colors: [colorScheme.primary, colorScheme.tertiary],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
@@ -184,7 +178,9 @@ class OrderTrackingScreen extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(20.w),
                       decoration: BoxDecoration(
-                        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                        color: colorScheme.surfaceContainerHighest.withValues(
+                          alpha: 0.3,
+                        ),
                         borderRadius: BorderRadius.circular(24.r),
                         border: Border.all(
                           color: colorScheme.outline.withValues(alpha: 0.2),
@@ -199,7 +195,9 @@ class OrderTrackingScreen extends StatelessWidget {
                                 width: 48.w,
                                 height: 48.w,
                                 decoration: BoxDecoration(
-                                  color: colorScheme.primary.withValues(alpha: 0.1),
+                                  color: colorScheme.primary.withValues(
+                                    alpha: 0.1,
+                                  ),
                                   borderRadius: BorderRadius.circular(12.r),
                                 ),
                                 child: Icon(
@@ -302,20 +300,16 @@ class OrderTrackingScreen extends StatelessWidget {
                   ),
                 ),
                 child: event.isCompleted
-                    ? Icon(
-                        Icons.check,
-                        color: Colors.white,
-                        size: 16.sp,
-                      )
+                    ? Icon(Icons.check, color: Colors.white, size: 16.sp)
                     : event.isActive
-                        ? Container(
-                            margin: EdgeInsets.all(8.w),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                          )
-                        : null,
+                    ? Container(
+                        margin: EdgeInsets.all(8.w),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                      )
+                    : null,
               ),
               if (!isLast)
                 Expanded(
@@ -365,7 +359,9 @@ class OrderTrackingScreen extends StatelessWidget {
                   Text(
                     _formatTimestamp(event.timestamp),
                     style: textTheme.bodySmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
+                      color: colorScheme.onSurfaceVariant.withValues(
+                        alpha: 0.7,
+                      ),
                     ),
                   ),
                 ],
@@ -379,8 +375,18 @@ class OrderTrackingScreen extends StatelessWidget {
 
   String _formatTimestamp(DateTime timestamp) {
     final months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
     ];
     final month = months[timestamp.month - 1];
     final day = timestamp.day;

@@ -26,9 +26,7 @@ class FinishedBookItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        border: Border.all(
-          color: colorScheme.outline.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.2)),
         borderRadius: BorderRadius.circular(16.r),
       ),
       padding: EdgeInsets.all(16.w),
@@ -46,10 +44,7 @@ class FinishedBookItem extends StatelessWidget {
                   width: 56.w,
                   height: 72.h,
                   color: colorScheme.surfaceContainerHighest,
-                  child: Icon(
-                    Icons.book,
-                    color: colorScheme.onSurfaceVariant,
-                  ),
+                  child: Icon(Icons.book, color: colorScheme.onSurfaceVariant),
                 );
               },
             ),
@@ -80,11 +75,7 @@ class FinishedBookItem extends StatelessWidget {
                 SizedBox(height: 8.h),
                 Row(
                   children: [
-                    Icon(
-                      Icons.check_circle,
-                      color: Colors.green,
-                      size: 14.sp,
-                    ),
+                    Icon(Icons.check_circle, color: Colors.green, size: 14.sp),
                     SizedBox(width: 6.w),
                     Text(
                       context.l10n.finishedAgo(daysAgo),
@@ -101,11 +92,7 @@ class FinishedBookItem extends StatelessWidget {
           SizedBox(width: 12.w),
           Row(
             children: [
-              Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: 14.sp,
-              ),
+              Icon(Icons.star, color: Colors.amber, size: 14.sp),
               SizedBox(width: 4.w),
               Text(
                 rating.toStringAsFixed(1),

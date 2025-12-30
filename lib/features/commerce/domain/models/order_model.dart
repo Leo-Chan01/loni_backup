@@ -3,10 +3,7 @@ import 'package:loni_africa/features/commerce/domain/models/order_status_model.d
 import 'package:loni_africa/features/commerce/domain/models/payment_model.dart';
 import 'package:loni_africa/features/commerce/domain/models/tracking_event_model.dart';
 
-enum OrderType {
-  digital,
-  physical,
-}
+enum OrderType { digital, physical }
 
 extension OrderTypeExtension on OrderType {
   String get displayName {

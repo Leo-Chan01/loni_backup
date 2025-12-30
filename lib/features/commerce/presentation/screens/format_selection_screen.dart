@@ -12,10 +12,7 @@ class FormatSelectionScreen extends StatefulWidget {
 
   final String bookId;
 
-  const FormatSelectionScreen({
-    super.key,
-    required this.bookId,
-  });
+  const FormatSelectionScreen({super.key, required this.bookId});
 
   @override
   State<FormatSelectionScreen> createState() => _FormatSelectionScreenState();
@@ -27,7 +24,8 @@ class _FormatSelectionScreenState extends State<FormatSelectionScreen> {
   // Mock data
   final String _bookTitle = 'Things Fall Apart';
   final String _bookAuthor = 'Chinua Achebe';
-  final String _bookCoverUrl = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop';
+  final String _bookCoverUrl =
+      'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop';
   final double _bookRating = 4.8;
   final String _bookReviewCount = '12.4k';
   final String _digitalPrice = '\$9.99';
@@ -166,7 +164,9 @@ class _FormatSelectionScreenState extends State<FormatSelectionScreen> {
                                   width: 64.w,
                                   height: 64.w,
                                   decoration: BoxDecoration(
-                                    color: colorScheme.primary.withValues(alpha: 0.1),
+                                    color: colorScheme.primary.withValues(
+                                      alpha: 0.1,
+                                    ),
                                     borderRadius: BorderRadius.circular(16.r),
                                   ),
                                   child: Icon(
@@ -178,7 +178,8 @@ class _FormatSelectionScreenState extends State<FormatSelectionScreen> {
                                 SizedBox(width: 16.w),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         context.l10n.digitalEdition,
@@ -299,7 +300,8 @@ class _FormatSelectionScreenState extends State<FormatSelectionScreen> {
                                 SizedBox(width: 16.w),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         context.l10n.hardcopy,

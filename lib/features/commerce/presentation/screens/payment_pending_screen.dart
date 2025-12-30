@@ -11,10 +11,7 @@ class PaymentPendingScreen extends StatefulWidget {
 
   final String bookId;
 
-  const PaymentPendingScreen({
-    super.key,
-    required this.bookId,
-  });
+  const PaymentPendingScreen({super.key, required this.bookId});
 
   @override
   State<PaymentPendingScreen> createState() => _PaymentPendingScreenState();
@@ -82,10 +79,7 @@ class _PaymentPendingScreenState extends State<PaymentPendingScreen>
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           gradient: LinearGradient(
-                            colors: [
-                              colorScheme.primary,
-                              colorScheme.tertiary,
-                            ],
+                            colors: [colorScheme.primary, colorScheme.tertiary],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -120,7 +114,9 @@ class _PaymentPendingScreenState extends State<PaymentPendingScreen>
                     Container(
                       padding: EdgeInsets.all(24.w),
                       decoration: BoxDecoration(
-                        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                        color: colorScheme.surfaceContainerHighest.withValues(
+                          alpha: 0.3,
+                        ),
                         borderRadius: BorderRadius.circular(24.r),
                       ),
                       child: Column(

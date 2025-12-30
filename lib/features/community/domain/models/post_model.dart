@@ -1,10 +1,4 @@
-enum PostType {
-  text,
-  bookReview,
-  bookRecommendation,
-  discussion,
-  poll,
-}
+enum PostType { text, bookReview, bookRecommendation, discussion, poll }
 
 class AttachedBook {
   final String bookId;

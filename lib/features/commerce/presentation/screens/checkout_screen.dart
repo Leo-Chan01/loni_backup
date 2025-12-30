@@ -13,10 +13,7 @@ class CheckoutScreen extends StatefulWidget {
 
   final String bookId;
 
-  const CheckoutScreen({
-    super.key,
-    required this.bookId,
-  });
+  const CheckoutScreen({super.key, required this.bookId});
 
   @override
   State<CheckoutScreen> createState() => _CheckoutScreenState();
@@ -26,7 +23,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   // Mock data
   final String _bookTitle = 'Things Fall Apart';
   final String _bookAuthor = 'Chinua Achebe';
-  final String _bookCoverUrl = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop';
+  final String _bookCoverUrl =
+      'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop';
   final String _format = 'Digital Edition';
   final double _subtotal = 9.99;
   final double _processingFee = 0.50;
@@ -87,7 +85,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     Container(
                       padding: EdgeInsets.all(20.w),
                       decoration: BoxDecoration(
-                        color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                        color: colorScheme.surfaceContainerHighest.withValues(
+                          alpha: 0.3,
+                        ),
                         borderRadius: BorderRadius.circular(24.r),
                       ),
                       child: Column(
@@ -158,14 +158,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       ),
                     ),
                     SizedBox(height: 32.h),
-                    PromoCodeInput(
-                      onApply: _handleApplyPromoCode,
-                    ),
+                    PromoCodeInput(onApply: _handleApplyPromoCode),
                     SizedBox(height: 32.h),
                     Container(
                       padding: EdgeInsets.all(20.w),
                       decoration: BoxDecoration(
-                        color: colorScheme.tertiaryContainer.withValues(alpha: 0.3),
+                        color: colorScheme.tertiaryContainer.withValues(
+                          alpha: 0.3,
+                        ),
                         borderRadius: BorderRadius.circular(24.r),
                         border: Border.all(
                           color: colorScheme.tertiary.withValues(alpha: 0.3),
@@ -177,7 +177,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             width: 48.w,
                             height: 48.w,
                             decoration: BoxDecoration(
-                              color: colorScheme.tertiary.withValues(alpha: 0.2),
+                              color: colorScheme.tertiary.withValues(
+                                alpha: 0.2,
+                              ),
                               borderRadius: BorderRadius.circular(12.r),
                             ),
                             child: Icon(

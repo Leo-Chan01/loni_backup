@@ -87,6 +87,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueButton => 'Continue';
 
   @override
+  String get signInSubtitle => 'Sign in to continue your reading journey';
+
+  @override
+  String get rememberMe => 'Remember me';
+
+  @override
+  String verificationCodeSent(String contact) {
+    return 'Verification code sent to $contact';
+  }
+
+  @override
+  String authTermsNotice(String terms, String privacy) {
+    return 'By continuing, you agree to our $terms and $privacy.';
+  }
+
+  @override
   String get onboardingTitle1 => 'Discover African Literature';
 
   @override

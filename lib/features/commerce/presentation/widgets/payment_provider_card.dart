@@ -87,11 +87,7 @@ class PaymentProviderCard extends StatelessWidget {
                 color: isSelected ? colorScheme.primary : Colors.transparent,
               ),
               child: isSelected
-                  ? Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 16.sp,
-                    )
+                  ? Icon(Icons.check, color: Colors.white, size: 16.sp)
                   : null,
             ),
           ],

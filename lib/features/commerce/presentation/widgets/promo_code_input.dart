@@ -5,10 +5,7 @@ import 'package:loni_africa/core/utilities/localization_extension.dart';
 class PromoCodeInput extends StatefulWidget {
   final Function(String) onApply;
 
-  const PromoCodeInput({
-    super.key,
-    required this.onApply,
-  });
+  const PromoCodeInput({super.key, required this.onApply});
 
   @override
   State<PromoCodeInput> createState() => _PromoCodeInputState();
@@ -59,7 +56,9 @@ class _PromoCodeInputState extends State<PromoCodeInput> {
                   hintText: context.l10n.enterCode,
                   filled: true,
                   fillColor: _isApplied
-                      ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.5)
+                      ? colorScheme.surfaceContainerHighest.withValues(
+                          alpha: 0.5,
+                        )
                       : colorScheme.surfaceContainerHighest,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16.r),

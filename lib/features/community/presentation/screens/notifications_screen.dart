@@ -128,9 +128,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
           ListView.builder(
             itemCount: mockNotifications.length,
             itemBuilder: (context, index) {
-              return NotificationItem(
-                notification: mockNotifications[index],
-              );
+              return NotificationItem(notification: mockNotifications[index]);
             },
           ),
           ListView.builder(
@@ -141,9 +139,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
               final mentions = mockNotifications
                   .where((n) => n.type == NotificationType.mention)
                   .toList();
-              return NotificationItem(
-                notification: mentions[index],
-              );
+              return NotificationItem(notification: mentions[index]);
             },
           ),
           ListView.builder(
@@ -154,9 +150,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
               final likes = mockNotifications
                   .where((n) => n.type == NotificationType.like)
                   .toList();
-              return NotificationItem(
-                notification: likes[index],
-              );
+              return NotificationItem(notification: likes[index]);
             },
           ),
           ListView.builder(
@@ -167,9 +161,7 @@ class _NotificationsScreenState extends State<NotificationsScreen>
               final comments = mockNotifications
                   .where((n) => n.type == NotificationType.comment)
                   .toList();
-              return NotificationItem(
-                notification: comments[index],
-              );
+              return NotificationItem(notification: comments[index]);
             },
           ),
         ],

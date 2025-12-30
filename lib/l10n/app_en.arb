@@ -27,6 +27,27 @@
   "resend": "Resend",
   "verify": "Verify",
   "continueButton": "Continue",
+  "signInSubtitle": "Sign in to continue your reading journey",
+  "rememberMe": "Remember me",
+  "verificationCodeSent": "Verification code sent to {contact}",
+  "@verificationCodeSent": {
+    "placeholders": {
+      "contact": {
+        "type": "String"
+      }
+    }
+  },
+  "authTermsNotice": "By continuing, you agree to our {terms} and {privacy}.",
+  "@authTermsNotice": {
+    "placeholders": {
+      "terms": {
+        "type": "String"
+      },
+      "privacy": {
+        "type": "String"
+      }
+    }
+  },
   
   "onboardingTitle1": "Discover African Literature",
   "onboardingDesc1": "Explore thousands of books from African authors and publishers",

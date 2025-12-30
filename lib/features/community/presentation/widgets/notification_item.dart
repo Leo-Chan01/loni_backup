@@ -7,10 +7,7 @@ import '../../../community/domain/models/notification_model.dart';
 class NotificationItem extends StatelessWidget {
   final AppNotification notification;
 
-  const NotificationItem({
-    super.key,
-    required this.notification,
-  });
+  const NotificationItem({super.key, required this.notification});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +21,7 @@ class NotificationItem extends StatelessWidget {
             ? colorScheme.surface
             : colorScheme.surfaceContainer.withValues(alpha: 0.3),
         border: Border(
-          bottom: BorderSide(
-            color: colorScheme.outline.withValues(alpha: 0.1),
-          ),
+          bottom: BorderSide(color: colorScheme.outline.withValues(alpha: 0.1)),
         ),
       ),
       child: Row(
@@ -77,13 +72,9 @@ class NotificationItem extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: notification.userFullName,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      TextSpan(
-                        text: ' ${notification.message}',
-                      ),
+                      TextSpan(text: ' ${notification.message}'),
                     ],
                   ),
                 ),
