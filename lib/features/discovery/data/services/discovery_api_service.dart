@@ -12,7 +12,7 @@ class DiscoveryApiService {
   }) async {
     try {
       final response = await _dio.get(
-        '/v1/app/home',
+        '/app/home',
         queryParameters: {
           if (region != null) 'region': region,
           if (language != null) 'language': language,
@@ -36,7 +36,7 @@ class DiscoveryApiService {
   }) async {
     try {
       final response = await _dio.get(
-        '/v1/search',
+        '/search',
         queryParameters: {
           'q': query,
           if (region != null) 'region': region,
@@ -70,7 +70,7 @@ class DiscoveryApiService {
   }) async {
     try {
       final response = await _dio.get(
-        '/v1/books',
+        '/books',
         queryParameters: {
           if (region != null) 'region': region,
           if (language != null) 'language': language,
@@ -95,7 +95,7 @@ class DiscoveryApiService {
 
   Future<Book> getBookDetail(String bookId) async {
     try {
-      final response = await _dio.get('/v1/books/$bookId');
+      final response = await _dio.get('/books/$bookId');
       return _mapToBook(response.data as Map<String, dynamic>);
     } catch (e) {
       rethrow;
@@ -105,7 +105,7 @@ class DiscoveryApiService {
   Future<List<Book>> getRecommendations({int limit = 20}) async {
     try {
       final response = await _dio.get(
-        '/v1/recommendations',
+        '/recommendations',
         queryParameters: {'limit': limit},
       );
 

@@ -12,7 +12,7 @@ class LibraryApiService {
   }) async {
     try {
       final response = await _dio.get(
-        '/v1/orders',
+        '/orders',
         queryParameters: {
           if (status != null) 'status': status,
           if (fulfillmentType != null) 'fulfillmentType': fulfillmentType,
@@ -33,7 +33,7 @@ class LibraryApiService {
 
   Future<Order> getOrderDetail(String orderId) async {
     try {
-      final response = await _dio.get('/v1/orders/$orderId');
+      final response = await _dio.get('/orders/$orderId');
       return _mapToOrder(response.data as Map<String, dynamic>);
     } catch (e) {
       rethrow;

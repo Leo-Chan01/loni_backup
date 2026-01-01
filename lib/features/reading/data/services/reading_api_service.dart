@@ -11,7 +11,7 @@ class ReadingApiService {
   }) async {
     try {
       final response = await _dio.get(
-        '/v1/content/$fileId/chunks/$chunkId',
+        '/content/$fileId/chunks/$chunkId',
         queryParameters: {'licenseId': licenseId},
       );
       return response.data as Map<String, dynamic>;
@@ -26,7 +26,7 @@ class ReadingApiService {
   }) async {
     try {
       final response = await _dio.get(
-        '/v1/content/$fileId/sample',
+        '/content/$fileId/sample',
         queryParameters: {
           if (licenseId != null) 'licenseId': licenseId,
         },
@@ -42,7 +42,7 @@ class ReadingApiService {
   }) async {
     try {
       final response = await _dio.post(
-        '/v1/content/$fileId/preview-token',
+        '/content/$fileId/preview-token',
       );
       return response.data['token'] as String;
     } catch (e) {
@@ -52,7 +52,7 @@ class ReadingApiService {
 
   Future<Map<String, dynamic>> getContentPolicy() async {
     try {
-      final response = await _dio.get('/v1/content/policy');
+      final response = await _dio.get('/content/policy');
       return response.data as Map<String, dynamic>;
     } catch (e) {
       rethrow;
@@ -61,7 +61,7 @@ class ReadingApiService {
 
   Future<Map<String, dynamic>> getOfflinePolicy() async {
     try {
-      final response = await _dio.get('/v1/content/offline/policy');
+      final response = await _dio.get('/content/offline/policy');
       return response.data as Map<String, dynamic>;
     } catch (e) {
       rethrow;

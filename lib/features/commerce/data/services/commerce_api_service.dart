@@ -12,7 +12,7 @@ class CommerceApiService {
   }) async {
     try {
       final response = await _dio.post(
-        '/v1/orders',
+        '/orders',
         data: {
           'items': items,
           'fulfillmentType': fulfillmentType,
@@ -37,7 +37,7 @@ class CommerceApiService {
   }) async {
     try {
       final response = await _dio.post(
-        '/v1/orders/$orderId/pay',
+        '/orders/$orderId/pay',
         data: {
           'provider': provider,
           'channel': channel,
@@ -55,7 +55,7 @@ class CommerceApiService {
 
   Future<Map<String, dynamic>> getOrderDetail(String orderId) async {
     try {
-      final response = await _dio.get('/v1/orders/$orderId');
+      final response = await _dio.get('/orders/$orderId');
       return response.data as Map<String, dynamic>;
     } catch (e) {
       rethrow;

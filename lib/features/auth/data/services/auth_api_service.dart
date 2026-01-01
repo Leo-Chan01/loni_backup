@@ -11,7 +11,7 @@ class AuthApiService {
   }) async {
     try {
       final response = await _dio.post(
-        '/v1/auth/login',
+        '/auth/login',
         data: {
           'identifier': identifier,
           'password': password,
@@ -33,7 +33,7 @@ class AuthApiService {
   }) async {
     try {
       final response = await _dio.post(
-        '/v1/auth/signup',
+        '/auth/signup',
         data: {
           'email': email,
           'password': password,
@@ -56,7 +56,7 @@ class AuthApiService {
   }) async {
     try {
       final response = await _dio.post(
-        '/v1/auth/otp/send',
+        '/auth/otp/send',
         data: {'identifier': identifier},
       );
       return response.data as Map<String, dynamic>;
@@ -67,7 +67,7 @@ class AuthApiService {
 
   Future<Map<String, dynamic>> getProfile() async {
     try {
-      final response = await _dio.get('/v1/auth/profile');
+      final response = await _dio.get('/auth/profile');
       return response.data as Map<String, dynamic>;
     } catch (e) {
       rethrow;
@@ -82,7 +82,7 @@ class AuthApiService {
   }) async {
     try {
       await _dio.patch(
-        '/v1/auth/profile',
+        '/auth/profile',
         data: {
           if (firstName != null) 'firstName': firstName,
           if (lastName != null) 'lastName': lastName,
