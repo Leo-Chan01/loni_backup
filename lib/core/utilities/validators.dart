@@ -56,6 +56,23 @@ class Validators {
     return null;
   }
 
+  /// Validates name format
+  static String? validateName(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Full name is required';
+    }
+
+    if (value.trim().length < 2) {
+      return 'Full name must be at least 2 characters';
+    }
+
+    if (value.trim().length > 50) {
+      return 'Full name must be less than 50 characters';
+    }
+
+    return null;
+  }
+
   /// Validates password
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {

@@ -3,8 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/discovery/data/services/discovery_service.dart';
-import 'package:loni_africa/features/discovery/domain/models/genre.dart';
+import 'package:loni_africa/features/discovery/data/services/discovery_api_service.dart';
 import 'package:loni_africa/features/discovery/presentation/controllers/discovery_controller.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 
@@ -20,21 +19,35 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   late final DiscoveryController _discovery;
-  List<Genre> _genres = const [];
+  List<String> _categories = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _discovery = DiscoveryController(DiscoveryService());
-    _loadGenres();
+    _discovery = DiscoveryController(DiscoveryApiService());
+    _loadCategories();
   }
 
-  Future<void> _loadGenres() async {
-    final genres = await _discovery.genres();
+  Future<void> _loadCategories() async {
     if (!mounted) return;
-    setState(() {
-      _genres = genres;
-    });
+    setState(() => _isLoading = true);
+    try {
+      // Get books and extract unique categories
+      final books = await _discovery.getBooks();
+      final categories = <String>{};
+      for (final book in books) {
+        categories.addAll(book.categories);
+      }
+      if (!mounted) return;
+      setState(() {
+        _categories = categories.toList();
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+    }
   }
 
   @override
@@ -99,42 +112,50 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                 ),
                 Expanded(
-                  child: GridView.builder(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20.w,
-                      vertical: 16.h,
-                    ),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12.w,
-                      mainAxisSpacing: 12.h,
-                      childAspectRatio: 0.85,
-                    ),
-                    itemCount: _genres.length,
-                    itemBuilder: (context, index) {
-                      final genre = _genres[index];
-                      final isEven = index % 2 == 0;
-
-                      return GestureDetector(
-                        onTap: () {
-                          context.push(
-                            '/app/explore/category-detail/genre-${index + 1}',
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: colorScheme.surfaceContainerHighest,
-                            borderRadius: BorderRadius.circular(16.r),
-                            border: Border.all(
-                              color: colorScheme.outline.withValues(
-                                alpha: 0.15,
-                              ),
-                              width: 1,
-                            ),
+                  child: _isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: colorScheme.primary,
                           ),
-                          child: Stack(
-                            children: [
-                              Positioned(
+                        )
+                      : GridView.builder(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20.w,
+                            vertical: 16.h,
+                          ),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 12.w,
+                            mainAxisSpacing: 12.h,
+                            childAspectRatio: 0.85,
+                          ),
+                          itemCount: _categories.length,
+                          itemBuilder: (context, index) {
+                            final category = _categories[index];
+                            final isEven = index % 2 == 0;
+
+                            return GestureDetector(
+                              onTap: () {
+                                context.push(
+                                  '/app/explore?category=$category',
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color:
+                                      colorScheme.surfaceContainerHighest,
+                                  borderRadius: BorderRadius.circular(16.r),
+                                  border: Border.all(
+                                    color: colorScheme.outline.withValues(
+                                      alpha: 0.15,
+                                    ),
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Positioned(
                                 top: -32.h,
                                 right: -32.w,
                                 child: Container(
@@ -171,7 +192,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(10),
                                         child: HugeIcon(
-                                          icon: _getGenreIcon(genre.title),
+                                          icon: _getGenreIcon(category),
                                           color: isEven
                                               ? colorScheme.primary
                                               : colorScheme.tertiary,
@@ -181,7 +202,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                     ),
                                     SizedBox(height: 12.h),
                                     Text(
-                                      genre.title,
+                                      category,
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleMedium
@@ -192,7 +213,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                     ),
                                     SizedBox(height: 4.h),
                                     Text(
-                                      genre.countLabel,
+                                      '${_categories.where((c) => c == category).length} books',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall
@@ -218,8 +239,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     );
   }
 
-  List<List<dynamic>> _getGenreIcon(String genre) {
-    switch (genre.toLowerCase()) {
+  dynamic _getGenreIcon(String category) {
+    switch (category.toLowerCase()) {
       case 'fiction':
         return HugeIcons.strokeRoundedBook02;
       case 'history':

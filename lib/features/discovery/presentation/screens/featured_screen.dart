@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/discovery/data/services/discovery_service.dart';
-import 'package:loni_africa/features/discovery/domain/models/book_item.dart';
+import 'package:loni_africa/features/discovery/data/services/discovery_api_service.dart';
+import 'package:loni_africa/features/discovery/domain/models/book.dart';
 import 'package:loni_africa/features/discovery/presentation/controllers/discovery_controller.dart';
-import 'package:loni_africa/shared/widgets/search_result_card.dart';
+import 'package:loni_africa/shared/widgets/book_list_item.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 
 class FeaturedScreen extends StatefulWidget {
@@ -21,21 +21,30 @@ class FeaturedScreen extends StatefulWidget {
 
 class _FeaturedScreenState extends State<FeaturedScreen> {
   late final DiscoveryController _discovery;
-  List<BookItem> _books = const [];
+  List<Book> _books = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    _discovery = DiscoveryController(DiscoveryService());
+    _discovery = DiscoveryController(DiscoveryApiService());
     _loadBooks();
   }
 
   Future<void> _loadBooks() async {
-    final books = await _discovery.trending();
     if (!mounted) return;
-    setState(() {
-      _books = books.take(3).toList();
-    });
+    setState(() => _isLoading = true);
+    try {
+      final books = await _discovery.getBooks(sort: 'popular');
+      if (!mounted) return;
+      setState(() {
+        _books = books.take(10).toList();
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+    }
   }
 
   @override
@@ -44,10 +53,14 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
-      body: Stack(
-        children: [
-          const TextureOverlay(),
-          SingleChildScrollView(
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(color: colorScheme.primary),
+            )
+          : Stack(
+              children: [
+                const TextureOverlay(),
+                SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -254,30 +267,28 @@ class _FeaturedScreenState extends State<FeaturedScreen> {
                         ),
                       ),
                       SizedBox(height: 16.h),
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _books.length,
-                        separatorBuilder: (context, index) =>
-                            SizedBox(height: 16.h),
-                        itemBuilder: (context, index) {
-                          final book = _books[index];
-                          return SearchResultCard(
-                            title: book.title,
-                            author: book.author,
-                            rating: book.rating,
-                            reviewsLabel:
-                                '${(book.rating * 2500).toInt()} reviews',
-                            priceLabel: book.priceLabel ?? '\$9.99',
-                            onView: () {},
-                            onAuthorTap: () {
-                              context.push(
-                                '/app/explore/author/author-${index + 1}',
-                              );
-                            },
-                          );
-                        },
-                      ),
+                            ListView.separated(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: _books.length,
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(height: 16.h),
+                              itemBuilder: (context, index) {
+                                final book = _books[index];
+                                return BookListItem(
+                                  title: book.title,
+                                  author: book.authors.isNotEmpty
+                                      ? book.authors[0].fullName
+                                      : 'Unknown',
+                                  rating: book.rating,
+                                  reviewCount: book.reviewCount,
+                                  coverImageUrl: book.coverImageUrl,
+                                  onTap: () {
+                                    context.push('/book-detail/${book.id}');
+                                  },
+                                );
+                              },
+                            ),
                       SizedBox(height: 24.h),
                     ],
                   ),

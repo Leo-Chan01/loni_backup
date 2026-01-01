@@ -34,6 +34,25 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<AuthSession> signUpWithPassword({
+    required String email,
+    required String password,
+    required String fullName,
+  }) async {
+    try {
+      final session = await _remoteService.signUpWithPassword(
+        email: email,
+        password: password,
+        fullName: fullName,
+      );
+      await _persistSession(session);
+      return session;
+    } on ApiException {
+      rethrow;
+    }
+  }
+
+  @override
   Future<AuthSession> signInWithOtp({
     required String identifier,
     required String otpCode,

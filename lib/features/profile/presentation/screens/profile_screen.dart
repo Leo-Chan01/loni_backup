@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:loni_africa/core/utilities/localization_extension.dart';
+import 'package:loni_africa/features/auth/data/services/auth_api_service.dart';
+import 'package:loni_africa/features/settings/presentation/screens/settings_screen.dart';
 
-import '../../../../core/utilities/localization_extension.dart';
 import '../../../profile/domain/models/user_profile_model.dart';
 import '../widgets/profile_stats_card.dart';
 import './edit_profile_screen.dart';
@@ -21,23 +23,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
-  final UserProfile mockProfile = UserProfile(
-    id: '1',
-    fullName: 'Amara Okonkwo',
-    username: '@amara_reads',
-    bio:
-        'Book lover from Lagos 📚 | African literature enthusiast | Always searching for the next great read',
-    email: 'amara@example.com',
-    location: 'Lagos, Nigeria',
-    avatarUrl: '',
-    coverUrl: '',
-    booksRead: 147,
-    followers: 2834,
-    following: 623,
-    readingPreferences: ['Fiction', 'History', 'Poetry', 'Biography'],
-    joinedDate: DateTime(2023, 1, 15),
-  );
+  late final AuthApiService _apiService;
+  UserProfile? _profile;
 
   final List<Map<String, dynamic>> mockBooks = [
     {
@@ -88,6 +75,35 @@ class _ProfileScreenState extends State<ProfileScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    _apiService = AuthApiService();
+    _loadProfile();
+  }
+
+  Future<void> _loadProfile() async {
+    if (!mounted) return;
+    try {
+      final profileData = await _apiService.getProfile();
+      if (!mounted) return;
+      setState(() {
+        _profile = UserProfile(
+          id: profileData['id'] as String? ?? '',
+          fullName: profileData['firstName'] as String? ?? '',
+          username: '@${(profileData['email'] as String? ?? '').split('@')[0]}',
+          bio: '',
+          email: profileData['email'] as String? ?? '',
+          location: profileData['region'] as String? ?? '',
+          avatarUrl: profileData['photoUrl'] as String? ?? '',
+          coverUrl: '',
+          booksRead: 0,
+          followers: 0,
+          following: 0,
+          readingPreferences: [],
+          joinedDate: DateTime.now(),
+        );
+      });
+    } catch (e) {
+      if (!mounted) return;
+    }
   }
 
   @override
@@ -99,6 +115,21 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final profile = _profile ?? UserProfile(
+      id: '1',
+      fullName: 'Loading...',
+      username: '@loading',
+      bio: '',
+      email: 'loading@example.com',
+      location: '',
+      avatarUrl: '',
+      coverUrl: '',
+      booksRead: 0,
+      followers: 0,
+      following: 0,
+      readingPreferences: [],
+      joinedDate: DateTime.now(),
+    );
 
     return Scaffold(
       body: CustomScrollView(
@@ -123,7 +154,9 @@ class _ProfileScreenState extends State<ProfileScreen>
                   icon: HugeIcons.strokeRoundedSettings02,
                   color: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  context.go(SettingsScreen.path);
+                },
               ),
               SizedBox(width: 8.w),
             ],
@@ -155,7 +188,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        mockProfile.fullName,
+                        profile.fullName,
                         style: TextStyle(
                           fontSize: 24.sp,
                           fontWeight: FontWeight.bold,
@@ -164,18 +197,18 @@ class _ProfileScreenState extends State<ProfileScreen>
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        mockProfile.username,
+                        profile.username,
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: colorScheme.onSurface.withValues(alpha: 0.6),
                         ),
                       ),
                       SizedBox(height: 12.h),
-                      if (mockProfile.bio != null)
+                      if (profile.bio != null)
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.w),
                           child: Text(
-                            mockProfile.bio!,
+                            profile.bio!,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 14.sp,
@@ -212,23 +245,23 @@ class _ProfileScreenState extends State<ProfileScreen>
                             Expanded(
                               child: ProfileStatsCard(
                                 label: context.l10n.booksRead(
-                                  mockProfile.booksRead,
+                                  profile.booksRead,
                                 ),
-                                value: mockProfile.booksRead.toString(),
+                                value: profile.booksRead.toString(),
                               ),
                             ),
                             SizedBox(width: 12.w),
                             Expanded(
                               child: ProfileStatsCard(
                                 label: context.l10n.followers,
-                                value: mockProfile.followers.toString(),
+                                value: profile.followers.toString(),
                               ),
                             ),
                             SizedBox(width: 12.w),
                             Expanded(
                               child: ProfileStatsCard(
                                 label: context.l10n.following,
-                                value: mockProfile.following.toString(),
+                                value: profile.following.toString(),
                               ),
                             ),
                           ],

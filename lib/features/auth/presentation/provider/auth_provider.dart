@@ -20,6 +20,7 @@ class AuthProvider extends ChangeNotifier {
   AuthSession? _session;
   bool _isInitializing = false;
   bool _isSigningIn = false;
+  bool _isSigningUp = false;
   bool _isSendingOtp = false;
   bool _isVerifyingOtp = false;
   String? _errorMessage;
@@ -27,6 +28,7 @@ class AuthProvider extends ChangeNotifier {
   AuthSession? get session => _session;
   bool get isInitializing => _isInitializing;
   bool get isSigningIn => _isSigningIn;
+  bool get isSigningUp => _isSigningUp;
   bool get isSendingOtp => _isSendingOtp;
   bool get isVerifyingOtp => _isVerifyingOtp;
   String? get errorMessage => _errorMessage;
@@ -67,6 +69,33 @@ class AuthProvider extends ChangeNotifier {
       return AuthActionResult.failure(message: error.toString());
     } finally {
       _setSigningIn(false);
+    }
+  }
+
+  Future<AuthActionResult> signUpWithPassword({
+    required String email,
+    required String password,
+    required String fullName,
+  }) async {
+    _setSigningUp(true);
+    try {
+      final session = await _authRepository.signUpWithPassword(
+        email: email,
+        password: password,
+        fullName: fullName,
+      );
+      _session = session;
+      _errorMessage = null;
+      return const AuthActionResult.success();
+    } on ApiException catch (error) {
+      final resolvedMessage = _preferredErrorMessage(error);
+      _errorMessage = resolvedMessage;
+      return AuthActionResult.failure(message: resolvedMessage);
+    } catch (error) {
+      _errorMessage = error.toString();
+      return AuthActionResult.failure(message: error.toString());
+    } finally {
+      _setSigningUp(false);
     }
   }
 
@@ -121,6 +150,11 @@ class AuthProvider extends ChangeNotifier {
 
   void _setSigningIn(bool value) {
     _isSigningIn = value;
+    notifyListeners();
+  }
+
+  void _setSigningUp(bool value) {
+    _isSigningUp = value;
     notifyListeners();
   }
 

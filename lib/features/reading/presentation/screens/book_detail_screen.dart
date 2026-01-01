@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/reading/domain/models/book_detail_model.dart';
+import 'package:loni_africa/features/discovery/data/services/discovery_api_service.dart';
+import 'package:loni_africa/features/discovery/domain/models/book.dart';
 import 'package:loni_africa/features/reading/presentation/widgets/book_hero_image.dart';
 import 'package:loni_africa/features/reading/presentation/widgets/book_info_section.dart';
 import 'package:loni_africa/features/reading/presentation/widgets/book_stats_card.dart';
@@ -25,31 +26,38 @@ class BookDetailScreen extends StatefulWidget {
 }
 
 class _BookDetailScreenState extends State<BookDetailScreen> {
+  late final DiscoveryApiService _apiService;
+  Book? _book;
   bool _isDigitalSelected = true;
   bool _isFavorite = false;
-
-  // Mock data - In production, this would come from a controller/service
-  late final BookDetailModel _book;
+  bool _isLoading = true;
+  String? _errorMessage;
 
   @override
   void initState() {
     super.initState();
-    _book = const BookDetailModel(
-      id: '1',
-      title: 'Things Fall Apart',
-      author: 'Chinua Achebe',
-      coverImageUrl:
-          'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=800&auto=format&fit=crop',
-      rating: 4.8,
-      reviewCount: '12.4k',
-      pages: 209,
-      genre: 'Fiction',
-      publishedYear: '1958',
-      description:
-          'Things Fall Apart is the debut novel by Nigerian author Chinua Achebe, first published in 1958. It depicts pre-colonial life in the southeastern part of Nigeria and the invasion by Europeans during the late 19th century. It is seen as the archetypal modern African novel in English.',
-      digitalPrice: '\$9.99',
-      physicalPrice: '\$24.99',
-    );
+    _apiService = DiscoveryApiService();
+    _loadBook();
+  }
+
+  Future<void> _loadBook() async {
+    if (!mounted) return;
+    setState(() => _isLoading = true);
+    try {
+      final book = await _apiService.getBookDetail(widget.bookId);
+      if (!mounted) return;
+      setState(() {
+        _book = book;
+        _errorMessage = null;
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _errorMessage = e.toString();
+        _isLoading = false;
+      });
+    }
   }
 
   void _toggleFavorite() {
@@ -59,7 +67,8 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
   }
 
   Future<void> _handleBuyNow() async {
-    // Implement purchase logic
+    if (_book == null) return;
+    context.push('/checkout/${widget.bookId}');
   }
 
   void _handlePreview() {
@@ -70,9 +79,29 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+
+    if (_isLoading) {
+      return Scaffold(
+        backgroundColor: colorScheme.surface,
+        body: Center(
+          child: CircularProgressIndicator(color: colorScheme.primary),
+        ),
+      );
+    }
+
+    if (_errorMessage != null || _book == null) {
+      return Scaffold(
+        backgroundColor: colorScheme.surface,
+        body: Center(
+          child: Text(_errorMessage ?? 'Failed to load book'),
+        ),
+      );
+    }
+
+    final book = _book!;
     final selectedPrice = _isDigitalSelected
-        ? _book.digitalPrice
-        : _book.physicalPrice;
+        ? '${(book.priceCents / 100).toStringAsFixed(2)} ${book.currency}'
+        : '${(book.priceCents / 100).toStringAsFixed(2)} ${book.currency}';
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -84,7 +113,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
               // Hero Image
               SliverToBoxAdapter(
                 child: BookHeroImage(
-                  imageUrl: _book.coverImageUrl,
+                  imageUrl: book.coverImageUrl,
                   onBackPressed: () => context.pop(),
                   onFavoritePressed: _toggleFavorite,
                   isFavorite: _isFavorite,
@@ -102,11 +131,13 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                       Transform.translate(
                         offset: Offset(0, -64.h),
                         child: BookInfoSection(
-                          coverImageUrl: _book.coverImageUrl,
-                          title: _book.title,
-                          author: _book.author,
-                          rating: _book.rating,
-                          reviewCount: _book.reviewCount,
+                          coverImageUrl: book.coverImageUrl,
+                          title: book.title,
+                          author: book.authors.isNotEmpty
+                              ? book.authors[0].fullName
+                              : 'Unknown',
+                          rating: book.rating,
+                          reviewCount: book.reviewCount.toString(),
                         ),
                       ),
 
@@ -114,9 +145,11 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
 
                       // Stats
                       BookStatsCard(
-                        pages: _book.pages,
-                        genre: _book.genre,
-                        publishedYear: _book.publishedYear,
+                        pages: _book!.pageCount,
+                        genre: _book!.categories.isNotEmpty
+                            ? _book!.categories[0]
+                            : 'Unknown',
+                        publishedYear: _book!.releaseDate.split('-')[0],
                       ),
 
                       SizedBox(height: 24.h),
@@ -131,7 +164,7 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                       ),
                       SizedBox(height: 12.h),
                       Text(
-                        _book.description,
+                        _book!.description,
                         style: textTheme.bodyMedium?.copyWith(
                           color: colorScheme.onSurfaceVariant,
                           height: 1.6,
@@ -153,7 +186,8 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                         icon: Icons.phonelink_rounded,
                         title: context.l10n.digitalEdition,
                         subtitle: context.l10n.readOnAnyDevice,
-                        price: _book.digitalPrice,
+                        price:
+                            '${(_book!.priceCents / 100).toStringAsFixed(2)} ${_book!.currency}',
                         isSelected: _isDigitalSelected,
                         onTap: () {
                           setState(() {
@@ -166,12 +200,16 @@ class _BookDetailScreenState extends State<BookDetailScreen> {
                         icon: Icons.menu_book_rounded,
                         title: context.l10n.hardcopy,
                         subtitle: context.l10n.printedAndDelivered,
-                        price: _book.physicalPrice,
-                        isSelected: !_isDigitalSelected,
+                        price: _book!.hardcopyAvailable
+                            ? '${(_book!.priceCents / 100).toStringAsFixed(2)} ${_book!.currency}'
+                            : context.l10n.notAvailable,
+                        isSelected: !_isDigitalSelected && _book!.hardcopyAvailable,
                         onTap: () {
-                          setState(() {
-                            _isDigitalSelected = false;
-                          });
+                          if (_book!.hardcopyAvailable) {
+                            setState(() {
+                              _isDigitalSelected = false;
+                            });
+                          }
                         },
                       ),
 

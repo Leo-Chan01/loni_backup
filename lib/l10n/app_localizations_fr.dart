@@ -21,6 +21,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get createAccount => 'Créer un compte';
 
   @override
+  String get signUpSubtitle =>
+      'Create an account to start your reading journey';
+
+  @override
   String get enterEmail => 'Entrez votre email';
 
   @override
@@ -28,6 +32,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get enterName => 'Entrez votre nom';
+
+  @override
+  String get passwordRequired => 'Password is required';
+
+  @override
+  String get passwordsDoNotMatch => 'Passwords do not match';
+
+  @override
+  String get agreeToTermsError => 'You must agree to the terms and conditions';
 
   @override
   String get forgotPassword => 'Mot de passe oublié?';
@@ -161,6 +174,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get newReleases => 'Nouvelles sorties';
 
   @override
+  String get newRelease => 'New Release';
+
+  @override
   String get seeAll => 'Voir tout';
 
   @override
@@ -173,6 +189,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String booksCount(String count) {
     return '$count livres';
   }
+
+  @override
+  String get recommendedForYou => 'Recommended For You';
 
   @override
   String get searchForBooks => 'Rechercher des livres...';
@@ -1384,4 +1403,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get clearCache => 'Vider le cache';
+
+  @override
+  String get noResults => 'No Results';
+
+  @override
+  String get tryAnotherSearch => 'Try searching with different keywords';
+
+  @override
+  String get noBooks => 'No books found';
+
+  @override
+  String get notAvailable => 'Not Available';
+
+  @override
+  String get relevance => 'Relevance';
+
+  @override
+  String get popularity => 'Popularity';
+
+  @override
+  String get newest => 'Newest';
 }

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:loni_africa/features/auth/presentation/screens/login_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/signup_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_screen.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_tabs_scaffold.dart';
@@ -38,6 +39,7 @@ import 'package:loni_africa/features/community/presentation/screens/community_sc
 import 'package:loni_africa/features/community/presentation/screens/discussion_screen.dart';
 import 'package:loni_africa/features/community/presentation/screens/create_post_screen.dart';
 import 'package:loni_africa/features/community/presentation/screens/notifications_screen.dart';
+import 'package:loni_africa/features/settings/presentation/screens/settings_screen.dart';
 import 'package:loni_africa/splash_screen.dart';
 
 class AppRoutes {
@@ -76,6 +78,13 @@ class AppRoutes {
         name: LoginScreen.name,
         builder: (context, state) {
           return const LoginScreen();
+        },
+      ),
+      GoRoute(
+        path: SignUpScreen.path,
+        name: SignUpScreen.name,
+        builder: (context, state) {
+          return const SignUpScreen();
         },
       ),
       GoRoute(
@@ -359,6 +368,13 @@ class AppRoutes {
           return const NotificationsScreen();
         },
       ),
+      GoRoute(
+        path: SettingsScreen.path,
+        name: SettingsScreen.name,
+        builder: (context, state) {
+          return const SettingsScreen();
+        },
+      )
     ],
   );
 }

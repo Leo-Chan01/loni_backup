@@ -6,6 +6,12 @@ abstract class AuthRepository {
     required String password,
   });
 
+  Future<AuthSession> signUpWithPassword({
+    required String email,
+    required String password,
+    required String fullName,
+  });
+
   Future<AuthSession> signInWithOtp({
     required String identifier,
     required String otpCode,

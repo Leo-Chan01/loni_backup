@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/discovery/data/services/search_service.dart';
-import 'package:loni_africa/features/discovery/domain/models/search_result.dart';
-import 'package:loni_africa/features/discovery/presentation/controllers/search_controller.dart'
-    as discovery;
+import 'package:loni_africa/features/discovery/data/services/discovery_api_service.dart';
+import 'package:loni_africa/features/discovery/domain/models/book.dart';
+import 'package:loni_africa/shared/widgets/book_list_item.dart';
 import 'package:loni_africa/shared/widgets/filter_chip_row.dart';
-import 'package:loni_africa/shared/widgets/search_result_card.dart';
 import 'package:loni_africa/shared/widgets/search_top_bar.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
+import 'package:loni_africa/shared/widgets/empty_state_widget.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key, this.initialQuery});
@@ -25,39 +24,55 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late final TextEditingController _controller;
-  late final discovery.SearchController _searchController;
-  SearchFilter _filter = SearchFilter.all;
+  late final DiscoveryApiService _apiService;
+  String _sortBy = 'relevance';
   bool _loading = false;
-  List<SearchResult> _results = const [];
+  List<Book> _results = [];
 
-  final _tabs = const ['All', 'Books', 'Authors', 'Publishers'];
+  final _sortOptions = ['relevance', 'popularity', 'newest'];
 
-  /// Get localized filter tabs
-  List<String> getFilterTabs(BuildContext context) => [
-    context.l10n.all,
-    context.l10n.books,
-    context.l10n.authors,
-    context.l10n.publishers,
-  ];
+  List<String> getSortTabs(BuildContext context) => [
+        context.l10n.relevance,
+        context.l10n.popularity,
+        context.l10n.newest,
+      ];
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController(text: widget.initialQuery ?? '');
-    _searchController = discovery.SearchController(SearchService());
+    _apiService = DiscoveryApiService();
     if (_controller.text.isNotEmpty) {
       _runSearch(_controller.text);
     }
   }
 
   Future<void> _runSearch(String query) async {
+    if (query.trim().isEmpty) {
+      setState(() => _results = []);
+      return;
+    }
     setState(() => _loading = true);
-    final results = await _searchController.search(query, _filter);
-    if (!mounted) return;
-    setState(() {
-      _results = results;
-      _loading = false;
-    });
+    try {
+      final results = await _apiService.searchBooks(
+        query: query,
+        sort: _sortBy,
+      );
+      if (!mounted) return;
+      setState(() {
+        _results = results;
+        _loading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _loading = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -83,10 +98,10 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                   SizedBox(height: 12.h),
                   FilterChipRow(
-                    labels: _tabs,
-                    selectedIndex: _filter.index,
+                    labels: getSortTabs(context),
+                    selectedIndex: _sortOptions.indexOf(_sortBy),
                     onSelected: (i) {
-                      setState(() => _filter = SearchFilter.values[i]);
+                      setState(() => _sortBy = _sortOptions[i]);
                       if (_controller.text.isNotEmpty) {
                         _runSearch(_controller.text);
                       }
@@ -105,29 +120,38 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                   Expanded(
                     child: _loading
-                        ? const Center(child: CircularProgressIndicator())
-                        : ListView.separated(
-                            padding: EdgeInsets.only(bottom: 20.h),
-                            itemCount: _results.length,
-                            separatorBuilder: (context, index) =>
-                                SizedBox(height: 12.h),
-                            itemBuilder: (context, index) {
-                              final it = _results[index];
-                              return SearchResultCard(
-                                title: it.title,
-                                author: it.author,
-                                rating: it.rating,
-                                reviewsLabel: it.reviewsLabel,
-                                priceLabel: it.priceLabel,
-                                onView: () {},
-                                onAuthorTap: () {
-                                  context.push(
-                                    '/app/explore/author/author-${index + 1}',
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: colorScheme.primary,
+                            ),
+                          )
+                        : _results.isEmpty && _controller.text.isNotEmpty
+                            ? EmptyStateWidget(
+                                title: context.l10n.noResults,
+                                message: context.l10n.tryAnotherSearch,
+                                iconData: Icons.search_off_rounded,
+                              )
+                            : ListView.separated(
+                                padding: EdgeInsets.only(bottom: 20.h),
+                                itemCount: _results.length,
+                                separatorBuilder: (context, index) =>
+                                    SizedBox(height: 12.h),
+                                itemBuilder: (context, index) {
+                                  final book = _results[index];
+                                  return BookListItem(
+                                    title: book.title,
+                                    author: book.authors.isNotEmpty
+                                        ? book.authors[0].fullName
+                                        : 'Unknown',
+                                    rating: book.rating,
+                                    reviewCount: book.reviewCount,
+                                    coverImageUrl: book.coverImageUrl,
+                                    onTap: () {
+                                      context.push('/book-detail/${book.id}');
+                                    },
                                   );
                                 },
-                              );
-                            },
-                          ),
+                              ),
                   ),
                 ],
               ),

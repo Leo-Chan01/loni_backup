@@ -124,6 +124,12 @@ abstract class AppLocalizations {
   /// **'Create Account'**
   String get createAccount;
 
+  /// No description provided for @signUpSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account to start your reading journey'**
+  String get signUpSubtitle;
+
   /// No description provided for @enterEmail.
   ///
   /// In en, this message translates to:
@@ -141,6 +147,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your name'**
   String get enterName;
+
+  /// No description provided for @passwordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required'**
+  String get passwordRequired;
+
+  /// No description provided for @passwordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
+
+  /// No description provided for @agreeToTermsError.
+  ///
+  /// In en, this message translates to:
+  /// **'You must agree to the terms and conditions'**
+  String get agreeToTermsError;
 
   /// No description provided for @forgotPassword.
   ///
@@ -388,6 +412,12 @@ abstract class AppLocalizations {
   /// **'New Releases'**
   String get newReleases;
 
+  /// No description provided for @newRelease.
+  ///
+  /// In en, this message translates to:
+  /// **'New Release'**
+  String get newRelease;
+
   /// No description provided for @seeAll.
   ///
   /// In en, this message translates to:
@@ -411,6 +441,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count} books'**
   String booksCount(String count);
+
+  /// No description provided for @recommendedForYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended For You'**
+  String get recommendedForYou;
 
   /// No description provided for @searchForBooks.
   ///
@@ -2649,6 +2685,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clear Cache'**
   String get clearCache;
+
+  /// No description provided for @noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No Results'**
+  String get noResults;
+
+  /// No description provided for @tryAnotherSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Try searching with different keywords'**
+  String get tryAnotherSearch;
+
+  /// No description provided for @noBooks.
+  ///
+  /// In en, this message translates to:
+  /// **'No books found'**
+  String get noBooks;
+
+  /// No description provided for @notAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Available'**
+  String get notAvailable;
+
+  /// No description provided for @relevance.
+  ///
+  /// In en, this message translates to:
+  /// **'Relevance'**
+  String get relevance;
+
+  /// No description provided for @popularity.
+  ///
+  /// In en, this message translates to:
+  /// **'Popularity'**
+  String get popularity;
+
+  /// No description provided for @newest.
+  ///
+  /// In en, this message translates to:
+  /// **'Newest'**
+  String get newest;
 }
 
 class _AppLocalizationsDelegate

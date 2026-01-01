@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/discovery/data/services/discovery_service.dart';
-import 'package:loni_africa/features/discovery/domain/models/book_item.dart';
+import 'package:loni_africa/features/discovery/data/services/discovery_api_service.dart';
+import 'package:loni_africa/features/discovery/domain/models/book.dart';
 import 'package:loni_africa/features/discovery/presentation/controllers/discovery_controller.dart';
 import 'package:loni_africa/shared/widgets/filter_chip_row.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
@@ -22,40 +22,41 @@ class TrendingScreen extends StatefulWidget {
 
 class _TrendingScreenState extends State<TrendingScreen> {
   late final DiscoveryController _discovery;
-  List<BookItem> _trendingBooks = const [];
+  List<Book> _trendingBooks = [];
   int _selectedCountryIndex = 0;
-
-  final _trendChanges = [
-    '+2 from last week',
-    'No change',
-    '+5 from last week',
-    '-1 from last week',
-    '+3 from last week',
-  ];
+  bool _isLoading = true;
 
   final _countryEmojis = ['🇳🇬', '🇰🇪', '🇿🇦', '🇬🇭'];
 
   @override
   void initState() {
     super.initState();
-    _discovery = DiscoveryController(DiscoveryService());
+    _discovery = DiscoveryController(DiscoveryApiService());
     _loadTrending();
   }
 
   Future<void> _loadTrending() async {
-    final trending = await _discovery.trending();
     if (!mounted) return;
-    setState(() {
-      _trendingBooks = trending.take(5).toList();
-    });
+    setState(() => _isLoading = true);
+    try {
+      final trending = await _discovery.getBooks(sort: 'popular');
+      if (!mounted) return;
+      setState(() {
+        _trendingBooks = trending.take(10).toList();
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+    }
   }
 
   List<String> _getCountries(BuildContext context) => [
-    context.l10n.nigeria,
-    context.l10n.kenya,
-    context.l10n.southAfrica,
-    context.l10n.ghana,
-  ];
+        context.l10n.nigeria,
+        context.l10n.kenya,
+        context.l10n.southAfrica,
+        context.l10n.ghana,
+      ];
 
   @override
   Widget build(BuildContext context) {
@@ -134,48 +135,66 @@ class _TrendingScreenState extends State<TrendingScreen> {
                 ),
                 SizedBox(height: 16.h),
                 Expanded(
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          context.l10n.topBooksThisWeek(
-                            countries[_selectedCountryIndex],
+                  child: _isLoading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: colorScheme.primary,
                           ),
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: colorScheme.onSurfaceVariant),
+                        )
+                      : SingleChildScrollView(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                context.l10n.topBooksThisWeek(
+                                  countries[_selectedCountryIndex],
+                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                        color: colorScheme.onSurfaceVariant),
+                              ),
+                              SizedBox(height: 16.h),
+                              _trendingBooks.isEmpty
+                                  ? Center(
+                                      child: Text(context.l10n.noBooks),
+                                    )
+                                  : ListView.separated(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount: _trendingBooks.length,
+                                      separatorBuilder: (context, index) =>
+                                          SizedBox(height: 12.h),
+                                      itemBuilder: (context, index) {
+                                        final book = _trendingBooks[index];
+                                        return TrendingBookItem(
+                                          rank: index + 1,
+                                          title: book.title,
+                                          author: book.authors.isNotEmpty
+                                              ? book.authors[0].fullName
+                                              : 'Unknown',
+                                          price:
+                                              '${(book.priceCents / 100).toStringAsFixed(2)} ${book.currency}',
+                                          imageUrl: book.coverImageUrl,
+                                          trendChange: '+${index + 1} from last week',
+                                          onTap: () {
+                                            context.push(
+                                              '/book-detail/${book.id}',
+                                            );
+                                          },
+                                          onAuthorTap: () {
+                                            // Navigate to author page when available
+                                          },
+                                        );
+                                      },
+                                    ),
+                              SizedBox(height: 24.h),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 16.h),
-                        ListView.separated(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: _trendingBooks.length,
-                          separatorBuilder: (context, index) =>
-                              SizedBox(height: 12.h),
-                          itemBuilder: (context, index) {
-                            final book = _trendingBooks[index];
-                            return TrendingBookItem(
-                              rank: index + 1,
-                              title: book.title,
-                              author: book.author,
-                              price: book.priceLabel ?? '\$9.99',
-                              imageUrl:
-                                  'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=300',
-                              trendChange: _trendChanges[index],
-                              onTap: () {},
-                              onAuthorTap: () {
-                                context.push(
-                                  '/app/explore/author/author-${index + 1}',
-                                );
-                              },
-                            );
-                          },
-                        ),
-                        SizedBox(height: 24.h),
-                      ],
-                    ),
-                  ),
                 ),
               ],
             ),

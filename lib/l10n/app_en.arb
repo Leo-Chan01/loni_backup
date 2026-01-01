@@ -5,9 +5,13 @@
   "signUp": "Sign Up",
   "welcomeBack": "Welcome Back",
   "createAccount": "Create Account",
+  "signUpSubtitle": "Create an account to start your reading journey",
   "enterEmail": "Enter your email",
   "enterPassword": "Enter your password",
   "enterName": "Enter your name",
+  "passwordRequired": "Password is required",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "agreeToTermsError": "You must agree to the terms and conditions",
   "forgotPassword": "Forgot Password?",
   "dontHaveAccount": "Don't have an account?",
   "alreadyHaveAccount": "Already have an account?",
@@ -68,10 +72,12 @@
   "trendingNow": "Trending Now",
   "browseByGenre": "Browse by Genre",
   "newReleases": "New Releases",
+  "newRelease": "New Release",
   "seeAll": "See All",
   "hot": "HOT",
   "digital": "Digital",
   "booksCount": "{count} books",
+  "recommendedForYou": "Recommended For You",
   "@booksCount": {
     "placeholders": {
       "count": {
@@ -797,5 +803,13 @@
   "dataUsage": "Data Usage",
   "dataSaverMode": "Data Saver Mode",
   "reduceDataUsage": "Reduce data usage",
-  "clearCache": "Clear Cache"
+  "clearCache": "Clear Cache",
+  "noResults": "No Results",
+  "tryAnotherSearch": "Try searching with different keywords",
+  "noBooks": "No books found",
+  "bestsellers": "Bestsellers",
+  "notAvailable": "Not Available",
+  "relevance": "Relevance",
+  "popularity": "Popularity",
+  "newest": "Newest"
 }
