@@ -138,7 +138,7 @@ class BookGridItem extends StatelessWidget {
               // Price
               if (price != null)
                 Text(
-                  '\₦${price!.toStringAsFixed(2)}',
+                  '₦${price!.toStringAsFixed(2)}',
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w700,

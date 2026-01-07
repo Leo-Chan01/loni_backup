@@ -166,6 +166,14 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Save pending OTP verification identifier to persistent storage
+  /// This is called after signup to ensure user can't bypass OTP on app restart
+  Future<void> savePendingOtpVerification(String identifier) async {
+    await _authRepository.savePendingOtpVerification(identifier);
+    _pendingOtpVerificationIdentifier = identifier;
+    notifyListeners();
+  }
+
   void _setSigningIn(bool value) {
     _isSigningIn = value;
     notifyListeners();

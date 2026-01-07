@@ -64,13 +64,20 @@ class AuthService {
     };
 
     try {
-      print('📤 Sending signup request to /auth/signup with email: $email');
+      print('📤 Sending signup request to /auth/signup');
+      print('   Email: $email');
+      print('   First Name: $firstName');
+      print('   Last Name: $lastName');
+      print('   Payload: $payload');
       final response = await _dio.post('/auth/signup', data: payload);
       print('✅ Signup response: ${response.statusCode}');
       final data = response.data as Map<String, dynamic>;
       return AuthSessionModel.fromJson(data);
     } on DioException catch (error) {
       print('❌ Signup error: ${error.message}');
+      print('   Status Code: ${error.response?.statusCode}');
+      print('   Response Body: ${error.response?.data}');
+      print('   Request Data: ${error.requestOptions.data}');
       throw ApiException.fromDioException(error);
     } catch (error) {
       print('❌ Unexpected signup error: $error');
@@ -79,13 +86,24 @@ class AuthService {
   }
 
   Future<void> sendOtp({required String identifier}) async {
+    final trimmedIdentifier = identifier.trim();
     try {
+      print('📤 Sending OTP to /auth/otp/send');
+      print('   Identifier: $trimmedIdentifier');
       await _dio.post(
         '/auth/otp/send',
-        data: {'identifier': identifier.trim()},
+        data: {'identifier': trimmedIdentifier},
       );
+      print('✅ OTP sent successfully');
     } on DioException catch (error) {
+      print('❌ OTP send error: ${error.message}');
+      print('   Status Code: ${error.response?.statusCode}');
+      print('   Response Body: ${error.response?.data}');
+      print('   Request Data: ${error.requestOptions.data}');
       throw ApiException.fromDioException(error);
+    } catch (error) {
+      print('❌ Unexpected OTP send error: $error');
+      rethrow;
     }
   }
 

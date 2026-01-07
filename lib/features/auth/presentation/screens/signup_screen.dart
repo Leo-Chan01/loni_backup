@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -57,8 +59,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
 
     final authProvider = context.read<AuthProvider>();
+    final email = _emailController.text.trim();
     final result = await authProvider.signUpWithPassword(
-      email: _emailController.text.trim(),
+      email: email,
       password: _passwordController.text,
       fullName: _nameController.text.trim(),
     );
@@ -66,8 +69,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (!mounted) return;
 
     if (result.isSuccess) {
+      // Save pending OTP state before navigating to OTP screen
+      // This ensures user can't bypass OTP verification on app restart
+      await authProvider.savePendingOtpVerification(email);
       GlobalSnackBar.showSuccess(result.message ?? context.l10n.success);
-      context.go('${OtpVerificationScreen.path}?email=${_emailController.text.trim()}');
+      context.go('${OtpVerificationScreen.path}?email=$email');
     } else {
       GlobalSnackBar.showError(result.message ?? context.l10n.error);
     }
