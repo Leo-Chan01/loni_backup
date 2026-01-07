@@ -7,32 +7,29 @@ import 'package:loni_africa/core/utilities/validators.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
 import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
-import 'package:loni_africa/features/auth/presentation/screens/phone_signup_screen.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/auth_text_field.dart';
-import 'package:loni_africa/shared/widgets/divider_with_text.dart';
 import 'package:loni_africa/shared/widgets/global_snackbar.dart';
 import 'package:loni_africa/shared/widgets/primary_button.dart';
 import 'package:loni_africa/shared/widgets/screen_header.dart';
-import 'package:loni_africa/shared/widgets/social_login_row.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 import 'package:loni_africa/shared/widgets/theme_toggle_button.dart';
 import 'package:provider/provider.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class PhoneSignUpScreen extends StatefulWidget {
+  const PhoneSignUpScreen({super.key});
 
-  static const String path = '/signup';
-  static const String name = 'SignUpScreen';
+  static const String path = '/phone-signup';
+  static const String name = 'PhoneSignUpScreen';
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<PhoneSignUpScreen> createState() => _PhoneSignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _PhoneSignUpScreenState extends State<PhoneSignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -43,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void dispose() {
     _nameController.dispose();
-    _emailController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -60,32 +57,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
 
     final authProvider = context.read<AuthProvider>();
-    final email = _emailController.text.trim();
-    final result = await authProvider.signUpWithPassword(
-      email: email,
-      password: _passwordController.text,
-      fullName: _nameController.text.trim(),
+    final phone = _phoneController.text.trim();
+    final password = _passwordController.text;
+    final fullName = _nameController.text.trim();
+
+    // First register with phone and password
+    final signUpResult = await authProvider.signUpWithPassword(
+      email: phone, // Use phone as email for API compatibility
+      password: password,
+      fullName: fullName,
     );
 
     if (!mounted) return;
 
-    if (result.isSuccess) {
+    if (signUpResult.isSuccess) {
       // Save pending OTP state before navigating to OTP screen
       // This ensures user can't bypass OTP verification on app restart
-      await authProvider.savePendingOtpVerification(email);
-      GlobalSnackBar.showSuccess(result.message ?? context.l10n.success);
-      context.go('${OtpVerificationScreen.path}?email=$email');
+      await authProvider.savePendingOtpVerification(phone);
+      GlobalSnackBar.showSuccess(signUpResult.message ?? context.l10n.success);
+      context.go('${OtpVerificationScreen.path}?email=$phone');
     } else {
-      GlobalSnackBar.showError(result.message ?? context.l10n.error);
+      GlobalSnackBar.showError(signUpResult.message ?? context.l10n.error);
     }
   }
 
-  void _onGoogleSignUp() {
-    // TODO: Implement Google sign up
-  }
-
-  void _onPhoneSignUp() {
-    context.pushNamed(PhoneSignUpScreen.name);
+  void _onBack() {
+    context.pop();
   }
 
   void _onSignIn() {
@@ -117,6 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       title: context.l10n.createAccount,
                       subtitle: context.l10n.signUpSubtitle,
                       showBackButton: true,
+                      onBackPressed: _onBack,
                       trailingWidget: ThemeToggleButton(
                         onToggle: themeNotifier.onToggle,
                       ),
@@ -132,12 +130,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 20.h),
                     AuthTextField(
-                      label: context.l10n.emailLabel,
-                      hintText: context.l10n.enterEmail,
-                      prefixIcon: Icons.email_outlined,
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: Validators.validateEmail,
+                      label: context.l10n.phoneLabel,
+                      hintText: context.l10n.enterPhoneNumber,
+                      prefixIcon: Icons.phone_outlined,
+                      controller: _phoneController,
+                      keyboardType: TextInputType.phone,
+                      validator: Validators.validatePhone,
                     ),
                     SizedBox(height: 20.h),
                     AuthTextField(
@@ -231,16 +229,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: context.l10n.signUp,
                       onPressed: () => _onSignUp(),
                       isLoading: authProvider.isSigningUp,
-                    ),
-                    SizedBox(height: 24.h),
-                    DividerWithText(text: context.l10n.orContinueWith),
-                    SizedBox(height: 24.h),
-                    SocialLoginRow(
-                      onGooglePressed: _onGoogleSignUp,
-                      onPhonePressed: _onPhoneSignUp,
-                      googleLabel: context.l10n.google,
-                      phoneLabel: context.l10n.phoneLabel,
-                      isPhoneLoading: authProvider.isSendingOtp,
                     ),
                     SizedBox(height: 32.h),
                     Center(

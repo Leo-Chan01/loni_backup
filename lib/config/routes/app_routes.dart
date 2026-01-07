@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:loni_africa/features/auth/presentation/screens/login_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/signup_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/phone_signup_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_screen.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_tabs_scaffold.dart';
@@ -85,6 +86,13 @@ class AppRoutes {
         name: SignUpScreen.name,
         builder: (context, state) {
           return const SignUpScreen();
+        },
+      ),
+      GoRoute(
+        path: PhoneSignUpScreen.path,
+        name: PhoneSignUpScreen.name,
+        builder: (context, state) {
+          return const PhoneSignUpScreen();
         },
       ),
       GoRoute(
