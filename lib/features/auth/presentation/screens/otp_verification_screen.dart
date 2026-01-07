@@ -64,6 +64,14 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     });
   }
 
+  Future<void> _handleBack() async {
+    // Clear the pending OTP verification when user goes back
+    final authProvider = context.read<AuthProvider>();
+    authProvider.clearPendingOtpVerification();
+    if (!mounted) return;
+    context.pop();
+  }
+
   Future<void> _handleVerify() async {
     final identifier = widget.email ?? widget.phoneNumber ?? '';
     if (identifier.isEmpty) {
@@ -137,6 +145,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     subtitle:
                         '${context.l10n.enterSixDigitCode} $_maskedContact',
                     showBackButton: true,
+                    onBackPressed: _handleBack,
                     trailingWidget: ThemeToggleButton(
                       onToggle: themeNotifier.onToggle,
                     ),

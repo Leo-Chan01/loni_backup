@@ -18,6 +18,7 @@ class AuthProvider extends ChangeNotifier {
   final AuthRepository _authRepository;
 
   AuthSession? _session;
+  String? _pendingOtpVerificationIdentifier;
   bool _isInitializing = false;
   bool _isSigningIn = false;
   bool _isSigningUp = false;
@@ -26,6 +27,8 @@ class AuthProvider extends ChangeNotifier {
   String? _errorMessage;
 
   AuthSession? get session => _session;
+  String? get pendingOtpVerificationIdentifier => _pendingOtpVerificationIdentifier;
+  bool get hasPendingOtpVerification => _pendingOtpVerificationIdentifier != null;
   bool get isInitializing => _isInitializing;
   bool get isSigningIn => _isSigningIn;
   bool get isSigningUp => _isSigningUp;
@@ -37,6 +40,7 @@ class AuthProvider extends ChangeNotifier {
     _setInitializing(true);
     try {
       _session = await _authRepository.loadSession();
+      _pendingOtpVerificationIdentifier = await _authRepository.getPendingOtpVerification();
       _errorMessage = null;
     } on ApiException catch (error) {
       _errorMessage = error.message;
@@ -103,6 +107,9 @@ class AuthProvider extends ChangeNotifier {
     _setSendingOtp(true);
     try {
       await _authRepository.sendOtp(identifier: identifier);
+      // Mark that OTP verification is pending
+      await _authRepository.savePendingOtpVerification(identifier);
+      _pendingOtpVerificationIdentifier = identifier;
       _errorMessage = null;
       return const AuthActionResult.success();
     } on ApiException catch (error) {
@@ -128,6 +135,9 @@ class AuthProvider extends ChangeNotifier {
         otpCode: otpCode,
       );
       _session = session;
+      // Clear pending OTP verification after successful verification
+      await _authRepository.clearPendingOtpVerification();
+      _pendingOtpVerificationIdentifier = null;
       _errorMessage = null;
       return const AuthActionResult.success();
     } on ApiException catch (error) {
@@ -145,6 +155,14 @@ class AuthProvider extends ChangeNotifier {
   Future<void> signOut() async {
     await _authRepository.clearSession();
     _session = null;
+    _pendingOtpVerificationIdentifier = null;
+    notifyListeners();
+  }
+
+  /// Manually set the pending OTP verification identifier
+  /// (used for clearing when user cancels OTP verification)
+  void clearPendingOtpVerification() {
+    _pendingOtpVerificationIdentifier = null;
     notifyListeners();
   }
 

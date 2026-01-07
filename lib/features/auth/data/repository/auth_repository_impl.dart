@@ -93,6 +93,21 @@ class AuthRepositoryImpl implements AuthRepository {
     ApiClient.instance.setAccessToken(null);
   }
 
+  @override
+  Future<void> savePendingOtpVerification(String identifier) async {
+    await _localDataSource.savePendingOtpVerification(identifier);
+  }
+
+  @override
+  Future<String?> getPendingOtpVerification() async {
+    return _localDataSource.getPendingOtpVerification();
+  }
+
+  @override
+  Future<void> clearPendingOtpVerification() async {
+    await _localDataSource.clearPendingOtpVerification();
+  }
+
   Future<void> _persistSession(AuthSession session) async {
     if (session is AuthSessionModel) {
       await _localDataSource.saveSession(session);
