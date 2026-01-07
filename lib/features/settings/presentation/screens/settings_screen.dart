@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utilities/localization_extension.dart';
+import '../../../../features/auth/presentation/provider/auth_provider.dart';
+import '../../../../shared/widgets/global_snackbar.dart';
 import '../widgets/profile_preview_card.dart';
 import '../widgets/settings_section_header.dart';
 import '../widgets/settings_tile.dart';
@@ -22,6 +27,16 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: colorScheme.surface,
         elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: HugeIcon(
+            icon: HugeIcons.strokeRoundedArrowLeft01,
+            color: colorScheme.onSurface,
+            size: 24.sp,
+          ),
+        ),
         title: Text(
           l10n.settings,
           style: TextStyle(
@@ -305,7 +320,7 @@ class SettingsScreen extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                // Handle logout
+                _showLogoutConfirmation(context, l10n);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red.withValues(alpha: 0.1),
@@ -325,5 +340,56 @@ class SettingsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _showLogoutConfirmation(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) {
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(l10n.logOut),
+          content: Text('${l10n.logOut}?'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: Text(l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(dialogContext);
+                await _handleLogout(context);
+              },
+              child: Text(
+                l10n.logOut,
+                style: const TextStyle(color: Colors.red),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _handleLogout(BuildContext context) async {
+    try {
+      final authProvider = context.read<AuthProvider>();
+      await authProvider.signOut();
+
+      if (!context.mounted) return;
+
+      GlobalSnackBar.showSuccess(context.l10n.success);
+      context.go('/login');
+    } catch (error) {
+      if (!context.mounted) return;
+
+      GlobalSnackBar.showError(
+        error.toString().isNotEmpty
+            ? error.toString()
+            : context.l10n.error,
+      );
+    }
   }
 }
