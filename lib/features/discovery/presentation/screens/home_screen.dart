@@ -14,6 +14,7 @@ import 'package:loni_africa/shared/widgets/theme_toggle_button.dart';
 import 'package:loni_africa/features/discovery/presentation/controllers/discovery_controller.dart';
 import 'package:loni_africa/features/discovery/data/services/discovery_api_service.dart';
 import 'package:loni_africa/features/discovery/domain/models/book.dart';
+import 'package:loni_africa/features/reading/data/services/reading_api_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,15 +28,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late final DiscoveryController _discovery;
+  late final ReadingApiService _readingService;
   List<Book> _trendingBooks = [];
   List<Book> _newReleases = [];
   List<Book> _recommendations = [];
+  Map<String, dynamic>? _continueReadingBook;
   bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
     _discovery = DiscoveryController(DiscoveryApiService());
+    _readingService = ReadingApiService();
     _loadData();
   }
 
@@ -48,13 +52,26 @@ class _HomeScreenState extends State<HomeScreen> {
         _discovery.getBooks(sort: 'popular'),
         _discovery.getBooks(sort: 'newest'),
         _discovery.getRecommendations(),
+        _readingService.getReadingStates(),
       ]);
 
       if (!mounted) return;
+      
+      // Get the first reading state if available
+      final readingStates = results[3] as List<Map<String, dynamic>>;
+      Map<String, dynamic>? continueReading;
+      if (readingStates.isNotEmpty) {
+        continueReading = readingStates.firstWhere(
+          (state) => (state['percentComplete'] as num?) != null && (state['percentComplete'] as num) < 100,
+          orElse: () => {},
+        );
+      }
+      
       setState(() {
-        _trendingBooks = results[0];
-        _newReleases = results[1];
-        _recommendations = results[2];
+        _trendingBooks = (results[0] as List).cast<Book>();
+        _newReleases = (results[1] as List).cast<Book>();
+        _recommendations = (results[2] as List).cast<Book>();
+        _continueReadingBook = continueReading;
         _isLoading = false;
       });
     } catch (e) {
@@ -103,17 +120,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                         SizedBox(height: 24.h),
-                        SectionHeader(
-                          title: context.l10n.continueReading,
-                        ),
-                        SizedBox(height: 14.h),
-                        ContinueReadingCard(
-                          title: 'Things Fall Apart',
-                          author: 'Chinua Achebe',
-                          progress: 0.65,
-                          onTap: () {},
-                        ),
-                        SizedBox(height: 24.h),
+                        if (_continueReadingBook != null) ...[
+                          SectionHeader(
+                            title: context.l10n.continueReading,
+                          ),
+                          SizedBox(height: 14.h),
+                          ContinueReadingCard(
+                            title: _continueReadingBook!['title'] as String? ?? 'Unknown',
+                            author: _continueReadingBook!['author'] as String? ?? 'Unknown Author',
+                            progress: ((_continueReadingBook!['percentComplete'] as num?) ?? 0).toDouble() / 100,
+                            onTap: () {
+                              // Navigate to reader
+                            },
+                          ),
+                          SizedBox(height: 24.h),
+                        ],
                         SectionHeader(
                           title: context.l10n.trendingNow,
                           actionLabel: context.l10n.seeAll,

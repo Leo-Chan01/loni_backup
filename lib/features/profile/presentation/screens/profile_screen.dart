@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/auth/data/services/auth_api_service.dart';
+import 'package:loni_africa/features/library/data/services/library_api_service.dart';
+import 'package:loni_africa/features/library/domain/models/order.dart';
 import 'package:loni_africa/features/settings/presentation/screens/settings_screen.dart';
 
 import '../../../profile/domain/models/user_profile_model.dart';
@@ -23,86 +25,67 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  late final AuthApiService _apiService;
+  late final AuthApiService _authApiService;
+  late final LibraryApiService _libraryApiService;
   UserProfile? _profile;
-
-  final List<Map<String, dynamic>> mockBooks = [
-    {
-      'id': '1',
-      'title': 'Things Fall Apart',
-      'author': 'Chinua Achebe',
-      'coverUrl': '',
-      'progress': 0.75,
-    },
-    {
-      'id': '2',
-      'title': 'Half of a Yellow Sun',
-      'author': 'Chimamanda Ngozi Adichie',
-      'coverUrl': '',
-      'progress': 0.45,
-    },
-    {
-      'id': '3',
-      'title': 'Americanah',
-      'author': 'Chimamanda Ngozi Adichie',
-      'coverUrl': '',
-      'progress': 1.0,
-    },
-    {
-      'id': '4',
-      'title': 'Purple Hibiscus',
-      'author': 'Chimamanda Ngozi Adichie',
-      'coverUrl': '',
-      'progress': 0.30,
-    },
-    {
-      'id': '5',
-      'title': 'The Joys of Motherhood',
-      'author': 'Buchi Emecheta',
-      'coverUrl': '',
-      'progress': 0.60,
-    },
-    {
-      'id': '6',
-      'title': 'So Long a Letter',
-      'author': 'Mariama Bâ',
-      'coverUrl': '',
-      'progress': 1.0,
-    },
-  ];
+  List<OrderItem> _profileBooks = [];
+  bool _isLoading = true;
+  String? _errorMessage;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    _apiService = AuthApiService();
-    _loadProfile();
+    _authApiService = AuthApiService();
+    _libraryApiService = LibraryApiService();
+    _loadProfileData();
   }
 
-  Future<void> _loadProfile() async {
+  Future<void> _loadProfileData() async {
     if (!mounted) return;
     try {
-      final profileData = await _apiService.getProfile();
+      // Fetch profile data
+      final profileData = await _authApiService.getProfile();
+      
+      // Fetch user's orders (digital books)
+      final orders = await _libraryApiService.getOrders();
+      
       if (!mounted) return;
+      
+      // Collect all books from orders
+      final books = <OrderItem>[];
+      for (final order in orders) {
+        books.addAll(order.items);
+      }
+      
       setState(() {
         _profile = UserProfile(
           id: profileData['id'] as String? ?? '',
-          fullName: profileData['firstName'] as String? ?? '',
+          fullName:
+              '${profileData['firstName'] as String? ?? ''} ${profileData['lastName'] as String? ?? ''}'
+                  .trim(),
           username: '@${(profileData['email'] as String? ?? '').split('@')[0]}',
           bio: '',
           email: profileData['email'] as String? ?? '',
           location: profileData['region'] as String? ?? '',
           avatarUrl: profileData['photoUrl'] as String? ?? '',
           coverUrl: '',
-          booksRead: 0,
+          booksRead: books.length,
           followers: 0,
           following: 0,
           readingPreferences: [],
           joinedDate: DateTime.now(),
         );
+        _profileBooks = books;
+        _isLoading = false;
+        _errorMessage = null;
       });
     } catch (e) {
       if (!mounted) return;
+      setState(() {
+        _isLoading = false;
+        _errorMessage = 'Failed to load profile data';
+      });
     }
   }
 
@@ -115,21 +98,61 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final profile = _profile ?? UserProfile(
-      id: '1',
-      fullName: 'Loading...',
-      username: '@loading',
-      bio: '',
-      email: 'loading@example.com',
-      location: '',
-      avatarUrl: '',
-      coverUrl: '',
-      booksRead: 0,
-      followers: 0,
-      following: 0,
-      readingPreferences: [],
-      joinedDate: DateTime.now(),
-    );
+
+    if (_isLoading) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            color: colorScheme.primary,
+          ),
+        ),
+      );
+    }
+
+    if (_errorMessage != null || _profile == null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(context.l10n.profile),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              HugeIcon(
+                icon: HugeIcons.strokeRoundedAlertCircle,
+                size: 48.r,
+                color: colorScheme.error,
+              ),
+              SizedBox(height: 16.h),
+              Text(
+                _errorMessage ?? 'Failed to load profile',
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+              SizedBox(height: 24.h),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _isLoading = true;
+                    _errorMessage = null;
+                  });
+                  _loadProfileData();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: colorScheme.primary,
+                  foregroundColor: colorScheme.onPrimary,
+                ),
+                child: Text(context.l10n.retry),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final profile = _profile!;
 
     return Scaffold(
       body: CustomScrollView(
@@ -155,7 +178,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  context.go(SettingsScreen.path);
+                  context.push(SettingsScreen.path);
                 },
               ),
               SizedBox(width: 8.w),
@@ -204,7 +227,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ),
                       ),
                       SizedBox(height: 12.h),
-                      if (profile.bio != null)
+                      if (profile.bio != null && profile.bio!.isNotEmpty)
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.w),
                           child: Text(
@@ -213,6 +236,18 @@ class _ProfileScreenState extends State<ProfileScreen>
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                      if (profile.bio == null || profile.bio!.isEmpty)
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 24.w),
+                          child: Text(
+                            profile.email ?? 'No email',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: colorScheme.onSurface.withValues(alpha: 0.6),
                             ),
                           ),
                         ),
@@ -299,7 +334,38 @@ class _ProfileScreenState extends State<ProfileScreen>
                 mainAxisSpacing: 12.h,
               ),
               delegate: SliverChildBuilderDelegate((context, index) {
-                final book = mockBooks[index];
+                if (_profileBooks.isEmpty) {
+                  return Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          HugeIcon(
+                            icon: HugeIcons.strokeRoundedBook02,
+                            size: 40.r,
+                            color: colorScheme.onSurface.withValues(
+                              alpha: 0.3,
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
+                          Text(
+                            context.l10n.noBooks,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.5,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+                
+                final book = _profileBooks[index];
                 return Container(
                   decoration: BoxDecoration(
                     color: colorScheme.surfaceContainerHighest,
@@ -332,7 +398,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              book['title'],
+                              book.title,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -342,23 +408,24 @@ class _ProfileScreenState extends State<ProfileScreen>
                               ),
                             ),
                             SizedBox(height: 4.h),
-                            if (book['progress'] < 1.0)
-                              LinearProgressIndicator(
-                                value: book['progress'],
-                                backgroundColor: colorScheme.outline.withValues(
-                                  alpha: 0.2,
-                                ),
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  colorScheme.primary,
+                            Text(
+                              'Order: ${book.id}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 10.sp,
+                                color: colorScheme.onSurface.withValues(
+                                  alpha: 0.6,
                                 ),
                               ),
+                            ),
                           ],
                         ),
                       ),
                     ],
                   ),
                 );
-              }, childCount: mockBooks.length),
+              }, childCount: _profileBooks.isEmpty ? 1 : _profileBooks.length),
             ),
           ),
         ],

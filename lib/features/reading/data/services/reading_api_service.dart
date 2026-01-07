@@ -67,4 +67,25 @@ class ReadingApiService {
       rethrow;
     }
   }
+
+  Future<List<Map<String, dynamic>>> getReadingStates({
+    String? catalogItemId,
+    String? licenseId,
+    String? deviceId,
+  }) async {
+    try {
+      final response = await _dio.get(
+        '/analytics/reading-states',
+        queryParameters: {
+          if (catalogItemId != null) 'catalogItemId': catalogItemId,
+          if (licenseId != null) 'licenseId': licenseId,
+          if (deviceId != null) 'deviceId': deviceId,
+        },
+      );
+      final data = response.data as List<dynamic>;
+      return data.cast<Map<String, dynamic>>();
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

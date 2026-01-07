@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
-import 'package:loni_africa/features/commerce/domain/models/delivery_address_model.dart';
 import 'package:loni_africa/features/commerce/domain/models/order_model.dart';
 import 'package:loni_africa/features/commerce/domain/models/order_status_model.dart';
 import 'package:loni_africa/features/commerce/domain/models/payment_model.dart';
 import 'package:loni_africa/features/commerce/presentation/widgets/order_item_card.dart';
+import 'package:loni_africa/features/library/data/services/library_api_service.dart';
 import 'package:loni_africa/shared/widgets/screen_header.dart';
 
 class OrdersListScreen extends StatefulWidget {
@@ -22,98 +23,11 @@ class OrdersListScreen extends StatefulWidget {
 class _OrdersListScreenState extends State<OrdersListScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late final LibraryApiService _libraryApiService;
   int _selectedTabIndex = 0;
-
-  // Mock data
-  final List<Order> _allOrders = [
-    Order(
-      id: '1',
-      orderNumber: 'ORD-001',
-      item: OrderItem(
-        bookId: 'book1',
-        bookTitle: 'Things Fall Apart',
-        bookAuthor: 'Chinua Achebe',
-        bookCoverUrl:
-            'https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=200&auto=format&fit=crop',
-        orderType: OrderType.digital,
-        price: 9.99,
-      ),
-      status: OrderStatus.delivered,
-      payment: Payment(
-        id: 'pay1',
-        transactionId: 'TXN-001',
-        amount: 9.99,
-        processingFee: 0.50,
-        status: PaymentStatus.completed,
-        paymentMethod: 'MTN Mobile Money',
-        phoneNumber: '+237 600 000 001',
-        createdAt: DateTime.now().subtract(const Duration(days: 5)),
-        completedAt: DateTime.now().subtract(const Duration(days: 5)),
-      ),
-      createdAt: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-    Order(
-      id: '2',
-      orderNumber: 'ORD-002',
-      item: OrderItem(
-        bookId: 'book2',
-        bookTitle: 'Half of a Yellow Sun',
-        bookAuthor: 'Chimamanda Ngozi Adichie',
-        bookCoverUrl:
-            'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=200&auto=format&fit=crop',
-        orderType: OrderType.physical,
-        price: 24.99,
-      ),
-      status: OrderStatus.inTransit,
-      payment: Payment(
-        id: 'pay2',
-        transactionId: 'TXN-002',
-        amount: 24.99,
-        processingFee: 1.25,
-        status: PaymentStatus.completed,
-        paymentMethod: 'Orange Money',
-        phoneNumber: '+237 600 000 002',
-        createdAt: DateTime.now().subtract(const Duration(days: 3)),
-        completedAt: DateTime.now().subtract(const Duration(days: 3)),
-      ),
-      deliveryAddress: DeliveryAddress(
-        recipientName: 'John Doe',
-        addressLine1: '123 Main St',
-        addressLine2: '',
-        city: 'Douala',
-        region: 'Littoral',
-        country: 'Cameroon',
-        phoneNumber: '+237 600 000 002',
-      ),
-      createdAt: DateTime.now().subtract(const Duration(days: 3)),
-    ),
-    Order(
-      id: '3',
-      orderNumber: 'ORD-003',
-      item: OrderItem(
-        bookId: 'book3',
-        bookTitle: 'Americanah',
-        bookAuthor: 'Chimamanda Ngozi Adichie',
-        bookCoverUrl:
-            'https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=200&auto=format&fit=crop',
-        orderType: OrderType.digital,
-        price: 12.99,
-      ),
-      status: OrderStatus.delivered,
-      payment: Payment(
-        id: 'pay3',
-        transactionId: 'TXN-003',
-        amount: 12.99,
-        processingFee: 0.65,
-        status: PaymentStatus.completed,
-        paymentMethod: 'M-Pesa',
-        phoneNumber: '+254 700 000 003',
-        createdAt: DateTime.now().subtract(const Duration(days: 10)),
-        completedAt: DateTime.now().subtract(const Duration(days: 10)),
-      ),
-      createdAt: DateTime.now().subtract(const Duration(days: 10)),
-    ),
-  ];
+  List<Order> _allOrders = [];
+  bool _isLoading = true;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -124,6 +38,77 @@ class _OrdersListScreenState extends State<OrdersListScreen>
         _selectedTabIndex = _tabController.index;
       });
     });
+    _libraryApiService = LibraryApiService();
+    _loadOrders();
+  }
+
+  Future<void> _loadOrders() async {
+    if (!mounted) return;
+    try {
+      final orders = await _libraryApiService.getOrders();
+      if (!mounted) return;
+
+      // Map library orders to commerce orders
+      final mappedOrders = orders.map((order) {
+        return Order(
+          id: order.orderId,
+          orderNumber: 'ORD-${order.orderId.substring(0, 3).toUpperCase()}',
+          item: OrderItem(
+            bookId: order.items.isNotEmpty ? order.items[0].catalogItemId : '',
+            bookTitle:
+                order.items.isNotEmpty ? order.items[0].title : 'Unknown',
+            bookAuthor: 'Author',
+            bookCoverUrl: null,
+            orderType: order.items.isNotEmpty &&
+                    order.items[0].fulfillmentType == 'DIGITAL'
+                ? OrderType.digital
+                : OrderType.physical,
+            price: (order.totalCents / 100).toDouble(),
+          ),
+          status: _mapOrderStatus(order.status),
+          payment: Payment(
+            id: 'pay-${order.orderId}',
+            transactionId: 'TXN-${order.orderId.substring(0, 6).toUpperCase()}',
+            amount: (order.totalCents / 100).toDouble(),
+            processingFee: 0,
+            status: PaymentStatus.completed,
+            paymentMethod: 'LONI Pay',
+            phoneNumber: '',
+            createdAt: order.createdAt,
+            completedAt: order.createdAt,
+          ),
+          createdAt: order.createdAt,
+        );
+      }).toList();
+
+      setState(() {
+        _allOrders = mappedOrders;
+        _isLoading = false;
+        _errorMessage = null;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _isLoading = false;
+        _errorMessage = 'Failed to load orders';
+      });
+    }
+  }
+
+  OrderStatus _mapOrderStatus(String status) {
+    switch (status.toUpperCase()) {
+      case 'COMPLETED':
+      case 'FULFILLED':
+        return OrderStatus.delivered;
+      case 'PENDING':
+        return OrderStatus.pending;
+      case 'SHIPPED':
+        return OrderStatus.inTransit;
+      case 'PAID':
+        return OrderStatus.inTransit;
+      default:
+        return OrderStatus.pending;
+    }
   }
 
   @override
@@ -151,6 +136,57 @@ class _OrdersListScreenState extends State<OrdersListScreen>
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+
+    if (_isLoading) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            color: colorScheme.primary,
+          ),
+        ),
+      );
+    }
+
+    if (_errorMessage != null) {
+      return Scaffold(
+        appBar: AppBar(title: Text(context.l10n.myOrders)),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              HugeIcon(
+                icon: HugeIcons.strokeRoundedAlertCircle,
+                size: 48.r,
+                color: colorScheme.error,
+              ),
+              SizedBox(height: 16.h),
+              Text(
+                _errorMessage!,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+              SizedBox(height: 24.h),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _isLoading = true;
+                    _errorMessage = null;
+                  });
+                  _loadOrders();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: colorScheme.primary,
+                  foregroundColor: colorScheme.onPrimary,
+                ),
+                child: Text(context.l10n.retry),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
