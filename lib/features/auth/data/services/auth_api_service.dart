@@ -39,25 +39,8 @@ class AuthApiService {
           'password': password,
           'firstName': firstName,
           'lastName': lastName,
-          'device': {
-            'deviceId': deviceId,
-            'platform': 'android',
-          },
+          'device': {'deviceId': deviceId, 'platform': 'android'},
         },
-      );
-      return response.data as Map<String, dynamic>;
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  Future<Map<String, dynamic>> sendOtp({
-    required String identifier,
-  }) async {
-    try {
-      final response = await _dio.post(
-        '/auth/otp/send',
-        data: {'identifier': identifier},
       );
       return response.data as Map<String, dynamic>;
     } catch (e) {

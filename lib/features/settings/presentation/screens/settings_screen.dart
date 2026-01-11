@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:provider/provider.dart';
-import '../../../../l10n/app_localizations.dart';
+
 import '../../../../core/utilities/localization_extension.dart';
 import '../../../../features/auth/presentation/provider/auth_provider.dart';
 import '../../../../shared/widgets/global_snackbar.dart';
@@ -19,8 +19,17 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    final authProvider = context.watch<AuthProvider>();
+    final user = authProvider.session?.user;
+    final userDisplayName = user?.displayName.isNotEmpty == true
+      ? user!.displayName
+      : l10n.notAvailable;
+    final userEmailOrPhone =
+      (user?.email?.isNotEmpty == true ? user!.email : user?.phone) ??
+        l10n.notAvailable;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -39,11 +48,7 @@ class SettingsScreen extends StatelessWidget {
         ),
         title: Text(
           l10n.settings,
-          style: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w700,
-            fontFamily: 'Merriweather',
-          ),
+          style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
         ),
         actions: [
           IconButton(
@@ -63,10 +68,10 @@ class SettingsScreen extends StatelessWidget {
         children: [
           // Profile Preview Card
           ProfilePreviewCard(
-            fullName: 'John Mensah',
-            email: 'john.mensah@email.com',
-            avatarUrl:
-                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
+            fullName: authProvider.isInitializing ? l10n.loading : userDisplayName,
+            email: authProvider.isInitializing ? l10n.loading : userEmailOrPhone,
+            avatarUrl: user?.photoUrl,
+            viewProfileText: l10n.viewProfile,
             onTap: () {
               // Navigate to profile
             },
@@ -119,12 +124,12 @@ class SettingsScreen extends StatelessWidget {
                     height: 40.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.blue.withValues(alpha: 0.1),
+                      color: colorScheme.secondary.withValues(alpha: 0.1),
                     ),
                     child: Center(
                       child: HugeIcon(
                         icon: HugeIcons.strokeRoundedShieldUser,
-                        color: Colors.blue,
+                        color: colorScheme.secondary,
                         size: 20.sp,
                       ),
                     ),
@@ -144,12 +149,12 @@ class SettingsScreen extends StatelessWidget {
                     height: 40.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.green.withValues(alpha: 0.1),
+                      color: colorScheme.tertiary.withValues(alpha: 0.1),
                     ),
                     child: Center(
                       child: HugeIcon(
                         icon: HugeIcons.strokeRoundedNotification02,
-                        color: Colors.green,
+                        color: colorScheme.tertiary,
                         size: 20.sp,
                       ),
                     ),
@@ -182,12 +187,12 @@ class SettingsScreen extends StatelessWidget {
                     height: 40.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.purple.withValues(alpha: 0.1),
+                      color: colorScheme.secondary.withValues(alpha: 0.1),
                     ),
                     child: Center(
                       child: HugeIcon(
                         icon: HugeIcons.strokeRoundedSettings01,
-                        color: Colors.purple,
+                        color: colorScheme.secondary,
                         size: 20.sp,
                       ),
                     ),
@@ -207,12 +212,12 @@ class SettingsScreen extends StatelessWidget {
                     height: 40.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.yellow.shade700.withValues(alpha: 0.1),
+                      color: colorScheme.tertiary.withValues(alpha: 0.1),
                     ),
                     child: Center(
                       child: HugeIcon(
                         icon: HugeIcons.strokeRoundedDownload01,
-                        color: Colors.yellow.shade700,
+                        color: colorScheme.tertiary,
                         size: 20.sp,
                       ),
                     ),
@@ -232,12 +237,12 @@ class SettingsScreen extends StatelessWidget {
                     height: 40.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.red.withValues(alpha: 0.1),
+                      color: colorScheme.error.withValues(alpha: 0.1),
                     ),
                     child: Center(
                       child: HugeIcon(
                         icon: HugeIcons.strokeRoundedTranslate,
-                        color: Colors.red,
+                        color: colorScheme.error,
                         size: 20.sp,
                       ),
                     ),
@@ -270,12 +275,12 @@ class SettingsScreen extends StatelessWidget {
                     height: 40.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.teal.withValues(alpha: 0.1),
+                      color: colorScheme.secondary.withValues(alpha: 0.1),
                     ),
                     child: Center(
                       child: HugeIcon(
                         icon: HugeIcons.strokeRoundedHelpCircle,
-                        color: Colors.teal,
+                        color: colorScheme.secondary,
                         size: 20.sp,
                       ),
                     ),
@@ -295,12 +300,12 @@ class SettingsScreen extends StatelessWidget {
                     height: 40.h,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.indigo.withValues(alpha: 0.1),
+                      color: colorScheme.tertiary.withValues(alpha: 0.1),
                     ),
                     child: Center(
                       child: HugeIcon(
                         icon: HugeIcons.strokeRoundedInformationCircle,
-                        color: Colors.indigo,
+                        color: colorScheme.tertiary,
                         size: 20.sp,
                       ),
                     ),
@@ -320,11 +325,11 @@ class SettingsScreen extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                _showLogoutConfirmation(context, l10n);
+                _showLogoutConfirmation(context);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red.withValues(alpha: 0.1),
-                foregroundColor: Colors.red,
+                backgroundColor: colorScheme.error.withValues(alpha: 0.1),
+                foregroundColor: colorScheme.error,
                 elevation: 0,
                 padding: EdgeInsets.symmetric(vertical: 16.h),
                 shape: RoundedRectangleBorder(
@@ -344,11 +349,12 @@ class SettingsScreen extends StatelessWidget {
 
   void _showLogoutConfirmation(
     BuildContext context,
-    AppLocalizations l10n,
   ) {
     showDialog(
       context: context,
       builder: (BuildContext dialogContext) {
+        final l10n = context.l10n;
+        final colorScheme = Theme.of(dialogContext).colorScheme;
         return AlertDialog(
           title: Text(l10n.logOut),
           content: Text('${l10n.logOut}?'),
@@ -364,7 +370,7 @@ class SettingsScreen extends StatelessWidget {
               },
               child: Text(
                 l10n.logOut,
-                style: const TextStyle(color: Colors.red),
+                style: TextStyle(color: colorScheme.error),
               ),
             ),
           ],

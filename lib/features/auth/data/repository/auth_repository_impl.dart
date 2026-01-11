@@ -1,5 +1,6 @@
 import 'package:loni_africa/core/network/api_client.dart';
 import 'package:loni_africa/core/network/api_exception.dart';
+import 'package:loni_africa/core/utilities/jwt_utils.dart';
 import 'package:loni_africa/features/auth/data/data_sources/auth_local_data_source.dart';
 import 'package:loni_africa/features/auth/data/models/auth_session_model.dart';
 import 'package:loni_africa/features/auth/data/services/auth_service.dart';
@@ -53,36 +54,24 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<AuthSession> signInWithOtp({
-    required String identifier,
-    required String otpCode,
-  }) async {
-    try {
-      final session = await _remoteService.signInWithOtp(
-        identifier: identifier,
-        otpCode: otpCode,
-      );
-      await _persistSession(session);
-      return session;
-    } on ApiException {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<void> sendOtp({required String identifier}) async {
-    try {
-      await _remoteService.sendOtp(identifier: identifier);
-    } on ApiException {
-      rethrow;
-    }
-  }
-
-  @override
   Future<AuthSession?> loadSession() async {
     final session = await _localDataSource.getSession();
     if (session != null) {
+      if (JwtUtils.isExpired(session.tokens.accessToken)) {
+        await clearSession();
+        return null;
+      }
       ApiClient.instance.setAccessToken(session.tokens.accessToken);
+
+      try {
+        await _remoteService.validateSession();
+      } on ApiException catch (error) {
+        if (error.isUnauthorized && error.isInvalidOrExpiredToken) {
+          await clearSession();
+          return null;
+        }
+        rethrow;
+      }
     }
     return session;
   }
@@ -91,21 +80,6 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> clearSession() async {
     await _localDataSource.clearSession();
     ApiClient.instance.setAccessToken(null);
-  }
-
-  @override
-  Future<void> savePendingOtpVerification(String identifier) async {
-    await _localDataSource.savePendingOtpVerification(identifier);
-  }
-
-  @override
-  Future<String?> getPendingOtpVerification() async {
-    return _localDataSource.getPendingOtpVerification();
-  }
-
-  @override
-  Future<void> clearPendingOtpVerification() async {
-    await _localDataSource.clearPendingOtpVerification();
   }
 
   Future<void> _persistSession(AuthSession session) async {

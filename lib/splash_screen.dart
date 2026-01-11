@@ -7,7 +7,6 @@ import 'package:loni_africa/shared/widgets/powered_by_footer.dart';
 import 'package:loni_africa/shared/widgets/texture_overlay.dart';
 import 'package:loni_africa/features/onboarding/presentation/screens/language_selection_screen.dart';
 import 'package:loni_africa/features/discovery/presentation/screens/home_screen.dart';
-import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
 import 'package:loni_africa/shared/widgets/global_snackbar.dart';
 import 'package:provider/provider.dart';
@@ -67,25 +66,11 @@ class _SplashScreenState extends State<SplashScreen>
       await authProvider.loadSession();
       if (!mounted) return;
 
-      // Priority order: 
-      // 1. If user has completed auth -> Home
-      // 2. If user is waiting for OTP verification -> OTP Screen
-      // 3. Otherwise -> Language Selection
-      String target;
-      
       if (authProvider.session != null) {
-        // User is fully authenticated
-        target = HomeScreen.path;
-      } else if (authProvider.hasPendingOtpVerification) {
-        // User is in the middle of OTP verification - take them back there
-        final identifier = authProvider.pendingOtpVerificationIdentifier!;
-        target = '${OtpVerificationScreen.path}?email=$identifier';
-      } else {
-        // No session and no pending OTP - fresh start
-        target = LanguageSelectionScreen.path;
+        context.go(HomeScreen.path);
+        return;
       }
-      
-      context.go(target);
+      context.go(LanguageSelectionScreen.path);
     } catch (error) {
       if (!mounted) return;
       GlobalSnackBar.showError(error.toString());

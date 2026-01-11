@@ -28,32 +28,18 @@ class AuthService {
     return _postLogin(payload);
   }
 
-  Future<AuthSessionModel> signInWithOtp({
-    required String identifier,
-    required String otpCode,
-  }) async {
-    final device = await _deviceInfoService.getDeviceInfo();
-    final payload = {
-      'identifier': identifier.trim(),
-      'otpCode': otpCode.trim(),
-      'device': device.toJson(),
-    };
-
-    return _postLogin(payload);
-  }
-
   Future<AuthSessionModel> signUpWithPassword({
     required String email,
     required String password,
     required String fullName,
   }) async {
     final device = await _deviceInfoService.getDeviceInfo();
-    
+
     // Split full name into first and last name
     final nameParts = fullName.trim().split(' ');
     final firstName = nameParts.first;
     final lastName = nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '';
-    
+
     final payload = {
       'email': email.trim(),
       'password': password,
@@ -85,28 +71,6 @@ class AuthService {
     }
   }
 
-  Future<void> sendOtp({required String identifier}) async {
-    final trimmedIdentifier = identifier.trim();
-    try {
-      print('📤 Sending OTP to /auth/otp/send');
-      print('   Identifier: $trimmedIdentifier');
-      await _dio.post(
-        '/auth/otp/send',
-        data: {'identifier': trimmedIdentifier},
-      );
-      print('✅ OTP sent successfully');
-    } on DioException catch (error) {
-      print('❌ OTP send error: ${error.message}');
-      print('   Status Code: ${error.response?.statusCode}');
-      print('   Response Body: ${error.response?.data}');
-      print('   Request Data: ${error.requestOptions.data}');
-      throw ApiException.fromDioException(error);
-    } catch (error) {
-      print('❌ Unexpected OTP send error: $error');
-      rethrow;
-    }
-  }
-
   Future<AuthSessionModel> _postLogin(Map<String, dynamic> payload) async {
     try {
       print('📤 Sending login request to /auth/login');
@@ -115,11 +79,21 @@ class AuthService {
       final data = response.data as Map<String, dynamic>;
       return AuthSessionModel.fromJson(data);
     } on DioException catch (error) {
-      print('❌ Login error: ${error.message} - Status: ${error.response?.statusCode}');
+      print(
+        '❌ Login error: ${error.message} - Status: ${error.response?.statusCode}',
+      );
       throw ApiException.fromDioException(error);
     } catch (error) {
       print('❌ Unexpected login error: $error');
       rethrow;
+    }
+  }
+
+  Future<void> validateSession() async {
+    try {
+      await _dio.get('/auth/profile');
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
     }
   }
 }

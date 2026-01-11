@@ -12,23 +12,7 @@ abstract class AuthRepository {
     required String fullName,
   });
 
-  Future<AuthSession> signInWithOtp({
-    required String identifier,
-    required String otpCode,
-  });
-
-  Future<void> sendOtp({required String identifier});
-
   Future<AuthSession?> loadSession();
 
   Future<void> clearSession();
-
-  /// Saves the identifier that is pending OTP verification
-  Future<void> savePendingOtpVerification(String identifier);
-
-  /// Gets the identifier that is pending OTP verification
-  Future<String?> getPendingOtpVerification();
-
-  /// Clears the pending OTP verification state
-  Future<void> clearPendingOtpVerification();
 }

@@ -7,6 +7,33 @@ class ApiException implements Exception {
   final int? statusCode;
   final Map<String, dynamic>? details;
 
+  String? get errorType => details?['error']?.toString();
+  String? get code => details?['code']?.toString();
+
+  bool get isUnauthorized {
+    if (statusCode == 401) {
+      return true;
+    }
+    final error = errorType;
+    if (error != null && error.toLowerCase().contains('unauthorized')) {
+      return true;
+    }
+    final resolvedCode = code;
+    if (resolvedCode != null && resolvedCode.startsWith('AUTH_TOKEN_')) {
+      return true;
+    }
+    return false;
+  }
+
+  bool get isInvalidOrExpiredToken {
+    final resolvedCode = code;
+    if (resolvedCode == 'AUTH_TOKEN_INVALID') {
+      return true;
+    }
+    // Fallback for backends that only return a message.
+    return message.toLowerCase().contains('invalid or expired token');
+  }
+
   factory ApiException.fromDioException(DioException error) {
     final status = error.response?.statusCode;
     final responseData = error.response?.data;

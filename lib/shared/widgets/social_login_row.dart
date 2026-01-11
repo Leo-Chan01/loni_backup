@@ -5,17 +5,17 @@ class SocialLoginRow extends StatelessWidget {
   const SocialLoginRow({
     super.key,
     required this.onGooglePressed,
-    required this.onPhonePressed,
     required this.googleLabel,
-    required this.phoneLabel,
+    this.onPhonePressed,
+    this.phoneLabel,
     this.isGoogleLoading = false,
     this.isPhoneLoading = false,
   });
 
   final VoidCallback onGooglePressed;
-  final VoidCallback onPhonePressed;
+  final VoidCallback? onPhonePressed;
   final String googleLabel;
-  final String phoneLabel;
+  final String? phoneLabel;
   final bool isGoogleLoading;
   final bool isPhoneLoading;
 
@@ -23,6 +23,8 @@ class SocialLoginRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final showPhone =
+        onPhonePressed != null && (phoneLabel?.isNotEmpty ?? false);
 
     return Row(
       children: [
@@ -36,17 +38,19 @@ class SocialLoginRow extends StatelessWidget {
             textTheme: textTheme,
           ),
         ),
-        SizedBox(width: 12.w),
-        Expanded(
-          child: _SocialButton(
-            icon: Icons.phone_android_rounded,
-            label: phoneLabel,
-            onPressed: onPhonePressed,
-            isLoading: isPhoneLoading,
-            colorScheme: colorScheme,
-            textTheme: textTheme,
+        if (showPhone) ...[
+          SizedBox(width: 12.w),
+          Expanded(
+            child: _SocialButton(
+              icon: Icons.phone_android_rounded,
+              label: phoneLabel!,
+              onPressed: onPhonePressed!,
+              isLoading: isPhoneLoading,
+              colorScheme: colorScheme,
+              textTheme: textTheme,
+            ),
           ),
-        ),
+        ],
       ],
     );
   }

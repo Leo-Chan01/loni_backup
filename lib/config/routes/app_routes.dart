@@ -2,7 +2,6 @@ import 'package:go_router/go_router.dart';
 import 'package:loni_africa/features/auth/presentation/screens/login_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/signup_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/phone_signup_screen.dart';
-import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_screen.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_tabs_scaffold.dart';
 import 'package:loni_africa/features/discovery/presentation/screens/explore_root_screen.dart';
@@ -96,13 +95,8 @@ class AppRoutes {
         },
       ),
       GoRoute(
-        path: OtpVerificationScreen.path,
-        name: OtpVerificationScreen.name,
-        builder: (context, state) {
-          final email = state.uri.queryParameters['email'];
-          final phoneNumber = state.uri.queryParameters['phoneNumber'];
-          return OtpVerificationScreen(email: email, phoneNumber: phoneNumber);
-        },
+        path: '/otp-verification',
+        redirect: (context, state) => LoginScreen.path,
       ),
       // App shell with bottom tabs (stateful)
       StatefulShellRoute.indexedStack(
@@ -382,7 +376,7 @@ class AppRoutes {
         builder: (context, state) {
           return const SettingsScreen();
         },
-      )
+      ),
     ],
   );
 }

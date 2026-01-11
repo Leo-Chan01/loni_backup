@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/utilities/localization_extension.dart';
-import '../widgets/preference_chip.dart';
+import '../../../../core/utilities/validators.dart';
+import '../../../../shared/widgets/global_snackbar.dart';
+import '../provider/profile_provider.dart';
 import '../widgets/profile_photo_picker.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -19,41 +22,40 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _fullNameController = TextEditingController(text: 'Amara Okonkwo');
-  final _usernameController = TextEditingController(text: 'amara_reads');
-  final _bioController = TextEditingController(
-    text:
-        'Book lover from Lagos 📚 | African literature enthusiast | Always searching for the next great read',
-  );
-  final _emailController = TextEditingController(text: 'amara@example.com');
-  final _locationController = TextEditingController(text: 'Lagos, Nigeria');
+  final _fullNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _locationController = TextEditingController();
 
-  final List<String> availablePreferences = [
-    'Fiction',
-    'History',
-    'Biography',
-    'Poetry',
-    'Romance',
-    'Business',
-    'Self-Help',
-    'Education',
-  ];
-
-  final Set<String> selectedPreferences = {'Fiction', 'History'};
+  bool _hasInitializedFromProfile = false;
 
   @override
   void dispose() {
     _fullNameController.dispose();
-    _usernameController.dispose();
-    _bioController.dispose();
     _emailController.dispose();
     _locationController.dispose();
     super.dispose();
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ProfileProvider>().fetchProfile();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final profileProvider = context.watch<ProfileProvider>();
+    final profile = profileProvider.profile;
+
+    if (profile != null && !_hasInitializedFromProfile) {
+      _fullNameController.text = profile.fullName;
+      _emailController.text = profile.email ?? '';
+      _locationController.text = profile.location ?? '';
+      _hasInitializedFromProfile = true;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -64,11 +66,31 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         title: Text(context.l10n.editProfile),
         actions: [
           TextButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                context.pop();
-              }
-            },
+            onPressed: profileProvider.isSaving
+                ? null
+                : () async {
+                    if (!_formKey.currentState!.validate()) {
+                      return;
+                    }
+
+                    final locale = Localizations.localeOf(context).languageCode;
+                    final result = await context.read<ProfileProvider>().saveProfile(
+                      fullName: _fullNameController.text,
+                      region: _locationController.text,
+                      locale: locale,
+                    );
+
+                    if (!context.mounted) return;
+
+                    if (result.isSuccess) {
+                      GlobalSnackBar.showSuccess(context.l10n.success);
+                      context.pop(true);
+                    } else {
+                      GlobalSnackBar.showError(
+                        result.message ?? context.l10n.error,
+                      );
+                    }
+                  },
             child: Text(
               context.l10n.save,
               style: TextStyle(
@@ -86,7 +108,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ProfilePhotoPicker(avatarUrl: null, onTap: () {}),
+              ProfilePhotoPicker(avatarUrl: profile?.avatarUrl, onTap: () {}),
               SizedBox(height: 32.h),
               Text(
                 context.l10n.fullName,
@@ -113,74 +135,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your full name';
-                  }
-                  return null;
+                  return Validators.validateRequired(
+                    context.l10n,
+                    value,
+                    context.l10n.fullName,
+                  );
                 },
-              ),
-              SizedBox(height: 20.h),
-              Text(
-                context.l10n.username,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: colorScheme.onSurface,
-                ),
-              ),
-              SizedBox(height: 8.h),
-              TextFormField(
-                controller: _usernameController,
-                decoration: InputDecoration(
-                  hintText: context.l10n.username,
-                  filled: true,
-                  fillColor: colorScheme.surfaceContainer,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12.r),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 14.h,
-                  ),
-                  prefixText: '@',
-                  prefixStyle: TextStyle(
-                    color: colorScheme.onSurface.withValues(alpha: 0.6),
-                  ),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a username';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20.h),
-              Text(
-                context.l10n.bio,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: colorScheme.onSurface,
-                ),
-              ),
-              SizedBox(height: 8.h),
-              TextFormField(
-                controller: _bioController,
-                decoration: InputDecoration(
-                  hintText: context.l10n.tellUsAboutYourself,
-                  filled: true,
-                  fillColor: colorScheme.surfaceContainer,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12.r),
-                    borderSide: BorderSide.none,
-                  ),
-                  contentPadding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 14.h,
-                  ),
-                ),
-                maxLines: 4,
               ),
               SizedBox(height: 20.h),
               Text(
@@ -208,15 +168,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  if (!value.contains('@')) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
+                enabled: false,
               ),
               SizedBox(height: 20.h),
               Text(
@@ -244,43 +196,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 28.h),
-              Text(
-                context.l10n.readingPreferences,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.bold,
-                  color: colorScheme.onSurface,
-                ),
-              ),
-              SizedBox(height: 12.h),
-              Wrap(
-                spacing: 8.w,
-                runSpacing: 8.h,
-                children: [
-                  ...availablePreferences.map(
-                    (preference) => PreferenceChip(
-                      label: preference,
-                      isSelected: selectedPreferences.contains(preference),
-                      onTap: () {
-                        setState(() {
-                          if (selectedPreferences.contains(preference)) {
-                            selectedPreferences.remove(preference);
-                          } else {
-                            selectedPreferences.add(preference);
-                          }
-                        });
-                      },
-                    ),
-                  ),
-                  PreferenceChip(
-                    label: context.l10n.addNewPreference,
-                    isSelected: false,
-                    onTap: () {},
-                  ),
-                ],
-              ),
               SizedBox(height: 32.h),
+              if (profileProvider.isLoading)
+                Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 12.h),
+                    child: CircularProgressIndicator(color: colorScheme.primary),
+                  ),
+                ),
+              if (!profileProvider.isLoading && profileProvider.errorMessage != null)
+                Padding(
+                  padding: EdgeInsets.only(top: 12.h),
+                  child: Text(
+                    profileProvider.errorMessage!,
+                    style: TextStyle(color: colorScheme.error),
+                  ),
+                ),
             ],
           ),
         ),

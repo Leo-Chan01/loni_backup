@@ -9,6 +9,11 @@ import 'package:loni_africa/core/utilities/language_service.dart';
 import 'package:loni_africa/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:loni_africa/features/auth/domain/repository/auth_repository.dart';
 import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
+import 'package:loni_africa/features/profile/data/repository/profile_repository_impl.dart';
+import 'package:loni_africa/features/profile/domain/repository/profile_repository.dart';
+import 'package:loni_africa/features/profile/domain/usecases/get_profile_usecase.dart';
+import 'package:loni_africa/features/profile/domain/usecases/update_profile_usecase.dart';
+import 'package:loni_africa/features/profile/presentation/provider/profile_provider.dart';
 import 'package:loni_africa/l10n/app_localizations.dart';
 import 'package:loni_africa/shared/widgets/global_snackbar.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +33,7 @@ class _MainAppState extends State<MainApp> {
   final ThemeService _themeService = ThemeService();
   final LanguageService _languageService = LanguageService();
   late final AuthRepository _authRepository;
+  late final ProfileRepository _profileRepository;
   ThemeMode _themeMode = ThemeMode.system;
   Locale? _locale;
 
@@ -35,6 +41,7 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     super.initState();
     _authRepository = AuthRepositoryImpl();
+    _profileRepository = ProfileRepositoryImpl();
     _loadTheme();
     _loadLocale();
   }
@@ -99,6 +106,14 @@ class _MainAppState extends State<MainApp> {
                         ChangeNotifierProvider<AuthProvider>(
                           create: (_) =>
                               AuthProvider(authRepository: _authRepository),
+                        ),
+                        ChangeNotifierProvider<ProfileProvider>(
+                          create: (_) => ProfileProvider(
+                            getProfile: GetProfileUseCase(_profileRepository),
+                            updateProfile: UpdateProfileUseCase(
+                              _profileRepository,
+                            ),
+                          ),
                         ),
                       ],
                       child: MaterialApp.router(

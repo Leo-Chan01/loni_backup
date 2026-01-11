@@ -255,8 +255,14 @@ class _ProfileScreenState extends State<ProfileScreen>
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 24.w),
                         child: ElevatedButton.icon(
-                          onPressed: () =>
-                              context.pushNamed(EditProfileScreen.name),
+                          onPressed: () async {
+                            final result = await context.pushNamed(
+                              EditProfileScreen.name,
+                            );
+                            if (result == true) {
+                              _loadProfileData();
+                            }
+                          },
                           icon: HugeIcon(
                             icon: HugeIcons.strokeRoundedEdit02,
                             size: 18.r,
