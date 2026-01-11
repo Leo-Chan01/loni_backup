@@ -1,113 +1,131 @@
+import 'package:loni_africa/l10n/app_localizations.dart';
+
 /// Validation utility class for form inputs
 class Validators {
   Validators._();
 
+  static const int minPasswordLength = 8;
+  static const int minNameLength = 2;
+  static const int maxNameLength = 50;
+
+  static final RegExp _emailRegex = RegExp(
+    r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+  );
+
+  static final RegExp _e164PhoneRegex = RegExp(r'^\+?[1-9]\d{1,14}$');
+  static final RegExp _phoneSeparatorsRegex = RegExp(r'[\s-]');
+
+  static bool isValidEmail(String value) => _emailRegex.hasMatch(value.trim());
+
+  static bool isValidName(String value) {
+    final trimmed = value.trim();
+    return trimmed.isNotEmpty &&
+        trimmed.length >= minNameLength &&
+        trimmed.length <= maxNameLength;
+  }
+
+  static bool isValidPassword(String value) {
+    return value.isNotEmpty && value.length >= minPasswordLength;
+  }
+
+  static bool isValidPhone(String value) {
+    final cleaned = value.trim().replaceAll(_phoneSeparatorsRegex, '');
+    return _e164PhoneRegex.hasMatch(cleaned);
+  }
+
+  static bool isValidEmailOrPhone(String value) {
+    final trimmed = value.trim();
+    return isValidEmail(trimmed) || isValidPhone(trimmed);
+  }
+
   /// Validates email format
-  static String? validateEmail(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Email is required';
+  static String? validateEmail(AppLocalizations l10n, String? value) {
+    final trimmed = value?.trim() ?? '';
+    if (trimmed.isEmpty) {
+      return l10n.fieldRequired(l10n.emailLabel);
     }
-
-    final emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    );
-
-    if (!emailRegex.hasMatch(value.trim())) {
-      return 'Please enter a valid email address';
+    if (!isValidEmail(trimmed)) {
+      return l10n.invalidEmailAddress;
     }
-
     return null;
   }
 
   /// Validates phone number format
-  static String? validatePhone(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Phone number is required';
+  static String? validatePhone(AppLocalizations l10n, String? value) {
+    final trimmed = value?.trim() ?? '';
+    if (trimmed.isEmpty) {
+      return l10n.fieldRequired(l10n.phoneLabel);
     }
-
-    final phoneRegex = RegExp(r'^\+?[1-9]\d{1,14}$');
-    final cleanedPhone = value.trim().replaceAll(RegExp(r'[\s-]'), '');
-
-    if (!phoneRegex.hasMatch(cleanedPhone)) {
-      return 'Please enter a valid phone number';
+    if (!isValidPhone(trimmed)) {
+      return l10n.invalidPhoneNumber;
     }
-
     return null;
   }
 
   /// Validates email or phone number
-  static String? validateEmailOrPhone(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Email or phone number is required';
+  static String? validateEmailOrPhone(AppLocalizations l10n, String? value) {
+    final trimmed = value?.trim() ?? '';
+    if (trimmed.isEmpty) {
+      return l10n.fieldRequired(l10n.emailOrPhoneLabel);
     }
-
-    final trimmedValue = value.trim();
-    final emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-    );
-    final phoneRegex = RegExp(r'^\+?[1-9]\d{1,14}$');
-    final cleanedPhone = trimmedValue.replaceAll(RegExp(r'[\s-]'), '');
-
-    if (!emailRegex.hasMatch(trimmedValue) &&
-        !phoneRegex.hasMatch(cleanedPhone)) {
-      return 'Please enter a valid email or phone number';
+    if (!isValidEmailOrPhone(trimmed)) {
+      return l10n.invalidEmailOrPhone;
     }
-
     return null;
   }
 
   /// Validates name format
-  static String? validateName(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Full name is required';
+  static String? validateName(AppLocalizations l10n, String? value) {
+    final trimmed = value?.trim() ?? '';
+    if (trimmed.isEmpty) {
+      return l10n.fieldRequired(l10n.nameLabel);
     }
-
-    if (value.trim().length < 2) {
-      return 'Full name must be at least 2 characters';
+    if (trimmed.length < minNameLength) {
+      return l10n.fieldMinLength(l10n.nameLabel, minNameLength);
     }
-
-    if (value.trim().length > 50) {
-      return 'Full name must be less than 50 characters';
+    if (trimmed.length > maxNameLength) {
+      return l10n.fieldMaxLength(l10n.nameLabel, maxNameLength);
     }
-
     return null;
   }
 
   /// Validates password
-  static String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Password is required';
+  static String? validatePassword(AppLocalizations l10n, String? value) {
+    final raw = value ?? '';
+    if (raw.isEmpty) {
+      return l10n.passwordRequired;
     }
-
-    if (value.length < 8) {
-      return 'Password must be at least 8 characters';
+    if (raw.length < minPasswordLength) {
+      return l10n.fieldMinLength(l10n.passwordLabel, minPasswordLength);
     }
+    return null;
+  }
 
+  /// Validates password confirmation
+  static String? validateConfirmPassword(
+    AppLocalizations l10n,
+    String? value,
+    String passwordToMatch,
+  ) {
+    final passwordError = validatePassword(l10n, value);
+    if (passwordError != null) {
+      return passwordError;
+    }
+    if (value != passwordToMatch) {
+      return l10n.passwordsDoNotMatch;
+    }
     return null;
   }
 
   /// Validates required field
-  static String? validateRequired(String? value, String fieldName) {
+  static String? validateRequired(
+    AppLocalizations l10n,
+    String? value,
+    String fieldLabel,
+  ) {
     if (value == null || value.trim().isEmpty) {
-      return '$fieldName is required';
+      return l10n.fieldRequired(fieldLabel);
     }
-    return null;
-  }
-
-  /// Validates OTP code
-  static String? validateOtp(String? value) {
-    if (value == null || value.trim().isEmpty) {
-      return 'Verification code is required';
-    }
-
-    if (value.trim().length != 6) {
-      return 'Verification code must be 6 digits';
-    }
-
-    if (!RegExp(r'^\d{6}$').hasMatch(value.trim())) {
-      return 'Verification code must contain only numbers';
-    }
-
     return null;
   }
 }

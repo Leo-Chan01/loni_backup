@@ -6,8 +6,43 @@
   "welcomeBack": "Bon retour",
   "createAccount": "Créer un compte",
   "enterEmail": "Entrez votre email",
+  "enterEmailOrPhone": "Saisissez votre e-mail ou votre numéro de téléphone",
   "enterPassword": "Entrez votre mot de passe",
   "enterName": "Entrez votre nom",
+  "emailOrPhoneLabel": "E-mail ou téléphone",
+  "fieldRequired": "{field} est requis",
+  "@fieldRequired": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldMinLength": "{field} doit contenir au moins {min} caractères",
+  "@fieldMinLength": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      },
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldMaxLength": "{field} doit contenir moins de {max} caractères",
+  "@fieldMaxLength": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "invalidEmailAddress": "Veuillez saisir une adresse e-mail valide",
+  "invalidPhoneNumber": "Veuillez saisir un numéro de téléphone valide",
+  "invalidEmailOrPhone": "Veuillez saisir un e-mail ou un numéro de téléphone valide",
   "forgotPassword": "Mot de passe oublié?",
   "dontHaveAccount": "Vous n'avez pas de compte?",
   "alreadyHaveAccount": "Vous avez déjà un compte?",

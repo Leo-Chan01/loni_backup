@@ -7,8 +7,43 @@
   "createAccount": "Create Account",
   "signUpSubtitle": "Create an account to start your reading journey",
   "enterEmail": "Enter your email",
+  "enterEmailOrPhone": "Enter your email or phone number",
   "enterPassword": "Enter your password",
   "enterName": "Enter your name",
+  "emailOrPhoneLabel": "Email or Phone",
+  "fieldRequired": "{field} is required",
+  "@fieldRequired": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldMinLength": "{field} must be at least {min} characters",
+  "@fieldMinLength": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      },
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldMaxLength": "{field} must be less than {max} characters",
+  "@fieldMaxLength": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "invalidEmailAddress": "Please enter a valid email address",
+  "invalidPhoneNumber": "Please enter a valid phone number",
+  "invalidEmailOrPhone": "Please enter a valid email or phone number",
   "passwordRequired": "Password is required",
   "passwordsDoNotMatch": "Passwords do not match",
   "agreeToTermsError": "You must agree to the terms and conditions",

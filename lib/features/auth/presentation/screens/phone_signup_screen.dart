@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:loni_africa/core/utilities/validators.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
-import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
+import 'package:loni_africa/features/discovery/presentation/screens/home_screen.dart';
 import 'package:loni_africa/main.dart';
 import 'package:loni_africa/shared/widgets/auth_text_field.dart';
 import 'package:loni_africa/shared/widgets/global_snackbar.dart';
@@ -71,11 +71,8 @@ class _PhoneSignUpScreenState extends State<PhoneSignUpScreen> {
     if (!mounted) return;
 
     if (signUpResult.isSuccess) {
-      // Save pending OTP state before navigating to OTP screen
-      // This ensures user can't bypass OTP verification on app restart
-      await authProvider.savePendingOtpVerification(phone);
       GlobalSnackBar.showSuccess(signUpResult.message ?? context.l10n.success);
-      context.go('${OtpVerificationScreen.path}?email=$phone');
+      context.go(HomeScreen.path);
     } else {
       GlobalSnackBar.showError(signUpResult.message ?? context.l10n.error);
     }
@@ -126,7 +123,8 @@ class _PhoneSignUpScreenState extends State<PhoneSignUpScreen> {
                       prefixIcon: Icons.person_outline,
                       controller: _nameController,
                       keyboardType: TextInputType.name,
-                      validator: Validators.validateName,
+                      validator: (value) =>
+                          Validators.validateName(context.l10n, value),
                     ),
                     SizedBox(height: 20.h),
                     AuthTextField(
@@ -135,7 +133,8 @@ class _PhoneSignUpScreenState extends State<PhoneSignUpScreen> {
                       prefixIcon: Icons.phone_outlined,
                       controller: _phoneController,
                       keyboardType: TextInputType.phone,
-                      validator: Validators.validatePhone,
+                      validator: (value) =>
+                          Validators.validatePhone(context.l10n, value),
                     ),
                     SizedBox(height: 20.h),
                     AuthTextField(
@@ -144,7 +143,8 @@ class _PhoneSignUpScreenState extends State<PhoneSignUpScreen> {
                       prefixIcon: Icons.lock_outline,
                       controller: _passwordController,
                       isPassword: !_isPasswordVisible,
-                      validator: Validators.validatePassword,
+                      validator: (value) =>
+                          Validators.validatePassword(context.l10n, value),
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -167,15 +167,11 @@ class _PhoneSignUpScreenState extends State<PhoneSignUpScreen> {
                       prefixIcon: Icons.lock_outline,
                       controller: _confirmPasswordController,
                       isPassword: !_isConfirmPasswordVisible,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return context.l10n.passwordRequired;
-                        }
-                        if (value != _passwordController.text) {
-                          return context.l10n.passwordsDoNotMatch;
-                        }
-                        return null;
-                      },
+                      validator: (value) => Validators.validateConfirmPassword(
+                        context.l10n,
+                        value,
+                        _passwordController.text,
+                      ),
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {

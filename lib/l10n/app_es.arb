@@ -6,8 +6,43 @@
   "welcomeBack": "Bienvenido de nuevo",
   "createAccount": "Crear cuenta",
   "enterEmail": "Ingresa tu correo",
+  "enterEmailOrPhone": "Introduce tu correo o número de teléfono",
   "enterPassword": "Ingresa tu contraseña",
   "enterName": "Ingresa tu nombre",
+  "emailOrPhoneLabel": "Correo o teléfono",
+  "fieldRequired": "{field} es obligatorio",
+  "@fieldRequired": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldMinLength": "{field} debe tener al menos {min} caracteres",
+  "@fieldMinLength": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      },
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "fieldMaxLength": "{field} debe tener menos de {max} caracteres",
+  "@fieldMaxLength": {
+    "placeholders": {
+      "field": {
+        "type": "String"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "invalidEmailAddress": "Por favor, introduce un correo electrónico válido",
+  "invalidPhoneNumber": "Por favor, introduce un número de teléfono válido",
+  "invalidEmailOrPhone": "Por favor, introduce un correo o teléfono válido",
   "forgotPassword": "¿Olvidaste tu contraseña?",
   "dontHaveAccount": "¿No tienes una cuenta?",
   "alreadyHaveAccount": "¿Ya tienes una cuenta?",

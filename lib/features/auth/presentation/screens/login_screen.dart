@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:loni_africa/core/utilities/validators.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
-import 'package:loni_africa/features/auth/presentation/screens/otp_verification_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/signup_screen.dart';
 import 'package:loni_africa/features/discovery/presentation/screens/home_screen.dart';
 import 'package:loni_africa/main.dart';
@@ -66,28 +65,6 @@ class _LoginScreenState extends State<LoginScreen> {
     // TODO: Implement Google sign in
   }
 
-  Future<void> _onPhoneSignIn() async {
-    final identifier = _emailController.text.trim();
-    final validationError = Validators.validateEmailOrPhone(identifier);
-    if (validationError != null) {
-      GlobalSnackBar.showError(validationError);
-      return;
-    }
-
-    final authProvider = context.read<AuthProvider>();
-    if (authProvider.isSendingOtp) return;
-    final result = await authProvider.sendOtp(identifier: identifier);
-
-    if (!mounted) return;
-
-    if (result.isSuccess) {
-      GlobalSnackBar.showInfo(context.l10n.verificationCodeSent(identifier));
-      context.go('${OtpVerificationScreen.path}?email=$identifier');
-    } else {
-      GlobalSnackBar.showError(result.message ?? context.l10n.error);
-    }
-  }
-
   void _onForgotPassword() {
     // TODO: Navigate to forgot password
   }
@@ -127,12 +104,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 40.h),
                     AuthTextField(
-                      label: context.l10n.emailLabel,
-                      hintText: context.l10n.enterEmail,
+                      label: context.l10n.emailOrPhoneLabel,
+                      hintText: context.l10n.enterEmailOrPhone,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
-                      validator: Validators.validateEmailOrPhone,
+                      validator: (value) =>
+                          Validators.validateEmailOrPhone(context.l10n, value),
                     ),
                     SizedBox(height: 20.h),
                     AuthTextField(
@@ -141,7 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: Icons.lock_outline,
                       controller: _passwordController,
                       isPassword: !_isPasswordVisible,
-                      validator: Validators.validatePassword,
+                      validator: (value) =>
+                          Validators.validatePassword(context.l10n, value),
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -215,10 +194,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 24.h),
                     SocialLoginRow(
                       onGooglePressed: _onGoogleSignIn,
-                      onPhonePressed: _onPhoneSignIn,
                       googleLabel: context.l10n.google,
-                      phoneLabel: context.l10n.phoneLabel,
-                      isPhoneLoading: authProvider.isSendingOtp,
+                      onPhonePressed: null,
+                      phoneLabel: null,
                     ),
                     SizedBox(height: 32.h),
                     Center(

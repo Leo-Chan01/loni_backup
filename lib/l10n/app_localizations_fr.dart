@@ -28,10 +28,43 @@ class AppLocalizationsFr extends AppLocalizations {
   String get enterEmail => 'Entrez votre email';
 
   @override
+  String get enterEmailOrPhone =>
+      'Saisissez votre e-mail ou votre numéro de téléphone';
+
+  @override
   String get enterPassword => 'Entrez votre mot de passe';
 
   @override
   String get enterName => 'Entrez votre nom';
+
+  @override
+  String get emailOrPhoneLabel => 'E-mail ou téléphone';
+
+  @override
+  String fieldRequired(String field) {
+    return '$field est requis';
+  }
+
+  @override
+  String fieldMinLength(String field, int min) {
+    return '$field doit contenir au moins $min caractères';
+  }
+
+  @override
+  String fieldMaxLength(String field, int max) {
+    return '$field doit contenir moins de $max caractères';
+  }
+
+  @override
+  String get invalidEmailAddress => 'Veuillez saisir une adresse e-mail valide';
+
+  @override
+  String get invalidPhoneNumber =>
+      'Veuillez saisir un numéro de téléphone valide';
+
+  @override
+  String get invalidEmailOrPhone =>
+      'Veuillez saisir un e-mail ou un numéro de téléphone valide';
 
   @override
   String get passwordRequired => 'Password is required';

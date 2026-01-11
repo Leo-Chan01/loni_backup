@@ -136,6 +136,12 @@ abstract class AppLocalizations {
   /// **'Enter your email'**
   String get enterEmail;
 
+  /// No description provided for @enterEmailOrPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email or phone number'**
+  String get enterEmailOrPhone;
+
   /// No description provided for @enterPassword.
   ///
   /// In en, this message translates to:
@@ -147,6 +153,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your name'**
   String get enterName;
+
+  /// No description provided for @emailOrPhoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email or Phone'**
+  String get emailOrPhoneLabel;
+
+  /// No description provided for @fieldRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'{field} is required'**
+  String fieldRequired(String field);
+
+  /// No description provided for @fieldMinLength.
+  ///
+  /// In en, this message translates to:
+  /// **'{field} must be at least {min} characters'**
+  String fieldMinLength(String field, int min);
+
+  /// No description provided for @fieldMaxLength.
+  ///
+  /// In en, this message translates to:
+  /// **'{field} must be less than {max} characters'**
+  String fieldMaxLength(String field, int max);
+
+  /// No description provided for @invalidEmailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get invalidEmailAddress;
+
+  /// No description provided for @invalidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid phone number'**
+  String get invalidPhoneNumber;
+
+  /// No description provided for @invalidEmailOrPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email or phone number'**
+  String get invalidEmailOrPhone;
 
   /// No description provided for @passwordRequired.
   ///

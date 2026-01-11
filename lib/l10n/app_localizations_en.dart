@@ -28,10 +28,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterEmail => 'Enter your email';
 
   @override
+  String get enterEmailOrPhone => 'Enter your email or phone number';
+
+  @override
   String get enterPassword => 'Enter your password';
 
   @override
   String get enterName => 'Enter your name';
+
+  @override
+  String get emailOrPhoneLabel => 'Email or Phone';
+
+  @override
+  String fieldRequired(String field) {
+    return '$field is required';
+  }
+
+  @override
+  String fieldMinLength(String field, int min) {
+    return '$field must be at least $min characters';
+  }
+
+  @override
+  String fieldMaxLength(String field, int max) {
+    return '$field must be less than $max characters';
+  }
+
+  @override
+  String get invalidEmailAddress => 'Please enter a valid email address';
+
+  @override
+  String get invalidPhoneNumber => 'Please enter a valid phone number';
+
+  @override
+  String get invalidEmailOrPhone =>
+      'Please enter a valid email or phone number';
 
   @override
   String get passwordRequired => 'Password is required';
