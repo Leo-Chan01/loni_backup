@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
+import 'package:loni_africa/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/login_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/signup_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/phone_signup_screen.dart';
 import 'package:loni_africa/features/dashboard/presentation/screens/main_screen.dart';
@@ -78,6 +80,20 @@ class AppRoutes {
         name: LoginScreen.name,
         builder: (context, state) {
           return const LoginScreen();
+        },
+      ),
+      GoRoute(
+        path: ForgotPasswordScreen.path,
+        name: ForgotPasswordScreen.name,
+        builder: (context, state) {
+          return const ForgotPasswordScreen();
+        },
+      ),
+      GoRoute(
+        path: ResetPasswordScreen.path,
+        name: ResetPasswordScreen.name,
+        builder: (context, state) {
+          return const ResetPasswordScreen();
         },
       ),
       GoRoute(

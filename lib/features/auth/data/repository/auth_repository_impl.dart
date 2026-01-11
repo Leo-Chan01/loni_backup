@@ -77,6 +77,19 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<void> requestPasswordReset({required String identifier}) async {
+    await _remoteService.requestPasswordReset(identifier: identifier);
+  }
+
+  @override
+  Future<void> confirmPasswordReset({
+    required String token,
+    required String password,
+  }) async {
+    await _remoteService.confirmPasswordReset(token: token, password: password);
+  }
+
+  @override
   Future<void> clearSession() async {
     await _localDataSource.clearSession();
     ApiClient.instance.setAccessToken(null);

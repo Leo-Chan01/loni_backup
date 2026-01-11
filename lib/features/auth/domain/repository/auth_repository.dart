@@ -14,5 +14,12 @@ abstract class AuthRepository {
 
   Future<AuthSession?> loadSession();
 
+  Future<void> requestPasswordReset({required String identifier});
+
+  Future<void> confirmPasswordReset({
+    required String token,
+    required String password,
+  });
+
   Future<void> clearSession();
 }

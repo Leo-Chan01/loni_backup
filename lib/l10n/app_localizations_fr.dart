@@ -79,6 +79,47 @@ class AppLocalizationsFr extends AppLocalizations {
   String get forgotPassword => 'Mot de passe oublié?';
 
   @override
+  String get forgotPasswordTitle => 'Mot de passe oublié';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'Saisissez votre e-mail ou téléphone et nous vous enverrons un code de réinitialisation.';
+
+  @override
+  String get sendResetCode => 'Envoyer le code';
+
+  @override
+  String get passwordResetCodeSent => 'Code de réinitialisation envoyé';
+
+  @override
+  String get resetPasswordTitle => 'Réinitialiser le mot de passe';
+
+  @override
+  String get resetPasswordSubtitle =>
+      'Entrez le code et choisissez un nouveau mot de passe.';
+
+  @override
+  String get resetTokenLabel => 'Code de réinitialisation';
+
+  @override
+  String get resetTokenHint => 'Entrez votre code';
+
+  @override
+  String get newPasswordLabel => 'Nouveau mot de passe';
+
+  @override
+  String get confirmPasswordLabel => 'Confirmer le mot de passe';
+
+  @override
+  String get confirmPasswordHint => 'Ressaisissez votre mot de passe';
+
+  @override
+  String get resetPasswordAction => 'Définir un nouveau mot de passe';
+
+  @override
+  String get passwordResetSuccess => 'Mot de passe mis à jour';
+
+  @override
   String get dontHaveAccount => 'Vous n\'avez pas de compte?';
 
   @override

@@ -96,4 +96,29 @@ class AuthService {
       throw ApiException.fromDioException(error);
     }
   }
+
+  Future<void> requestPasswordReset({required String identifier}) async {
+    try {
+      await _dio.post(
+        '/auth/password/reset/request',
+        data: {'identifier': identifier.trim()},
+      );
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
+    }
+  }
+
+  Future<void> confirmPasswordReset({
+    required String token,
+    required String password,
+  }) async {
+    try {
+      await _dio.post(
+        '/auth/password/reset/confirm',
+        data: {'token': token.trim(), 'password': password},
+      );
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
+    }
+  }
 }

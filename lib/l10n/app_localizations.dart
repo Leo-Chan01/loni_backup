@@ -220,6 +220,84 @@ abstract class AppLocalizations {
   /// **'Forgot Password?'**
   String get forgotPassword;
 
+  /// No description provided for @forgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password'**
+  String get forgotPasswordTitle;
+
+  /// No description provided for @forgotPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email or phone and we\'ll send you a reset code.'**
+  String get forgotPasswordSubtitle;
+
+  /// No description provided for @sendResetCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reset code'**
+  String get sendResetCode;
+
+  /// No description provided for @passwordResetCodeSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset code sent'**
+  String get passwordResetCodeSent;
+
+  /// No description provided for @resetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPasswordTitle;
+
+  /// No description provided for @resetPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the reset code and choose a new password.'**
+  String get resetPasswordSubtitle;
+
+  /// No description provided for @resetTokenLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset code'**
+  String get resetTokenLabel;
+
+  /// No description provided for @resetTokenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your reset code'**
+  String get resetTokenHint;
+
+  /// No description provided for @newPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get newPasswordLabel;
+
+  /// No description provided for @confirmPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get confirmPasswordLabel;
+
+  /// No description provided for @confirmPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-enter your password'**
+  String get confirmPasswordHint;
+
+  /// No description provided for @resetPasswordAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Set new password'**
+  String get resetPasswordAction;
+
+  /// No description provided for @passwordResetSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated successfully'**
+  String get passwordResetSuccess;
+
   /// No description provided for @dontHaveAccount.
   ///
   /// In en, this message translates to:

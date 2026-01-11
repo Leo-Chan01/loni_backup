@@ -6,6 +6,7 @@ class AuthTextField extends StatefulWidget {
     super.key,
     required this.label,
     required this.hintText,
+    this.prefix,
     this.prefixIcon,
     this.suffixIcon,
     this.isPassword = false,
@@ -16,6 +17,7 @@ class AuthTextField extends StatefulWidget {
 
   final String label;
   final String hintText;
+  final Widget? prefix;
   final IconData? prefixIcon;
   final Widget? suffixIcon;
   final bool isPassword;
@@ -74,13 +76,15 @@ class _AuthTextFieldState extends State<AuthTextField> {
               color: colorScheme.onSurface.withValues(alpha: 0.4),
               fontSize: 15.sp,
             ),
-            prefixIcon: widget.prefixIcon != null
-                ? Icon(
-                    widget.prefixIcon,
-                    color: colorScheme.onSurface.withValues(alpha: 0.4),
-                    size: 20.sp,
-                  )
-                : null,
+            prefixIcon:
+                widget.prefix ??
+                (widget.prefixIcon != null
+                    ? Icon(
+                        widget.prefixIcon,
+                        color: colorScheme.onSurface.withValues(alpha: 0.4),
+                        size: 20.sp,
+                      )
+                    : null),
             suffixIcon: widget.suffixIcon,
             contentPadding: EdgeInsets.symmetric(
               horizontal: 16.w,

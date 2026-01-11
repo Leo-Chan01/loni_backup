@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:loni_africa/core/utilities/validators.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
+import 'package:loni_africa/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:loni_africa/features/auth/presentation/screens/signup_screen.dart';
 import 'package:loni_africa/features/discovery/presentation/screens/home_screen.dart';
 import 'package:loni_africa/main.dart';
@@ -66,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _onForgotPassword() {
-    // TODO: Navigate to forgot password
+    context.push(ForgotPasswordScreen.path);
   }
 
   void _onSignUp() {

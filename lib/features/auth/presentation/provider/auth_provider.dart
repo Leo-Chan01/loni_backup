@@ -21,12 +21,16 @@ class AuthProvider extends ChangeNotifier {
   bool _isInitializing = false;
   bool _isSigningIn = false;
   bool _isSigningUp = false;
+  bool _isRequestingPasswordReset = false;
+  bool _isConfirmingPasswordReset = false;
   String? _errorMessage;
 
   AuthSession? get session => _session;
   bool get isInitializing => _isInitializing;
   bool get isSigningIn => _isSigningIn;
   bool get isSigningUp => _isSigningUp;
+  bool get isRequestingPasswordReset => _isRequestingPasswordReset;
+  bool get isConfirmingPasswordReset => _isConfirmingPasswordReset;
   String? get errorMessage => _errorMessage;
 
   Future<void> loadSession() async {
@@ -95,6 +99,47 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
+  Future<AuthActionResult> requestPasswordReset({
+    required String identifier,
+  }) async {
+    _setRequestingPasswordReset(true);
+    try {
+      await _authRepository.requestPasswordReset(identifier: identifier);
+      _errorMessage = null;
+      return const AuthActionResult.success();
+    } on ApiException catch (error) {
+      final resolvedMessage = _preferredErrorMessage(error);
+      _errorMessage = resolvedMessage;
+      return AuthActionResult.failure(message: resolvedMessage);
+    } catch (error) {
+      _errorMessage = error.toString();
+      return AuthActionResult.failure(message: error.toString());
+    } finally {
+      _setRequestingPasswordReset(false);
+    }
+  }
+
+  Future<AuthActionResult> confirmPasswordReset({
+    required String token,
+    required String password,
+  }) async {
+    _setConfirmingPasswordReset(true);
+    try {
+      await _authRepository.confirmPasswordReset(token: token, password: password);
+      _errorMessage = null;
+      return const AuthActionResult.success();
+    } on ApiException catch (error) {
+      final resolvedMessage = _preferredErrorMessage(error);
+      _errorMessage = resolvedMessage;
+      return AuthActionResult.failure(message: resolvedMessage);
+    } catch (error) {
+      _errorMessage = error.toString();
+      return AuthActionResult.failure(message: error.toString());
+    } finally {
+      _setConfirmingPasswordReset(false);
+    }
+  }
+
   Future<void> signOut() async {
     await _authRepository.clearSession();
     _session = null;
@@ -108,6 +153,16 @@ class AuthProvider extends ChangeNotifier {
 
   void _setSigningUp(bool value) {
     _isSigningUp = value;
+    notifyListeners();
+  }
+
+  void _setRequestingPasswordReset(bool value) {
+    _isRequestingPasswordReset = value;
+    notifyListeners();
+  }
+
+  void _setConfirmingPasswordReset(bool value) {
+    _isConfirmingPasswordReset = value;
     notifyListeners();
   }
 
