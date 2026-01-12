@@ -152,7 +152,7 @@ Notes:
 | Endpoint | Consumer app | Admin app | Evidence (where found) |
 |---|---:|---:|---|
 | GET `/v1/analytics/reading-states` | ✅ | ❌ | `loni_backup/lib/features/reading/data/services/reading_api_service.dart` |
-| POST `/v1/analytics/reading-states` | ❌ | ❌ | — |
+| POST `/v1/analytics/reading-states` | ✅ | ❌ | `loni_backup/lib/features/reading/data/services/reading_api_service.dart` |
 | GET `/v1/analytics/highlights` | ❌ | ❌ | — |
 | POST `/v1/analytics/highlights` | ❌ | ❌ | — |
 | POST `/v1/analytics/reading-sessions` | ❌ | ❌ | — |
