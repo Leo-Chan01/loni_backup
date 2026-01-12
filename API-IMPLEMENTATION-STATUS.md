@@ -24,7 +24,7 @@ Apps:
 | POST `/v1/auth/login` | ✅ | ✅ | Consumer: `loni_backup/lib/features/auth/data/services/auth_service.dart` • Admin: `admin/lib/features/auth/data/services/admin_auth_service.dart` |
 | POST `/v1/auth/partner/login` | ❌ | ❌ | — |
 | GET `/v1/auth/jwks` | ❌ | ❌ | — |
-| POST `/v1/auth/token/refresh` | ❌ | ❌ | — |
+| POST `/v1/auth/token/refresh` | ✅ | ❌ | `loni_backup/lib/features/auth/data/services/auth_token_refresh_service.dart` + interceptor wiring in `loni_backup/lib/core/network/api_client.dart` |
 | POST `/v1/auth/otp/send` | ❌ | ❌ | — |
 | POST `/v1/auth/password/reset/request` | ✅ | ❌ | `loni_backup/lib/features/auth/data/services/auth_service.dart` |
 | POST `/v1/auth/password/reset/confirm` | ✅ | ❌ | `loni_backup/lib/features/auth/data/services/auth_service.dart` |
@@ -47,7 +47,7 @@ Apps:
 | POST `/v1/auth/privacy/delete` | ❌ | ❌ | — |
 
 Notes:
-- Consumer session handling currently clears the session when the JWT is expired; there is no refresh-token flow wired to `/auth/token/refresh`.
+- Consumer app includes automatic refresh-token handling on 401s (single-flight) and updates the access token in the API client.
 
 ---
 
@@ -143,7 +143,7 @@ Notes:
 | GET `/v1/content/offline-requests` | ❌ | ❌ | — |
 | POST `/v1/content/offline-requests/:id/acknowledge` | ❌ | ❌ | — |
 | GET `/v1/content/offline/telemetry` | ❌ | ❌ | — |
-| GET `/v1/drm/licenses/:bookId` | ❌ | ❌ | — |
+| GET `/v1/drm/licenses/:bookId` | ✅ | ❌ | `loni_backup/lib/features/reading/data/services/drm_api_service.dart` |
 
 ---
 
@@ -165,9 +165,9 @@ Notes:
 
 | Endpoint | Consumer app | Admin app | Evidence (where found) |
 |---|---:|---:|---|
-| GET `/v1/notifications` | 🟨 | ❌ | Consumer notifications screen uses mock list: `loni_backup/lib/features/community/presentation/screens/notifications_screen.dart` |
-| POST `/v1/notifications/:notificationId/read` | ❌ | ❌ | — |
-| POST `/v1/notifications/read-all` | ❌ | ❌ | — |
+| GET `/v1/notifications` | ✅ | ❌ | `loni_backup/lib/features/community/data/services/notifications_api_service.dart` + `loni_backup/lib/features/community/presentation/screens/notifications_screen.dart` |
+| POST `/v1/notifications/:notificationId/read` | ✅ | ❌ | `loni_backup/lib/features/community/data/services/notifications_api_service.dart` |
+| POST `/v1/notifications/read-all` | ✅ | ❌ | `loni_backup/lib/features/community/data/services/notifications_api_service.dart` |
 
 ---
 
