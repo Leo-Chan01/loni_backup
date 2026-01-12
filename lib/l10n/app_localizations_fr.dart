@@ -1117,6 +1117,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get mentions => 'Mentions';
 
   @override
+  String get likesTab => 'J\'aime';
+
+  @override
+  String get commentsTab => 'Commentaires';
+
+  @override
+  String get noNotifications => 'Aucune notification';
+
+  @override
+  String get noNotificationsMessage => 'Vous êtes à jour.';
+
+  @override
   String get startedFollowing => 'a commencé à vous suivre';
 
   @override

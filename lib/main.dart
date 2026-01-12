@@ -14,6 +14,12 @@ import 'package:loni_africa/features/profile/domain/repository/profile_repositor
 import 'package:loni_africa/features/profile/domain/usecases/get_profile_usecase.dart';
 import 'package:loni_africa/features/profile/domain/usecases/update_profile_usecase.dart';
 import 'package:loni_africa/features/profile/presentation/provider/profile_provider.dart';
+import 'package:loni_africa/features/community/data/repository/notifications_repository_impl.dart';
+import 'package:loni_africa/features/community/domain/repository/notifications_repository.dart';
+import 'package:loni_africa/features/community/domain/usecases/list_notifications_usecase.dart';
+import 'package:loni_africa/features/community/domain/usecases/mark_all_notifications_read_usecase.dart';
+import 'package:loni_africa/features/community/domain/usecases/mark_notification_read_usecase.dart';
+import 'package:loni_africa/features/community/presentation/provider/notifications_provider.dart';
 import 'package:loni_africa/l10n/app_localizations.dart';
 import 'package:loni_africa/shared/widgets/global_snackbar.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +40,7 @@ class _MainAppState extends State<MainApp> {
   final LanguageService _languageService = LanguageService();
   late final AuthRepository _authRepository;
   late final ProfileRepository _profileRepository;
+  late final NotificationsRepository _notificationsRepository;
   ThemeMode _themeMode = ThemeMode.system;
   Locale? _locale;
 
@@ -42,6 +49,7 @@ class _MainAppState extends State<MainApp> {
     super.initState();
     _authRepository = AuthRepositoryImpl();
     _profileRepository = ProfileRepositoryImpl();
+    _notificationsRepository = NotificationsRepositoryImpl();
     _loadTheme();
     _loadLocale();
   }
@@ -113,6 +121,20 @@ class _MainAppState extends State<MainApp> {
                             updateProfile: UpdateProfileUseCase(
                               _profileRepository,
                             ),
+                          ),
+                        ),
+                        ChangeNotifierProvider<NotificationsProvider>(
+                          create: (_) => NotificationsProvider(
+                            listNotifications: ListNotificationsUseCase(
+                              _notificationsRepository,
+                            ),
+                            markNotificationRead: MarkNotificationReadUseCase(
+                              _notificationsRepository,
+                            ),
+                            markAllNotificationsRead:
+                                MarkAllNotificationsReadUseCase(
+                                  _notificationsRepository,
+                                ),
                           ),
                         ),
                       ],

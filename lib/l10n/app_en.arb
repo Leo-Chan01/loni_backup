@@ -668,6 +668,10 @@
   
   "markAllRead": "Mark All as Read",
   "mentions": "Mentions",
+  "likesTab": "Likes",
+  "commentsTab": "Comments",
+  "noNotifications": "No notifications",
+  "noNotificationsMessage": "You're all caught up.",
   "startedFollowing": "started following you",
   "likedYourPost": "liked your post",
   "commentedOnPost": "commented on your post",

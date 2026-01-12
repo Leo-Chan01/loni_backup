@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/utilities/localization_extension.dart';
-import '../../../community/domain/models/notification_model.dart';
-import '../widgets/notification_item.dart';
+import '../../../../shared/widgets/global_snackbar.dart';
+import '../../domain/models/notification_model.dart';
+import '../provider/notifications_provider.dart';
+import '../widgets/notifications_tab.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -20,63 +23,14 @@ class _NotificationsScreenState extends State<NotificationsScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  final List<AppNotification> mockNotifications = [
-    AppNotification(
-      id: '1',
-      type: NotificationType.follow,
-      userId: '1',
-      userFullName: 'Kwame Mensah',
-      message: 'started following you',
-      createdAt: DateTime.now().subtract(const Duration(minutes: 30)),
-    ),
-    AppNotification(
-      id: '2',
-      type: NotificationType.like,
-      userId: '2',
-      userFullName: 'Zara Okafor',
-      message: 'liked your post',
-      createdAt: DateTime.now().subtract(const Duration(hours: 1)),
-    ),
-    AppNotification(
-      id: '3',
-      type: NotificationType.comment,
-      userId: '3',
-      userFullName: 'Chidi Nkosi',
-      message: 'commented on your post',
-      isRead: true,
-      createdAt: DateTime.now().subtract(const Duration(hours: 3)),
-    ),
-    AppNotification(
-      id: '4',
-      type: NotificationType.mention,
-      userId: '4',
-      userFullName: 'Amara Okonkwo',
-      message: 'mentioned you in a post',
-      createdAt: DateTime.now().subtract(const Duration(hours: 5)),
-    ),
-    AppNotification(
-      id: '5',
-      type: NotificationType.newBook,
-      userId: '5',
-      userFullName: 'System',
-      message: 'New book added to Fiction',
-      isRead: true,
-      createdAt: DateTime.now().subtract(const Duration(days: 1)),
-    ),
-    AppNotification(
-      id: '6',
-      type: NotificationType.achievement,
-      userId: '6',
-      userFullName: 'System',
-      message: 'Achievement unlocked: 50 Books Read!',
-      createdAt: DateTime.now().subtract(const Duration(days: 2)),
-    ),
-  ];
-
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<NotificationsProvider>().fetch();
+    });
   }
 
   @override
@@ -97,15 +51,38 @@ class _NotificationsScreenState extends State<NotificationsScreen>
         ),
         title: Text(context.l10n.notifications),
         actions: [
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              context.l10n.markAllRead,
-              style: TextStyle(
-                color: colorScheme.primary,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+          Consumer<NotificationsProvider>(
+            builder: (context, provider, _) {
+              return TextButton(
+                onPressed: provider.isMarkingAllRead
+                    ? null
+                    : () async {
+                        final notificationsProvider = context
+                            .read<NotificationsProvider>();
+                        final successText = context.l10n.success;
+                        final fallbackErrorText = context.l10n.error;
+
+                        try {
+                          await notificationsProvider.markAllRead();
+                          GlobalSnackBar.showSuccess(successText);
+                        } catch (_) {
+                          final message = notificationsProvider.errorMessage;
+                          GlobalSnackBar.showError(
+                            message?.isNotEmpty == true
+                                ? message!
+                                : fallbackErrorText,
+                          );
+                        }
+                      },
+                child: Text(
+                  context.l10n.markAllRead,
+                  style: TextStyle(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              );
+            },
           ),
         ],
         bottom: TabBar(
@@ -117,54 +94,38 @@ class _NotificationsScreenState extends State<NotificationsScreen>
           tabs: [
             Tab(text: context.l10n.all),
             Tab(text: context.l10n.mentions),
-            Tab(text: 'Likes'),
-            Tab(text: 'Comments'),
+            Tab(text: context.l10n.likesTab),
+            Tab(text: context.l10n.commentsTab),
           ],
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          ListView.builder(
-            itemCount: mockNotifications.length,
-            itemBuilder: (context, index) {
-              return NotificationItem(notification: mockNotifications[index]);
-            },
-          ),
-          ListView.builder(
-            itemCount: mockNotifications
-                .where((n) => n.type == NotificationType.mention)
-                .length,
-            itemBuilder: (context, index) {
-              final mentions = mockNotifications
-                  .where((n) => n.type == NotificationType.mention)
-                  .toList();
-              return NotificationItem(notification: mentions[index]);
-            },
-          ),
-          ListView.builder(
-            itemCount: mockNotifications
-                .where((n) => n.type == NotificationType.like)
-                .length,
-            itemBuilder: (context, index) {
-              final likes = mockNotifications
-                  .where((n) => n.type == NotificationType.like)
-                  .toList();
-              return NotificationItem(notification: likes[index]);
-            },
-          ),
-          ListView.builder(
-            itemCount: mockNotifications
-                .where((n) => n.type == NotificationType.comment)
-                .length,
-            itemBuilder: (context, index) {
-              final comments = mockNotifications
-                  .where((n) => n.type == NotificationType.comment)
-                  .toList();
-              return NotificationItem(notification: comments[index]);
-            },
-          ),
-        ],
+      body: Consumer<NotificationsProvider>(
+        builder: (context, provider, _) {
+          if (provider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final notifications = provider.notifications;
+          final mentions = notifications
+              .where((n) => n.type == NotificationType.mention)
+              .toList();
+          final likes = notifications
+              .where((n) => n.type == NotificationType.like)
+              .toList();
+          final comments = notifications
+              .where((n) => n.type == NotificationType.comment)
+              .toList();
+
+          return TabBarView(
+            controller: _tabController,
+            children: [
+              NotificationsTab(notifications: notifications),
+              NotificationsTab(notifications: mentions),
+              NotificationsTab(notifications: likes),
+              NotificationsTab(notifications: comments),
+            ],
+          );
+        },
       ),
     );
   }

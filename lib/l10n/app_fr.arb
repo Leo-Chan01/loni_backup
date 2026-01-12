@@ -477,6 +477,10 @@
   
   "markAllRead": "Tout marquer comme lu",
   "mentions": "Mentions",
+  "likesTab": "J'aime",
+  "commentsTab": "Commentaires",
+  "noNotifications": "Aucune notification",
+  "noNotificationsMessage": "Vous êtes à jour.",
   "startedFollowing": "a commencé à vous suivre",
   "likedYourPost": "a aimé votre publication",
   "commentedOnPost": "a commenté votre publication",

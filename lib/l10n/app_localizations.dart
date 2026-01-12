@@ -2134,6 +2134,30 @@ abstract class AppLocalizations {
   /// **'Mentions'**
   String get mentions;
 
+  /// No description provided for @likesTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Likes'**
+  String get likesTab;
+
+  /// No description provided for @commentsTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get commentsTab;
+
+  /// No description provided for @noNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications'**
+  String get noNotifications;
+
+  /// No description provided for @noNotificationsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up.'**
+  String get noNotificationsMessage;
+
   /// No description provided for @startedFollowing.
   ///
   /// In en, this message translates to:

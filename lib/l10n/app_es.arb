@@ -20,6 +20,10 @@
   },
   "fieldMinLength": "{field} debe tener al menos {min} caracteres",
   "@fieldMinLength": {
+  "likesTab": "Me gusta",
+  "commentsTab": "Comentarios",
+  "noNotifications": "Sin notificaciones",
+  "noNotificationsMessage": "Estás al día.",
     "placeholders": {
       "field": {
         "type": "String"
