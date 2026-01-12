@@ -121,6 +121,20 @@ class DiscoveryApiService {
   }
 
   Book _mapToBook(Map<String, dynamic> json) {
+    final drmJson = json['drm'];
+    final drm = (drmJson is Map<String, dynamic>)
+        ? BookDrmInfo(
+            licenseId: drmJson['licenseId'] as String? ?? '',
+            deviceLimit: drmJson['deviceLimit'] as int? ?? 0,
+            licenseStatus: drmJson['licenseStatus'] as String? ?? '',
+            activatedDevices: drmJson['activatedDevices'] as int? ?? 0,
+            expiresAt: drmJson['expiresAt'] is String
+                ? DateTime.tryParse(drmJson['expiresAt'] as String)
+                : null,
+            fileId: drmJson['fileId'] as String?,
+          )
+        : null;
+
     return Book(
       id: json['id'] as String? ?? '',
       title: json['title'] as String? ?? 'Unknown',
@@ -151,6 +165,10 @@ class DiscoveryApiService {
           .toList(),
       hardcopyAvailable: json['hardcopyAvailable'] as bool? ?? false,
       sampleUrl: json['sampleUrl'] as String?,
+      fileId: (json['fileId'] as String?)?.isNotEmpty == true
+          ? json['fileId'] as String
+          : drm?.fileId,
+      drm: drm,
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       reviewCount: json['reviewCount'] as int? ?? 0,
     );

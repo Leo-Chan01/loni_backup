@@ -30,6 +30,36 @@ class BookAvailability extends Equatable {
   List<Object?> get props => [regionCode, channel, priceCents, currency];
 }
 
+class BookDrmInfo extends Equatable {
+  const BookDrmInfo({
+    required this.licenseId,
+    required this.deviceLimit,
+    required this.licenseStatus,
+    required this.activatedDevices,
+    this.expiresAt,
+    this.fileId,
+  });
+
+  final String licenseId;
+  final int deviceLimit;
+  final String licenseStatus;
+  final int activatedDevices;
+  final DateTime? expiresAt;
+
+  /// Optional. Some backends include a content file identifier alongside DRM.
+  final String? fileId;
+
+  @override
+  List<Object?> get props => [
+        licenseId,
+        deviceLimit,
+        licenseStatus,
+        activatedDevices,
+        expiresAt,
+        fileId,
+      ];
+}
+
 class Book extends Equatable {
   const Book({
     required this.id,
@@ -49,6 +79,8 @@ class Book extends Equatable {
     required this.availability,
     required this.hardcopyAvailable,
     this.sampleUrl,
+    this.fileId,
+    this.drm,
     this.rating = 0.0,
     this.reviewCount = 0,
   });
@@ -70,6 +102,12 @@ class Book extends Equatable {
   final List<BookAvailability> availability;
   final bool hardcopyAvailable;
   final String? sampleUrl;
+
+  /// Optional. Content file identifier used by `/v1/content/:fileId/...`.
+  final String? fileId;
+
+  /// Optional. Populated only when API includes DRM info.
+  final BookDrmInfo? drm;
   final double rating;
   final int reviewCount;
 
@@ -92,6 +130,8 @@ class Book extends Equatable {
         availability,
         hardcopyAvailable,
         sampleUrl,
+      fileId,
+      drm,
         rating,
         reviewCount,
       ];
