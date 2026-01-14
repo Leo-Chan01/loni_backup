@@ -328,6 +328,9 @@
   "dailyActivity": "Actividad diaria",
   "weeklyGoal": "Meta semanal",
   "hours": "{count} horas",
+  "minutes": "{count} minutos",
+  "readingSessions": "Sesiones de lectura",
+  "noReadingSessionsYet": "Aún no hay sesiones de lectura",
   "hoursLeft": "{count} horas restantes para alcanzar tu meta",
   
   "offlineStorage": "Almacenamiento sin conexión",

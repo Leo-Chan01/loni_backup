@@ -1,10 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class BookAuthor extends Equatable {
-  const BookAuthor({
-    required this.fullName,
-    this.role = 'author',
-  });
+  const BookAuthor({required this.fullName, this.role = 'author'});
 
   final String fullName;
   final String role;
@@ -51,13 +48,13 @@ class BookDrmInfo extends Equatable {
 
   @override
   List<Object?> get props => [
-        licenseId,
-        deviceLimit,
-        licenseStatus,
-        activatedDevices,
-        expiresAt,
-        fileId,
-      ];
+    licenseId,
+    deviceLimit,
+    licenseStatus,
+    activatedDevices,
+    expiresAt,
+    fileId,
+  ];
 }
 
 class Book extends Equatable {
@@ -113,26 +110,26 @@ class Book extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        title,
-        subtitle,
-        description,
-        authors,
-        coverImageUrl,
-        heroImageUrl,
-        priceCents,
-        currency,
-        pageCount,
-        languageCode,
-        releaseDate,
-        categories,
-        tags,
-        availability,
-        hardcopyAvailable,
-        sampleUrl,
-      fileId,
-      drm,
-        rating,
-        reviewCount,
-      ];
+    id,
+    title,
+    subtitle,
+    description,
+    authors,
+    coverImageUrl,
+    heroImageUrl,
+    priceCents,
+    currency,
+    pageCount,
+    languageCode,
+    releaseDate,
+    categories,
+    tags,
+    availability,
+    hardcopyAvailable,
+    sampleUrl,
+    fileId,
+    drm,
+    rating,
+    reviewCount,
+  ];
 }

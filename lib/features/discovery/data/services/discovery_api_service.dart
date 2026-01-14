@@ -141,10 +141,12 @@ class DiscoveryApiService {
       subtitle: json['subtitle'] as String? ?? '',
       description: json['description'] as String? ?? '',
       authors: (json['authors'] as List<dynamic>? ?? [])
-          .map((a) => BookAuthor(
-                fullName: a['fullName'] as String? ?? 'Unknown',
-                role: a['role'] as String? ?? 'author',
-              ))
+          .map(
+            (a) => BookAuthor(
+              fullName: a['fullName'] as String? ?? 'Unknown',
+              role: a['role'] as String? ?? 'author',
+            ),
+          )
           .toList(),
       coverImageUrl: json['coverImageUrl'] as String? ?? '',
       heroImageUrl: json['heroImageUrl'] as String?,
@@ -156,12 +158,14 @@ class DiscoveryApiService {
       categories: List<String>.from(json['categories'] as List<dynamic>? ?? []),
       tags: List<String>.from(json['tags'] as List<dynamic>? ?? []),
       availability: (json['availability'] as List<dynamic>? ?? [])
-          .map((a) => BookAvailability(
-                regionCode: a['regionCode'] as String? ?? '',
-                channel: a['channel'] as String? ?? '',
-                priceCents: a['priceCents'] as int? ?? 0,
-                currency: a['currency'] as String? ?? '',
-              ))
+          .map(
+            (a) => BookAvailability(
+              regionCode: a['regionCode'] as String? ?? '',
+              channel: a['channel'] as String? ?? '',
+              priceCents: a['priceCents'] as int? ?? 0,
+              currency: a['currency'] as String? ?? '',
+            ),
+          )
           .toList(),
       hardcopyAvailable: json['hardcopyAvailable'] as bool? ?? false,
       sampleUrl: json['sampleUrl'] as String?,

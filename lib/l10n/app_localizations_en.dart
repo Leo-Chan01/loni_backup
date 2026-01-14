@@ -694,6 +694,17 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String minutes(String count) {
+    return '$count minutes';
+  }
+
+  @override
+  String get readingSessions => 'Reading Sessions';
+
+  @override
+  String get noReadingSessionsYet => 'No reading sessions yet';
+
+  @override
   String hoursLeft(String count) {
     return '$count hours left to reach your goal';
   }

@@ -400,6 +400,16 @@
       }
     }
   },
+  "minutes": "{count} minutes",
+  "@minutes": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "readingSessions": "Reading Sessions",
+  "noReadingSessionsYet": "No reading sessions yet",
   "hoursLeft": "{count} hours left to reach your goal",
   "@hoursLeft": {
     "placeholders": {

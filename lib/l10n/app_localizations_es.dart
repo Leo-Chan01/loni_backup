@@ -697,6 +697,17 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String minutes(String count) {
+    return '$count minutos';
+  }
+
+  @override
+  String get readingSessions => 'Sesiones de lectura';
+
+  @override
+  String get noReadingSessionsYet => 'Aún no hay sesiones de lectura';
+
+  @override
   String hoursLeft(String count) {
     return '$count horas restantes para alcanzar tu meta';
   }

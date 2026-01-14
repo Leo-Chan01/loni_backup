@@ -1366,6 +1366,24 @@ abstract class AppLocalizations {
   /// **'{count} hours'**
   String hours(String count);
 
+  /// No description provided for @minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} minutes'**
+  String minutes(String count);
+
+  /// No description provided for @readingSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading Sessions'**
+  String get readingSessions;
+
+  /// No description provided for @noReadingSessionsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No reading sessions yet'**
+  String get noReadingSessionsYet;
+
   /// No description provided for @hoursLeft.
   ///
   /// In en, this message translates to:

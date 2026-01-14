@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
+
 import 'package:loni_africa/core/utilities/localization_extension.dart';
+import 'package:loni_africa/features/reading/presentation/provider/book_preview_provider.dart';
 import 'package:loni_africa/features/reading/presentation/widgets/preview_banner.dart';
 import 'package:loni_africa/features/reading/presentation/widgets/preview_end_notice.dart';
 
-class BookPreviewScreen extends StatefulWidget {
+class BookPreviewScreen extends StatelessWidget {
   final String bookId;
 
   const BookPreviewScreen({super.key, required this.bookId});
@@ -14,41 +18,36 @@ class BookPreviewScreen extends StatefulWidget {
   static const String name = 'BookPreviewScreen';
 
   @override
-  State<BookPreviewScreen> createState() => _BookPreviewScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => BookPreviewProvider(bookId: bookId),
+      child: const _BookPreviewView(),
+    );
+  }
 }
 
-class _BookPreviewScreenState extends State<BookPreviewScreen> {
-  // Mock data
-  final String _bookTitle = 'Things Fall Apart';
-  final String _chapterTitle = 'Chapter 1';
-  final int _totalPages = 209;
-  final String _price = '\$9.99';
+class _BookPreviewView extends StatelessWidget {
+  const _BookPreviewView();
 
-  final List<String> _previewContent = const [
-    'Okonkwo was well known throughout the nine villages and even beyond. His fame rested on solid personal achievements. As a young man of eighteen he had brought honor to his village by throwing Amalinze the Cat. Amalinze was the great wrestler who for seven years was unbeaten, from Umuofia to Mbaino.',
-    'He was called the Cat because his back would never touch the earth. It was this man that Okonkwo threw in a fight which the old men agreed was one of the fiercest since the founder of their town engaged a spirit of the wild for seven days and seven nights.',
-    'The drums beat and the flutes sang and the spectators held their breath. Amalinze was a wily craftsman, but Okonkwo was as slippery as a fish in water. Every nerve and every muscle stood out on their arms, on their backs and their thighs, and one almost heard them stretching to breaking point.',
-    'In the end Okonkwo threw the Cat. That was many years ago, twenty years or more, and during this time Okonkwo\'s fame had grown like a bush-fire in the harmattan.',
-  ];
-
-  Future<void> _handleBuyBook() async {
-    // Implement purchase logic
+  Future<void> _handleBuyBook(BuildContext context, String bookId) async {
+    context.push('/checkout/$bookId');
   }
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
+    final provider = context.watch<BookPreviewProvider>();
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
       body: SafeArea(
         child: Column(
           children: [
-            // Preview Banner
-            PreviewBanner(onBuyPressed: _handleBuyBook),
+            PreviewBanner(
+              onBuyPressed: () => _handleBuyBook(context, provider.bookId),
+            ),
 
-            // Reader Header
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
               decoration: BoxDecoration(
@@ -63,8 +62,8 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
                 children: [
                   GestureDetector(
                     onTap: () => context.pop(),
-                    child: Icon(
-                      Icons.close,
+                    child: HugeIcon(
+                      icon: HugeIcons.strokeRoundedCancel01,
                       color: colorScheme.onSurface,
                       size: 24.sp,
                     ),
@@ -73,17 +72,18 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
                     child: Column(
                       children: [
                         Text(
-                          _bookTitle,
+                          provider.book?.title ?? context.l10n.loading,
                           style: textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                             color: colorScheme.onSurface,
                             fontFamily: 'Merriweather',
                           ),
                           textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(height: 2.h),
                         Text(
-                          '$_chapterTitle • ${context.l10n.preview}',
+                          context.l10n.preview,
                           style: textTheme.bodySmall?.copyWith(
                             color: colorScheme.onSurfaceVariant,
                           ),
@@ -92,63 +92,94 @@ class _BookPreviewScreenState extends State<BookPreviewScreen> {
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.more_vert,
-                    color: colorScheme.onSurface,
-                    size: 24.sp,
-                  ),
+                  SizedBox(width: 24.w),
                 ],
               ),
             ),
 
-            // Reading Content
             Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Chapter Title
-                    Text(
-                      'Chapter One',
-                      style: textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.onSurface,
-                        fontFamily: 'Merriweather',
+              child: provider.isLoading
+                  ? Center(
+                      child: CircularProgressIndicator(
+                        color: colorScheme.primary,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: 32.h),
-
-                    // Preview Content
-                    ..._previewContent.map(
-                      (paragraph) => Padding(
-                        padding: EdgeInsets.only(bottom: 20.h),
-                        child: Text(
-                          paragraph,
-                          style: textTheme.bodyMedium?.copyWith(
-                            color: colorScheme.onSurfaceVariant,
-                            fontFamily: 'Merriweather',
-                            height: 1.8,
-                          ),
-                          textAlign: TextAlign.justify,
+                    )
+                  : provider.error != null
+                  ? Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(24.w),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            HugeIcon(
+                              icon: HugeIcons.strokeRoundedAlert02,
+                              color: colorScheme.error,
+                              size: 48.sp,
+                            ),
+                            SizedBox(height: 16.h),
+                            Text(
+                              context.l10n.error,
+                              style: textTheme.titleMedium?.copyWith(
+                                color: colorScheme.onSurface,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 8.h),
+                            Text(
+                              provider.error!,
+                              style: textTheme.bodyMedium?.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 24.h),
+                            TextButton.icon(
+                              onPressed: provider.retry,
+                              icon: HugeIcon(
+                                icon: HugeIcons.strokeRoundedRefresh,
+                                color: colorScheme.primary,
+                              ),
+                              label: Text(context.l10n.retry),
+                            ),
+                          ],
                         ),
                       ),
+                    )
+                  : SingleChildScrollView(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24.w,
+                        vertical: 24.h,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ...provider.paragraphs.map(
+                            (paragraph) => Padding(
+                              padding: EdgeInsets.only(bottom: 20.h),
+                              child: Text(
+                                paragraph,
+                                style: textTheme.bodyMedium?.copyWith(
+                                  color: colorScheme.onSurfaceVariant,
+                                  fontFamily: 'Merriweather',
+                                  height: 1.8,
+                                ),
+                                textAlign: TextAlign.justify,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 32.h),
+                          if (provider.book != null)
+                            PreviewEndNotice(
+                              totalPages: provider.book!.pageCount,
+                              price:
+                                  '${(provider.book!.priceCents / 100).toStringAsFixed(2)} ${provider.book!.currency}',
+                              onBuyPressed: () =>
+                                  _handleBuyBook(context, provider.bookId),
+                            ),
+                          SizedBox(height: 24.h),
+                        ],
+                      ),
                     ),
-
-                    SizedBox(height: 32.h),
-
-                    // Preview End Notice
-                    PreviewEndNotice(
-                      totalPages: _totalPages,
-                      price: _price,
-                      onBuyPressed: _handleBuyBook,
-                    ),
-
-                    SizedBox(height: 24.h),
-                  ],
-                ),
-              ),
             ),
           ],
         ),

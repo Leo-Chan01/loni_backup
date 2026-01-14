@@ -174,6 +174,113 @@ class ReadingApiService {
     }
   }
 
+  Future<List<Map<String, dynamic>>> listHighlights() async {
+    try {
+      final response = await _dio.get('/analytics/highlights');
+
+      final data = response.data;
+      if (data is! List) {
+        throw ApiException(message: 'Unexpected response from server.');
+      }
+
+      return data
+          .whereType<Map>()
+          .map((e) => e.map((k, v) => MapEntry(k.toString(), v)))
+          .toList(growable: false);
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
+    }
+  }
+
+  Future<Map<String, dynamic>> createHighlight({
+    required String catalogItemId,
+    required String cfi,
+    String? text,
+    String? note,
+    String? color,
+  }) async {
+    try {
+      final response = await _dio.post(
+        '/analytics/highlights',
+        data: {
+          'catalogItemId': catalogItemId,
+          'highlight': {
+            'cfi': cfi,
+            if (text != null) 'text': text,
+            if (note != null) 'note': note,
+            if (color != null) 'color': color,
+          },
+        },
+      );
+
+      final data = response.data;
+      if (data is! Map) {
+        throw ApiException(message: 'Unexpected response from server.');
+      }
+
+      return data.map((k, v) => MapEntry(k.toString(), v));
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
+    }
+  }
+
+  Future<void> recordReadingSession({
+    required String catalogItemId,
+    required DateTime startedAt,
+    required DateTime endedAt,
+    int? durationSeconds,
+    String? deviceId,
+    Map<String, dynamic>? metadata,
+  }) async {
+    final device = await _deviceInfoService.getDeviceInfo();
+    final resolvedDeviceId = (deviceId != null && deviceId.isNotEmpty)
+        ? deviceId
+        : device.deviceId;
+
+    final resolvedStartedAt = startedAt.toUtc();
+    final resolvedEndedAt = endedAt.toUtc();
+    final resolvedDurationSeconds =
+        durationSeconds ??
+        resolvedEndedAt
+            .difference(resolvedStartedAt)
+            .inSeconds
+            .clamp(0, 1 << 31);
+
+    try {
+      await _dio.post(
+        '/analytics/reading-sessions',
+        data: {
+          'catalogItemId': catalogItemId,
+          'startedAt': resolvedStartedAt.toIso8601String(),
+          'endedAt': resolvedEndedAt.toIso8601String(),
+          'durationSeconds': resolvedDurationSeconds,
+          'deviceId': resolvedDeviceId,
+          'metadata': metadata ?? <String, dynamic>{},
+        },
+      );
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> listReadingSessions() async {
+    try {
+      final response = await _dio.get('/analytics/reading-sessions');
+
+      final data = response.data;
+      if (data is! List) {
+        throw ApiException(message: 'Unexpected response from server.');
+      }
+
+      return data
+          .whereType<Map>()
+          .map((e) => e.map((k, v) => MapEntry(k.toString(), v)))
+          .toList(growable: false);
+    } on DioException catch (error) {
+      throw ApiException.fromDioException(error);
+    }
+  }
+
   Future<String> _getOrFetchLicenseId(String bookId) async {
     final cached = _licenseIdCache[bookId];
     if (cached != null && cached.isNotEmpty) {

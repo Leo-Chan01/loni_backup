@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:loni_africa/core/utilities/localization_extension.dart';
 
 class ReaderBottomControls extends StatelessWidget {
@@ -25,41 +26,35 @@ class ReaderBottomControls extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       decoration: BoxDecoration(
-        color: isDark
-            ? colorScheme.surface.withValues(alpha: 0.95)
-            : Colors.white.withValues(alpha: 0.95),
+        color: colorScheme.surface.withValues(alpha: 0.95),
         border: Border(
-          top: BorderSide(
-            color: isDark
-                ? colorScheme.outline.withValues(alpha: 0.2)
-                : Colors.grey.withValues(alpha: 0.2),
-          ),
+          top: BorderSide(color: colorScheme.outline.withValues(alpha: 0.2)),
         ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _ControlButton(
-            icon: Icons.list,
+            icon: HugeIcons.strokeRoundedMenu01,
             label: context.l10n.contents,
             onTap: onContentsPressed,
             isDark: isDark,
           ),
           _ControlButton(
-            icon: Icons.bookmark,
+            icon: HugeIcons.strokeRoundedBookmark01,
             label: context.l10n.bookmark,
             onTap: onBookmarkPressed,
             isDark: isDark,
           ),
           _ControlButton(
-            icon: Icons.brush,
+            icon: HugeIcons.strokeRoundedBrush,
             label: context.l10n.highlight,
             onTap: onHighlightPressed,
             isActive: true,
             isDark: isDark,
           ),
           _ControlButton(
-            icon: Icons.settings,
+            icon: HugeIcons.strokeRoundedSettings01,
             label: context.l10n.readingSettings,
             onTap: onSettingsPressed,
             isDark: isDark,
@@ -71,7 +66,7 @@ class ReaderBottomControls extends StatelessWidget {
 }
 
 class _ControlButton extends StatelessWidget {
-  final IconData icon;
+  final dynamic icon;
   final String label;
   final VoidCallback onTap;
   final bool isActive;
@@ -89,16 +84,14 @@ class _ControlButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
-    final color = isActive
-        ? colorScheme.primary
-        : (isDark ? colorScheme.onSurface : Colors.grey[900]!);
+    final color = isActive ? colorScheme.primary : colorScheme.onSurface;
 
     return GestureDetector(
       onTap: onTap,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: color, size: 22.sp),
+          HugeIcon(icon: icon, color: color, size: 22.sp),
           SizedBox(height: 4.h),
           Text(
             label,
