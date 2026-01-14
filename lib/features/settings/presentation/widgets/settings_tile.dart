@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class SettingsTile extends StatelessWidget {
   final Widget? leadingIcon;
@@ -59,8 +60,8 @@ class SettingsTile extends StatelessWidget {
             if (trailing != null) ...[SizedBox(width: 8.w), trailing!],
             if (showChevron && onTap != null) ...[
               SizedBox(width: 8.w),
-              Icon(
-                Icons.chevron_right,
+              HugeIcon(
+                icon: HugeIcons.strokeRoundedArrowRight01,
                 size: 20.sp,
                 color: colorScheme.onSurface.withValues(alpha: 0.4),
               ),

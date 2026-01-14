@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/utilities/localization_extension.dart';
 import '../../../../features/auth/presentation/provider/auth_provider.dart';
+import 'account_settings_screen.dart';
+import 'privacy_security_screen.dart';
 import '../../../../shared/widgets/global_snackbar.dart';
 import '../widgets/profile_preview_card.dart';
 import '../widgets/settings_section_header.dart';
@@ -111,7 +113,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   title: l10n.accountSettings,
                   onTap: () {
-                    // Navigate to account settings
+                    context.push(AccountSettingsScreen.path);
                   },
                 ),
                 Divider(
@@ -136,7 +138,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   title: l10n.privacySecurity,
                   onTap: () {
-                    // Navigate to privacy settings
+                    context.push(PrivacySecurityScreen.path);
                   },
                 ),
                 Divider(

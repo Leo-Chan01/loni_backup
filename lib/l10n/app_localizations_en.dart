@@ -1320,6 +1320,185 @@ class AppLocalizationsEn extends AppLocalizations {
   String get termsOfService => 'Terms of Service';
 
   @override
+  String get authPreferences => 'Preferences';
+
+  @override
+  String get preferredGenres => 'Preferred Genres';
+
+  @override
+  String get preferredGenresHint => 'Comma-separated (e.g., fiction, romance)';
+
+  @override
+  String get preferredLanguages => 'Preferred Languages';
+
+  @override
+  String get preferredLanguagesHint => 'Comma-separated (e.g., en, fr)';
+
+  @override
+  String get allowEmailUpdates => 'Allow email updates';
+
+  @override
+  String get allowSmsUpdates => 'Allow SMS updates';
+
+  @override
+  String get allowPushNotifications => 'Allow push notifications';
+
+  @override
+  String get readingThemeSystem => 'System';
+
+  @override
+  String get readingThemeLight => 'Light';
+
+  @override
+  String get readingThemeDark => 'Dark';
+
+  @override
+  String get textScale => 'Text Size';
+
+  @override
+  String get textScaleSmall => 'Small';
+
+  @override
+  String get textScaleNormal => 'Normal';
+
+  @override
+  String get textScaleLarge => 'Large';
+
+  @override
+  String get dyslexicFont => 'Dyslexic-friendly font';
+
+  @override
+  String get highContrast => 'High contrast';
+
+  @override
+  String get authConsents => 'Consents';
+
+  @override
+  String get consentMarketingEmail => 'Marketing emails';
+
+  @override
+  String get consentMarketingSms => 'Marketing SMS';
+
+  @override
+  String get consentPersonalization => 'Personalization';
+
+  @override
+  String get parentalControls => 'Parental Controls';
+
+  @override
+  String get parentalControlsEnabled => 'Enable parental controls';
+
+  @override
+  String get parentalContentRating => 'Content rating';
+
+  @override
+  String get parentalPin => 'Parental PIN';
+
+  @override
+  String get parentalPinHint => 'Enter a new PIN (optional)';
+
+  @override
+  String get parentalClearPin => 'Clear existing PIN';
+
+  @override
+  String get parentalRatingKids => 'Kids';
+
+  @override
+  String get parentalRatingTeen => 'Teen';
+
+  @override
+  String get parentalRatingMature => 'Mature';
+
+  @override
+  String get devices => 'Devices';
+
+  @override
+  String get registerThisDevice => 'Register this device';
+
+  @override
+  String get noDevices => 'No devices';
+
+  @override
+  String get noDevicesDesc => 'No registered devices found.';
+
+  @override
+  String get purchaseHistory => 'Purchase History';
+
+  @override
+  String get noPurchases => 'No purchases';
+
+  @override
+  String get noPurchasesDesc => 'No purchases found.';
+
+  @override
+  String get refresh => 'Refresh';
+
+  @override
+  String get changesSaved => 'Changes saved';
+
+  @override
+  String get noActiveSessions => 'No active sessions';
+
+  @override
+  String get noActiveSessionsDesc => 'No active sessions found.';
+
+  @override
+  String get revoke => 'Revoke';
+
+  @override
+  String get revokeSessionTitle => 'Revoke session';
+
+  @override
+  String get revokeSessionMessage =>
+      'This will sign that session out. Continue?';
+
+  @override
+  String get sessionRevoked => 'Session revoked';
+
+  @override
+  String get deleteDeviceTitle => 'Delete device';
+
+  @override
+  String get deleteDeviceMessage =>
+      'This will remove the device from your account. Continue?';
+
+  @override
+  String get deviceDeleted => 'Device deleted';
+
+  @override
+  String get deviceRegistered => 'Device registered';
+
+  @override
+  String get privacyRequestsDesc =>
+      'Request an export of your profile and metadata, or request account deletion.';
+
+  @override
+  String get requestAccountDeletion => 'Request account deletion';
+
+  @override
+  String get requestAccountDeletionTitle => 'Request account deletion';
+
+  @override
+  String get requestAccountDeletionMessage =>
+      'This will start the account deletion process. Continue?';
+
+  @override
+  String get exportRequested => 'Export requested';
+
+  @override
+  String exportRequestedWithId(Object id) {
+    return 'Export requested (ID: $id)';
+  }
+
+  @override
+  String get deletionRequested => 'Deletion requested';
+
+  @override
+  String deletionRequestedWithId(Object id) {
+    return 'Deletion requested (ID: $id)';
+  }
+
+  @override
   String get searchHelpArticles => 'Search Help Articles';
 
   @override

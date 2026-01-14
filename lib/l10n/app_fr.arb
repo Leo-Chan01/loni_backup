@@ -547,6 +547,82 @@
   "appPermissions": "Autorisations de l'application",
   "privacyPolicy": "Politique de confidentialité",
   "termsOfService": "Conditions d'utilisation",
+
+  "authPreferences": "Préférences",
+  "preferredGenres": "Genres préférés",
+  "preferredGenresHint": "Séparés par des virgules (ex. fiction, romance)",
+  "preferredLanguages": "Langues préférées",
+  "preferredLanguagesHint": "Séparées par des virgules (ex. en, fr)",
+  "allowEmailUpdates": "Autoriser les mises à jour par e-mail",
+  "allowSmsUpdates": "Autoriser les mises à jour par SMS",
+  "allowPushNotifications": "Autoriser les notifications push",
+  "readingThemeSystem": "Système",
+  "readingThemeLight": "Clair",
+  "readingThemeDark": "Sombre",
+  "textScale": "Taille du texte",
+  "textScaleSmall": "Petit",
+  "textScaleNormal": "Normal",
+  "textScaleLarge": "Grand",
+  "dyslexicFont": "Police adaptée à la dyslexie",
+  "highContrast": "Contraste élevé",
+
+  "authConsents": "Consentements",
+  "consentMarketingEmail": "E-mails marketing",
+  "consentMarketingSms": "SMS marketing",
+  "consentPersonalization": "Personnalisation",
+
+  "parentalControls": "Contrôle parental",
+  "parentalControlsEnabled": "Activer le contrôle parental",
+  "parentalContentRating": "Classification du contenu",
+  "parentalPin": "PIN parental",
+  "parentalPinHint": "Saisissez un nouveau PIN (optionnel)",
+  "parentalClearPin": "Supprimer le PIN existant",
+  "parentalRatingKids": "Enfants",
+  "parentalRatingTeen": "Adolescents",
+  "parentalRatingMature": "Mature",
+
+  "devices": "Appareils",
+  "registerThisDevice": "Enregistrer cet appareil",
+  "noDevices": "Aucun appareil",
+  "noDevicesDesc": "Aucun appareil enregistré.",
+
+  "purchaseHistory": "Historique des achats",
+  "noPurchases": "Aucun achat",
+  "noPurchasesDesc": "Aucun achat trouvé.",
+
+  "refresh": "Actualiser",
+  "changesSaved": "Modifications enregistrées",
+
+  "noActiveSessions": "Aucune session active",
+  "noActiveSessionsDesc": "Aucune session active trouvée.",
+  "revoke": "Révoquer",
+  "revokeSessionTitle": "Révoquer la session",
+  "revokeSessionMessage": "Cela déconnectera cette session. Continuer ?",
+  "sessionRevoked": "Session révoquée",
+
+  "deleteDeviceTitle": "Supprimer l’appareil",
+  "deleteDeviceMessage": "Cela supprimera l’appareil de votre compte. Continuer ?",
+  "deviceDeleted": "Appareil supprimé",
+  "deviceRegistered": "Appareil enregistré",
+
+  "privacyRequestsDesc": "Demandez une exportation de votre profil et de vos métadonnées, ou demandez la suppression du compte.",
+  "requestAccountDeletion": "Demander la suppression du compte",
+  "requestAccountDeletionTitle": "Demander la suppression du compte",
+  "requestAccountDeletionMessage": "Cela lancera le processus de suppression du compte. Continuer ?",
+  "exportRequested": "Export demandé",
+  "exportRequestedWithId": "Export demandé (ID : {id})",
+  "@exportRequestedWithId": {
+    "placeholders": {
+      "id": {}
+    }
+  },
+  "deletionRequested": "Suppression demandée",
+  "deletionRequestedWithId": "Suppression demandée (ID : {id})",
+  "@deletionRequestedWithId": {
+    "placeholders": {
+      "id": {}
+    }
+  },
   
   "searchHelpArticles": "Rechercher des articles d'aide",
   "findAnswers": "Trouvez des réponses aux questions courantes",

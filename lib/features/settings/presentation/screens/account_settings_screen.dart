@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../core/utilities/localization_extension.dart';
+import '../../../auth/presentation/screens/account/auth_consents_screen.dart';
+import '../../../auth/presentation/screens/account/auth_devices_screen.dart';
+import '../../../auth/presentation/screens/account/auth_parental_controls_screen.dart';
+import '../../../auth/presentation/screens/account/auth_preferences_screen.dart';
+import '../../../auth/presentation/screens/account/auth_purchases_screen.dart';
+import '../../../auth/presentation/provider/auth_provider.dart';
+import '../../../profile/presentation/screens/edit_profile_screen.dart';
 import '../widgets/settings_section_header.dart';
 import '../widgets/settings_tile.dart';
 
@@ -12,8 +23,15 @@ class AccountSettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
+    final authProvider = context.watch<AuthProvider>();
+    final user = authProvider.session?.user;
+    final userDisplayName = user?.displayName.isNotEmpty == true
+        ? user!.displayName
+        : l10n.notAvailable;
+    final userEmail = user?.email?.isNotEmpty == true ? user!.email! : l10n.notAvailable;
+    final userPhone = user?.phone?.isNotEmpty == true ? user!.phone! : l10n.notAvailable;
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
@@ -22,21 +40,19 @@ class AccountSettingsScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
+          icon: HugeIcon(
+            icon: HugeIcons.strokeRoundedArrowLeft01,
+            color: colorScheme.onSurface,
+            size: 24.sp,
+          ),
         ),
         title: Text(
           l10n.accountSettings,
-          style: TextStyle(
-            fontSize: 20.sp,
-            fontWeight: FontWeight.w700,
-            fontFamily: 'Merriweather',
-          ),
         ),
       ),
       body: ListView(
         padding: EdgeInsets.all(20.w),
         children: [
-          // Personal Information
           SettingsSectionHeader(title: l10n.personalInformation),
           Container(
             decoration: BoxDecoration(
@@ -50,9 +66,9 @@ class AccountSettingsScreen extends StatelessWidget {
               children: [
                 SettingsTile(
                   title: l10n.fullName,
-                  subtitle: 'John Mensah',
+                  subtitle: userDisplayName,
                   onTap: () {
-                    // Edit full name
+                    context.push(EditProfileScreen.path);
                   },
                 ),
                 Divider(
@@ -61,9 +77,9 @@ class AccountSettingsScreen extends StatelessWidget {
                 ),
                 SettingsTile(
                   title: l10n.emailLabel,
-                  subtitle: 'john.mensah@email.com',
+                  subtitle: userEmail,
                   onTap: () {
-                    // Edit email
+                    context.push(EditProfileScreen.path);
                   },
                 ),
                 Divider(
@@ -72,20 +88,9 @@ class AccountSettingsScreen extends StatelessWidget {
                 ),
                 SettingsTile(
                   title: l10n.phoneNumber,
-                  subtitle: '+233 24 123 4567',
+                  subtitle: userPhone,
                   onTap: () {
-                    // Edit phone
-                  },
-                ),
-                Divider(
-                  height: 1,
-                  color: colorScheme.outline.withValues(alpha: 0.1),
-                ),
-                SettingsTile(
-                  title: l10n.dateOfBirth,
-                  subtitle: 'March 15, 1990',
-                  onTap: () {
-                    // Edit date of birth
+                    context.push(EditProfileScreen.path);
                   },
                 ),
               ],
@@ -93,7 +98,6 @@ class AccountSettingsScreen extends StatelessWidget {
           ),
           SizedBox(height: 24.h),
 
-          // Account Management
           SettingsSectionHeader(title: l10n.accountManagement),
           Container(
             decoration: BoxDecoration(
@@ -106,9 +110,9 @@ class AccountSettingsScreen extends StatelessWidget {
             child: Column(
               children: [
                 SettingsTile(
-                  title: l10n.changePassword,
+                  title: l10n.authPreferences,
                   onTap: () {
-                    // Navigate to change password
+                    context.push(AuthPreferencesScreen.path);
                   },
                 ),
                 Divider(
@@ -116,9 +120,9 @@ class AccountSettingsScreen extends StatelessWidget {
                   color: colorScheme.outline.withValues(alpha: 0.1),
                 ),
                 SettingsTile(
-                  title: l10n.connectedAccounts,
+                  title: l10n.authConsents,
                   onTap: () {
-                    // Navigate to connected accounts
+                    context.push(AuthConsentsScreen.path);
                   },
                 ),
                 Divider(
@@ -126,9 +130,9 @@ class AccountSettingsScreen extends StatelessWidget {
                   color: colorScheme.outline.withValues(alpha: 0.1),
                 ),
                 SettingsTile(
-                  title: l10n.paymentMethods,
+                  title: l10n.parentalControls,
                   onTap: () {
-                    // Navigate to payment methods
+                    context.push(AuthParentalControlsScreen.path);
                   },
                 ),
                 Divider(
@@ -136,73 +140,20 @@ class AccountSettingsScreen extends StatelessWidget {
                   color: colorScheme.outline.withValues(alpha: 0.1),
                 ),
                 SettingsTile(
-                  title: l10n.subscription,
-                  trailing: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8.w,
-                      vertical: 4.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: colorScheme.primary.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Text(
-                      l10n.premium,
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                        color: colorScheme.primary,
-                      ),
-                    ),
-                  ),
+                  title: l10n.devices,
                   onTap: () {
-                    // Navigate to subscription
+                    context.push(AuthDevicesScreen.path);
                   },
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 24.h),
-
-          // Danger Zone
-          SettingsSectionHeader(title: l10n.dangerZone),
-          Container(
-            decoration: BoxDecoration(
-              color: colorScheme.surface,
-              border: Border.all(
-                color: colorScheme.outline.withValues(alpha: 0.2),
-              ),
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: Column(
-              children: [
-                SettingsTile(
-                  title: l10n.deactivateAccount,
-                  onTap: () {
-                    // Show deactivate confirmation
-                  },
-                  trailing: Icon(
-                    Icons.chevron_right,
-                    size: 20.sp,
-                    color: Colors.red.withValues(alpha: 0.6),
-                  ),
-                  showChevron: false,
                 ),
                 Divider(
                   height: 1,
                   color: colorScheme.outline.withValues(alpha: 0.1),
                 ),
                 SettingsTile(
-                  title: l10n.deleteAccount,
+                  title: l10n.purchaseHistory,
                   onTap: () {
-                    // Show delete confirmation
+                    context.push(AuthPurchasesScreen.path);
                   },
-                  trailing: Icon(
-                    Icons.chevron_right,
-                    size: 20.sp,
-                    color: Colors.red.withValues(alpha: 0.6),
-                  ),
-                  showChevron: false,
                 ),
               ],
             ),

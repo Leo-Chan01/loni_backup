@@ -7,8 +7,25 @@ import 'package:loni_africa/config/theme/screen_size.dart';
 import 'package:loni_africa/core/utilities/theme_service.dart';
 import 'package:loni_africa/core/utilities/language_service.dart';
 import 'package:loni_africa/features/auth/data/repository/auth_repository_impl.dart';
+import 'package:loni_africa/features/auth/data/repository/auth_account_repository_impl.dart';
 import 'package:loni_africa/features/auth/domain/repository/auth_repository.dart';
+import 'package:loni_africa/features/auth/domain/repository/auth_account_repository.dart';
 import 'package:loni_africa/features/auth/presentation/provider/auth_provider.dart';
+import 'package:loni_africa/features/auth/presentation/provider/auth_account_provider.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/delete_auth_device_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/get_auth_consents_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/get_auth_preferences_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/get_parental_controls_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/list_auth_devices_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/list_auth_purchases_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/list_auth_sessions_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/register_auth_device_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/request_privacy_delete_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/request_privacy_export_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/revoke_auth_session_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/update_auth_consents_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/update_auth_preferences_usecase.dart';
+import 'package:loni_africa/features/auth/domain/usecases/account/update_parental_controls_usecase.dart';
 import 'package:loni_africa/features/profile/data/repository/profile_repository_impl.dart';
 import 'package:loni_africa/features/profile/domain/repository/profile_repository.dart';
 import 'package:loni_africa/features/profile/domain/usecases/get_profile_usecase.dart';
@@ -39,6 +56,7 @@ class _MainAppState extends State<MainApp> {
   final ThemeService _themeService = ThemeService();
   final LanguageService _languageService = LanguageService();
   late final AuthRepository _authRepository;
+  late final AuthAccountRepository _authAccountRepository;
   late final ProfileRepository _profileRepository;
   late final NotificationsRepository _notificationsRepository;
   ThemeMode _themeMode = ThemeMode.system;
@@ -48,6 +66,7 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     super.initState();
     _authRepository = AuthRepositoryImpl();
+    _authAccountRepository = AuthAccountRepositoryImpl();
     _profileRepository = ProfileRepositoryImpl();
     _notificationsRepository = NotificationsRepositoryImpl();
     _loadTheme();
@@ -114,6 +133,53 @@ class _MainAppState extends State<MainApp> {
                         ChangeNotifierProvider<AuthProvider>(
                           create: (_) =>
                               AuthProvider(authRepository: _authRepository),
+                        ),
+                        ChangeNotifierProvider<AuthAccountProvider>(
+                          create: (_) => AuthAccountProvider(
+                            getPreferences: GetAuthPreferencesUseCase(
+                              _authAccountRepository,
+                            ),
+                            updatePreferences: UpdateAuthPreferencesUseCase(
+                              _authAccountRepository,
+                            ),
+                            getConsents: GetAuthConsentsUseCase(
+                              _authAccountRepository,
+                            ),
+                            updateConsents: UpdateAuthConsentsUseCase(
+                              _authAccountRepository,
+                            ),
+                            getParentalControls: GetParentalControlsUseCase(
+                              _authAccountRepository,
+                            ),
+                            updateParentalControls:
+                                UpdateParentalControlsUseCase(
+                                  _authAccountRepository,
+                                ),
+                            listSessions: ListAuthSessionsUseCase(
+                              _authAccountRepository,
+                            ),
+                            revokeSession: RevokeAuthSessionUseCase(
+                              _authAccountRepository,
+                            ),
+                            listDevices: ListAuthDevicesUseCase(
+                              _authAccountRepository,
+                            ),
+                            registerDevice: RegisterAuthDeviceUseCase(
+                              _authAccountRepository,
+                            ),
+                            deleteDevice: DeleteAuthDeviceUseCase(
+                              _authAccountRepository,
+                            ),
+                            listPurchases: ListAuthPurchasesUseCase(
+                              _authAccountRepository,
+                            ),
+                            requestPrivacyExport: RequestPrivacyExportUseCase(
+                              _authAccountRepository,
+                            ),
+                            requestPrivacyDelete: RequestPrivacyDeleteUseCase(
+                              _authAccountRepository,
+                            ),
+                          ),
                         ),
                         ChangeNotifierProvider<ProfileProvider>(
                           create: (_) => ProfileProvider(

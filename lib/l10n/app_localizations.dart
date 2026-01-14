@@ -2512,6 +2512,348 @@ abstract class AppLocalizations {
   /// **'Terms of Service'**
   String get termsOfService;
 
+  /// No description provided for @authPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get authPreferences;
+
+  /// No description provided for @preferredGenres.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred Genres'**
+  String get preferredGenres;
+
+  /// No description provided for @preferredGenresHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Comma-separated (e.g., fiction, romance)'**
+  String get preferredGenresHint;
+
+  /// No description provided for @preferredLanguages.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferred Languages'**
+  String get preferredLanguages;
+
+  /// No description provided for @preferredLanguagesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Comma-separated (e.g., en, fr)'**
+  String get preferredLanguagesHint;
+
+  /// No description provided for @allowEmailUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow email updates'**
+  String get allowEmailUpdates;
+
+  /// No description provided for @allowSmsUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow SMS updates'**
+  String get allowSmsUpdates;
+
+  /// No description provided for @allowPushNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow push notifications'**
+  String get allowPushNotifications;
+
+  /// No description provided for @readingThemeSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get readingThemeSystem;
+
+  /// No description provided for @readingThemeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get readingThemeLight;
+
+  /// No description provided for @readingThemeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get readingThemeDark;
+
+  /// No description provided for @textScale.
+  ///
+  /// In en, this message translates to:
+  /// **'Text Size'**
+  String get textScale;
+
+  /// No description provided for @textScaleSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get textScaleSmall;
+
+  /// No description provided for @textScaleNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal'**
+  String get textScaleNormal;
+
+  /// No description provided for @textScaleLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get textScaleLarge;
+
+  /// No description provided for @dyslexicFont.
+  ///
+  /// In en, this message translates to:
+  /// **'Dyslexic-friendly font'**
+  String get dyslexicFont;
+
+  /// No description provided for @highContrast.
+  ///
+  /// In en, this message translates to:
+  /// **'High contrast'**
+  String get highContrast;
+
+  /// No description provided for @authConsents.
+  ///
+  /// In en, this message translates to:
+  /// **'Consents'**
+  String get authConsents;
+
+  /// No description provided for @consentMarketingEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketing emails'**
+  String get consentMarketingEmail;
+
+  /// No description provided for @consentMarketingSms.
+  ///
+  /// In en, this message translates to:
+  /// **'Marketing SMS'**
+  String get consentMarketingSms;
+
+  /// No description provided for @consentPersonalization.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalization'**
+  String get consentPersonalization;
+
+  /// No description provided for @parentalControls.
+  ///
+  /// In en, this message translates to:
+  /// **'Parental Controls'**
+  String get parentalControls;
+
+  /// No description provided for @parentalControlsEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable parental controls'**
+  String get parentalControlsEnabled;
+
+  /// No description provided for @parentalContentRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Content rating'**
+  String get parentalContentRating;
+
+  /// No description provided for @parentalPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Parental PIN'**
+  String get parentalPin;
+
+  /// No description provided for @parentalPinHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a new PIN (optional)'**
+  String get parentalPinHint;
+
+  /// No description provided for @parentalClearPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear existing PIN'**
+  String get parentalClearPin;
+
+  /// No description provided for @parentalRatingKids.
+  ///
+  /// In en, this message translates to:
+  /// **'Kids'**
+  String get parentalRatingKids;
+
+  /// No description provided for @parentalRatingTeen.
+  ///
+  /// In en, this message translates to:
+  /// **'Teen'**
+  String get parentalRatingTeen;
+
+  /// No description provided for @parentalRatingMature.
+  ///
+  /// In en, this message translates to:
+  /// **'Mature'**
+  String get parentalRatingMature;
+
+  /// No description provided for @devices.
+  ///
+  /// In en, this message translates to:
+  /// **'Devices'**
+  String get devices;
+
+  /// No description provided for @registerThisDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'Register this device'**
+  String get registerThisDevice;
+
+  /// No description provided for @noDevices.
+  ///
+  /// In en, this message translates to:
+  /// **'No devices'**
+  String get noDevices;
+
+  /// No description provided for @noDevicesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'No registered devices found.'**
+  String get noDevicesDesc;
+
+  /// No description provided for @purchaseHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase History'**
+  String get purchaseHistory;
+
+  /// No description provided for @noPurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'No purchases'**
+  String get noPurchases;
+
+  /// No description provided for @noPurchasesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'No purchases found.'**
+  String get noPurchasesDesc;
+
+  /// No description provided for @refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get refresh;
+
+  /// No description provided for @changesSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes saved'**
+  String get changesSaved;
+
+  /// No description provided for @noActiveSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'No active sessions'**
+  String get noActiveSessions;
+
+  /// No description provided for @noActiveSessionsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'No active sessions found.'**
+  String get noActiveSessionsDesc;
+
+  /// No description provided for @revoke.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoke'**
+  String get revoke;
+
+  /// No description provided for @revokeSessionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Revoke session'**
+  String get revokeSessionTitle;
+
+  /// No description provided for @revokeSessionMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This will sign that session out. Continue?'**
+  String get revokeSessionMessage;
+
+  /// No description provided for @sessionRevoked.
+  ///
+  /// In en, this message translates to:
+  /// **'Session revoked'**
+  String get sessionRevoked;
+
+  /// No description provided for @deleteDeviceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete device'**
+  String get deleteDeviceTitle;
+
+  /// No description provided for @deleteDeviceMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This will remove the device from your account. Continue?'**
+  String get deleteDeviceMessage;
+
+  /// No description provided for @deviceDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Device deleted'**
+  String get deviceDeleted;
+
+  /// No description provided for @deviceRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Device registered'**
+  String get deviceRegistered;
+
+  /// No description provided for @privacyRequestsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Request an export of your profile and metadata, or request account deletion.'**
+  String get privacyRequestsDesc;
+
+  /// No description provided for @requestAccountDeletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Request account deletion'**
+  String get requestAccountDeletion;
+
+  /// No description provided for @requestAccountDeletionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Request account deletion'**
+  String get requestAccountDeletionTitle;
+
+  /// No description provided for @requestAccountDeletionMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This will start the account deletion process. Continue?'**
+  String get requestAccountDeletionMessage;
+
+  /// No description provided for @exportRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'Export requested'**
+  String get exportRequested;
+
+  /// No description provided for @exportRequestedWithId.
+  ///
+  /// In en, this message translates to:
+  /// **'Export requested (ID: {id})'**
+  String exportRequestedWithId(Object id);
+
+  /// No description provided for @deletionRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion requested'**
+  String get deletionRequested;
+
+  /// No description provided for @deletionRequestedWithId.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion requested (ID: {id})'**
+  String deletionRequestedWithId(Object id);
+
   /// No description provided for @searchHelpArticles.
   ///
   /// In en, this message translates to:

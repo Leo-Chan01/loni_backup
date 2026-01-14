@@ -41,6 +41,15 @@ import 'package:loni_africa/features/community/presentation/screens/community_sc
 import 'package:loni_africa/features/community/presentation/screens/discussion_screen.dart';
 import 'package:loni_africa/features/community/presentation/screens/create_post_screen.dart';
 import 'package:loni_africa/features/community/presentation/screens/notifications_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/account/auth_consents_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/account/auth_devices_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/account/auth_parental_controls_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/account/auth_preferences_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/account/auth_purchases_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/account/auth_privacy_screen.dart';
+import 'package:loni_africa/features/auth/presentation/screens/account/auth_sessions_screen.dart';
+import 'package:loni_africa/features/settings/presentation/screens/account_settings_screen.dart';
+import 'package:loni_africa/features/settings/presentation/screens/privacy_security_screen.dart';
 import 'package:loni_africa/features/settings/presentation/screens/settings_screen.dart';
 import 'package:loni_africa/splash_screen.dart';
 
@@ -391,6 +400,69 @@ class AppRoutes {
         name: SettingsScreen.name,
         builder: (context, state) {
           return const SettingsScreen();
+        },
+      ),
+      GoRoute(
+        path: AccountSettingsScreen.path,
+        name: AccountSettingsScreen.name,
+        builder: (context, state) {
+          return const AccountSettingsScreen();
+        },
+      ),
+      GoRoute(
+        path: PrivacySecurityScreen.path,
+        name: PrivacySecurityScreen.name,
+        builder: (context, state) {
+          return const PrivacySecurityScreen();
+        },
+      ),
+      GoRoute(
+        path: AuthPreferencesScreen.path,
+        name: AuthPreferencesScreen.name,
+        builder: (context, state) {
+          return const AuthPreferencesScreen();
+        },
+      ),
+      GoRoute(
+        path: AuthConsentsScreen.path,
+        name: AuthConsentsScreen.name,
+        builder: (context, state) {
+          return const AuthConsentsScreen();
+        },
+      ),
+      GoRoute(
+        path: AuthParentalControlsScreen.path,
+        name: AuthParentalControlsScreen.name,
+        builder: (context, state) {
+          return const AuthParentalControlsScreen();
+        },
+      ),
+      GoRoute(
+        path: AuthSessionsScreen.path,
+        name: AuthSessionsScreen.name,
+        builder: (context, state) {
+          return const AuthSessionsScreen();
+        },
+      ),
+      GoRoute(
+        path: AuthDevicesScreen.path,
+        name: AuthDevicesScreen.name,
+        builder: (context, state) {
+          return const AuthDevicesScreen();
+        },
+      ),
+      GoRoute(
+        path: AuthPurchasesScreen.path,
+        name: AuthPurchasesScreen.name,
+        builder: (context, state) {
+          return const AuthPurchasesScreen();
+        },
+      ),
+      GoRoute(
+        path: AuthPrivacyScreen.path,
+        name: AuthPrivacyScreen.name,
+        builder: (context, state) {
+          return const AuthPrivacyScreen();
         },
       ),
     ],

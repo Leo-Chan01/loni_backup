@@ -547,6 +547,82 @@
   "appPermissions": "Permisos de la aplicación",
   "privacyPolicy": "Política de privacidad",
   "termsOfService": "Términos de servicio",
+
+  "authPreferences": "Preferencias",
+  "preferredGenres": "Géneros preferidos",
+  "preferredGenresHint": "Separados por comas (p. ej., ficción, romance)",
+  "preferredLanguages": "Idiomas preferidos",
+  "preferredLanguagesHint": "Separados por comas (p. ej., en, fr)",
+  "allowEmailUpdates": "Permitir actualizaciones por correo electrónico",
+  "allowSmsUpdates": "Permitir actualizaciones por SMS",
+  "allowPushNotifications": "Permitir notificaciones push",
+  "readingThemeSystem": "Sistema",
+  "readingThemeLight": "Claro",
+  "readingThemeDark": "Oscuro",
+  "textScale": "Tamaño del texto",
+  "textScaleSmall": "Pequeño",
+  "textScaleNormal": "Normal",
+  "textScaleLarge": "Grande",
+  "dyslexicFont": "Fuente apta para dislexia",
+  "highContrast": "Alto contraste",
+
+  "authConsents": "Consentimientos",
+  "consentMarketingEmail": "Correos de marketing",
+  "consentMarketingSms": "SMS de marketing",
+  "consentPersonalization": "Personalización",
+
+  "parentalControls": "Controles parentales",
+  "parentalControlsEnabled": "Activar controles parentales",
+  "parentalContentRating": "Clasificación de contenido",
+  "parentalPin": "PIN parental",
+  "parentalPinHint": "Introduce un nuevo PIN (opcional)",
+  "parentalClearPin": "Borrar el PIN existente",
+  "parentalRatingKids": "Niños",
+  "parentalRatingTeen": "Adolescentes",
+  "parentalRatingMature": "Adultos",
+
+  "devices": "Dispositivos",
+  "registerThisDevice": "Registrar este dispositivo",
+  "noDevices": "Sin dispositivos",
+  "noDevicesDesc": "No se encontraron dispositivos registrados.",
+
+  "purchaseHistory": "Historial de compras",
+  "noPurchases": "Sin compras",
+  "noPurchasesDesc": "No se encontraron compras.",
+
+  "refresh": "Actualizar",
+  "changesSaved": "Cambios guardados",
+
+  "noActiveSessions": "No hay sesiones activas",
+  "noActiveSessionsDesc": "No se encontraron sesiones activas.",
+  "revoke": "Revocar",
+  "revokeSessionTitle": "Revocar sesión",
+  "revokeSessionMessage": "Esto cerrará esa sesión. ¿Continuar?",
+  "sessionRevoked": "Sesión revocada",
+
+  "deleteDeviceTitle": "Eliminar dispositivo",
+  "deleteDeviceMessage": "Esto eliminará el dispositivo de tu cuenta. ¿Continuar?",
+  "deviceDeleted": "Dispositivo eliminado",
+  "deviceRegistered": "Dispositivo registrado",
+
+  "privacyRequestsDesc": "Solicita una exportación de tu perfil y metadatos, o solicita la eliminación de la cuenta.",
+  "requestAccountDeletion": "Solicitar eliminación de cuenta",
+  "requestAccountDeletionTitle": "Solicitar eliminación de cuenta",
+  "requestAccountDeletionMessage": "Esto iniciará el proceso de eliminación de la cuenta. ¿Continuar?",
+  "exportRequested": "Exportación solicitada",
+  "exportRequestedWithId": "Exportación solicitada (ID: {id})",
+  "@exportRequestedWithId": {
+    "placeholders": {
+      "id": {}
+    }
+  },
+  "deletionRequested": "Eliminación solicitada",
+  "deletionRequestedWithId": "Eliminación solicitada (ID: {id})",
+  "@deletionRequestedWithId": {
+    "placeholders": {
+      "id": {}
+    }
+  },
   
   "searchHelpArticles": "Buscar artículos de ayuda",
   "findAnswers": "Encuentra respuestas a preguntas comunes",

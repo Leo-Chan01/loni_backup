@@ -35,20 +35,20 @@ Additional legend:
 | POST `/v1/auth/password/change` | ❌ | ❌ | ❌ | — |
 | GET `/v1/auth/profile` | ✅ | ❌ | ❌ | `loni_backup/lib/features/profile/data/data_sources/profile_remote_data_source.dart` |
 | PATCH `/v1/auth/profile` | ✅ | ❌ | ❌ | `loni_backup/lib/features/profile/data/data_sources/profile_remote_data_source.dart` |
-| GET `/v1/auth/preferences` | ❌ | ❌ | ❌ | — |
-| PUT `/v1/auth/preferences` | ❌ | ❌ | ❌ | — |
-| GET `/v1/auth/consents` | ❌ | ❌ | ❌ | — |
-| PATCH `/v1/auth/consents` | ❌ | ❌ | ❌ | — |
-| GET `/v1/auth/parental-controls` | ❌ | ❌ | ❌ | — |
-| PATCH `/v1/auth/parental-controls` | ❌ | ❌ | ❌ | — |
-| GET `/v1/auth/sessions` | ❌ | ❌ | ❌ | — |
-| DELETE `/v1/auth/sessions/:id` | ❌ | ❌ | ❌ | — |
-| GET `/v1/auth/devices` | ❌ | ❌ | ❌ | — |
-| POST `/v1/auth/devices` | ❌ | ❌ | ❌ | — |
-| DELETE `/v1/auth/devices/:id` | ❌ | ❌ | ❌ | — |
-| GET `/v1/auth/purchases` | ❌ | ❌ | ❌ | — |
-| POST `/v1/auth/privacy/export` | ❌ | ❌ | ❌ | — |
-| POST `/v1/auth/privacy/delete` | ❌ | ❌ | ❌ | — |
+| GET `/v1/auth/preferences` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_preferences_screen.dart` |
+| PUT `/v1/auth/preferences` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_preferences_screen.dart` |
+| GET `/v1/auth/consents` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_consents_screen.dart` |
+| PATCH `/v1/auth/consents` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_consents_screen.dart` |
+| GET `/v1/auth/parental-controls` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_parental_controls_screen.dart` |
+| PATCH `/v1/auth/parental-controls` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_parental_controls_screen.dart` |
+| GET `/v1/auth/sessions` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_sessions_screen.dart` |
+| DELETE `/v1/auth/sessions/:id` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_sessions_screen.dart` |
+| GET `/v1/auth/devices` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_devices_screen.dart` |
+| POST `/v1/auth/devices` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_devices_screen.dart` |
+| DELETE `/v1/auth/devices/:id` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_devices_screen.dart` |
+| GET `/v1/auth/purchases` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_purchases_screen.dart` |
+| POST `/v1/auth/privacy/export` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_privacy_screen.dart` |
+| POST `/v1/auth/privacy/delete` | ✅ | ❌ | ❌ | `loni_backup/lib/features/auth/data/services/auth_account_service.dart` + `loni_backup/lib/features/auth/presentation/screens/account/auth_privacy_screen.dart` |
 
 Notes:
 - Consumer app includes automatic refresh-token handling on 401s (single-flight) and updates the access token in the API client.

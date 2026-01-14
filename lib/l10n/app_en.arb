@@ -804,6 +804,82 @@
   "appPermissions": "App Permissions",
   "privacyPolicy": "Privacy Policy",
   "termsOfService": "Terms of Service",
+
+  "authPreferences": "Preferences",
+  "preferredGenres": "Preferred Genres",
+  "preferredGenresHint": "Comma-separated (e.g., fiction, romance)",
+  "preferredLanguages": "Preferred Languages",
+  "preferredLanguagesHint": "Comma-separated (e.g., en, fr)",
+  "allowEmailUpdates": "Allow email updates",
+  "allowSmsUpdates": "Allow SMS updates",
+  "allowPushNotifications": "Allow push notifications",
+  "readingThemeSystem": "System",
+  "readingThemeLight": "Light",
+  "readingThemeDark": "Dark",
+  "textScale": "Text Size",
+  "textScaleSmall": "Small",
+  "textScaleNormal": "Normal",
+  "textScaleLarge": "Large",
+  "dyslexicFont": "Dyslexic-friendly font",
+  "highContrast": "High contrast",
+
+  "authConsents": "Consents",
+  "consentMarketingEmail": "Marketing emails",
+  "consentMarketingSms": "Marketing SMS",
+  "consentPersonalization": "Personalization",
+
+  "parentalControls": "Parental Controls",
+  "parentalControlsEnabled": "Enable parental controls",
+  "parentalContentRating": "Content rating",
+  "parentalPin": "Parental PIN",
+  "parentalPinHint": "Enter a new PIN (optional)",
+  "parentalClearPin": "Clear existing PIN",
+  "parentalRatingKids": "Kids",
+  "parentalRatingTeen": "Teen",
+  "parentalRatingMature": "Mature",
+
+  "devices": "Devices",
+  "registerThisDevice": "Register this device",
+  "noDevices": "No devices",
+  "noDevicesDesc": "No registered devices found.",
+
+  "purchaseHistory": "Purchase History",
+  "noPurchases": "No purchases",
+  "noPurchasesDesc": "No purchases found.",
+
+  "refresh": "Refresh",
+  "changesSaved": "Changes saved",
+
+  "noActiveSessions": "No active sessions",
+  "noActiveSessionsDesc": "No active sessions found.",
+  "revoke": "Revoke",
+  "revokeSessionTitle": "Revoke session",
+  "revokeSessionMessage": "This will sign that session out. Continue?",
+  "sessionRevoked": "Session revoked",
+
+  "deleteDeviceTitle": "Delete device",
+  "deleteDeviceMessage": "This will remove the device from your account. Continue?",
+  "deviceDeleted": "Device deleted",
+  "deviceRegistered": "Device registered",
+
+  "privacyRequestsDesc": "Request an export of your profile and metadata, or request account deletion.",
+  "requestAccountDeletion": "Request account deletion",
+  "requestAccountDeletionTitle": "Request account deletion",
+  "requestAccountDeletionMessage": "This will start the account deletion process. Continue?",
+  "exportRequested": "Export requested",
+  "exportRequestedWithId": "Export requested (ID: {id})",
+  "@exportRequestedWithId": {
+    "placeholders": {
+      "id": {}
+    }
+  },
+  "deletionRequested": "Deletion requested",
+  "deletionRequestedWithId": "Deletion requested (ID: {id})",
+  "@deletionRequestedWithId": {
+    "placeholders": {
+      "id": {}
+    }
+  },
   
   "searchHelpArticles": "Search Help Articles",
   "findAnswers": "Find answers to common questions",

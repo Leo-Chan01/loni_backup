@@ -50,8 +50,9 @@ class ToggleSettingsTile extends StatelessWidget {
             ),
           ),
           SizedBox(width: 12.w),
-          GestureDetector(
+          InkWell(
             onTap: () => onChanged(!value),
+            borderRadius: BorderRadius.circular(14.r),
             child: Container(
               width: 48.w,
               height: 28.h,
@@ -66,9 +67,9 @@ class ToggleSettingsTile extends StatelessWidget {
                   margin: EdgeInsets.all(4.w),
                   width: 20.w,
                   height: 20.h,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.white,
+                    color: colorScheme.surface,
                   ),
                 ),
               ),

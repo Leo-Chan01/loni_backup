@@ -1325,6 +1325,186 @@ class AppLocalizationsEs extends AppLocalizations {
   String get termsOfService => 'Términos de servicio';
 
   @override
+  String get authPreferences => 'Preferencias';
+
+  @override
+  String get preferredGenres => 'Géneros preferidos';
+
+  @override
+  String get preferredGenresHint =>
+      'Separados por comas (p. ej., ficción, romance)';
+
+  @override
+  String get preferredLanguages => 'Idiomas preferidos';
+
+  @override
+  String get preferredLanguagesHint => 'Separados por comas (p. ej., en, fr)';
+
+  @override
+  String get allowEmailUpdates =>
+      'Permitir actualizaciones por correo electrónico';
+
+  @override
+  String get allowSmsUpdates => 'Permitir actualizaciones por SMS';
+
+  @override
+  String get allowPushNotifications => 'Permitir notificaciones push';
+
+  @override
+  String get readingThemeSystem => 'Sistema';
+
+  @override
+  String get readingThemeLight => 'Claro';
+
+  @override
+  String get readingThemeDark => 'Oscuro';
+
+  @override
+  String get textScale => 'Tamaño del texto';
+
+  @override
+  String get textScaleSmall => 'Pequeño';
+
+  @override
+  String get textScaleNormal => 'Normal';
+
+  @override
+  String get textScaleLarge => 'Grande';
+
+  @override
+  String get dyslexicFont => 'Fuente apta para dislexia';
+
+  @override
+  String get highContrast => 'Alto contraste';
+
+  @override
+  String get authConsents => 'Consentimientos';
+
+  @override
+  String get consentMarketingEmail => 'Correos de marketing';
+
+  @override
+  String get consentMarketingSms => 'SMS de marketing';
+
+  @override
+  String get consentPersonalization => 'Personalización';
+
+  @override
+  String get parentalControls => 'Controles parentales';
+
+  @override
+  String get parentalControlsEnabled => 'Activar controles parentales';
+
+  @override
+  String get parentalContentRating => 'Clasificación de contenido';
+
+  @override
+  String get parentalPin => 'PIN parental';
+
+  @override
+  String get parentalPinHint => 'Introduce un nuevo PIN (opcional)';
+
+  @override
+  String get parentalClearPin => 'Borrar el PIN existente';
+
+  @override
+  String get parentalRatingKids => 'Niños';
+
+  @override
+  String get parentalRatingTeen => 'Adolescentes';
+
+  @override
+  String get parentalRatingMature => 'Adultos';
+
+  @override
+  String get devices => 'Dispositivos';
+
+  @override
+  String get registerThisDevice => 'Registrar este dispositivo';
+
+  @override
+  String get noDevices => 'Sin dispositivos';
+
+  @override
+  String get noDevicesDesc => 'No se encontraron dispositivos registrados.';
+
+  @override
+  String get purchaseHistory => 'Historial de compras';
+
+  @override
+  String get noPurchases => 'Sin compras';
+
+  @override
+  String get noPurchasesDesc => 'No se encontraron compras.';
+
+  @override
+  String get refresh => 'Actualizar';
+
+  @override
+  String get changesSaved => 'Cambios guardados';
+
+  @override
+  String get noActiveSessions => 'No hay sesiones activas';
+
+  @override
+  String get noActiveSessionsDesc => 'No se encontraron sesiones activas.';
+
+  @override
+  String get revoke => 'Revocar';
+
+  @override
+  String get revokeSessionTitle => 'Revocar sesión';
+
+  @override
+  String get revokeSessionMessage => 'Esto cerrará esa sesión. ¿Continuar?';
+
+  @override
+  String get sessionRevoked => 'Sesión revocada';
+
+  @override
+  String get deleteDeviceTitle => 'Eliminar dispositivo';
+
+  @override
+  String get deleteDeviceMessage =>
+      'Esto eliminará el dispositivo de tu cuenta. ¿Continuar?';
+
+  @override
+  String get deviceDeleted => 'Dispositivo eliminado';
+
+  @override
+  String get deviceRegistered => 'Dispositivo registrado';
+
+  @override
+  String get privacyRequestsDesc =>
+      'Solicita una exportación de tu perfil y metadatos, o solicita la eliminación de la cuenta.';
+
+  @override
+  String get requestAccountDeletion => 'Solicitar eliminación de cuenta';
+
+  @override
+  String get requestAccountDeletionTitle => 'Solicitar eliminación de cuenta';
+
+  @override
+  String get requestAccountDeletionMessage =>
+      'Esto iniciará el proceso de eliminación de la cuenta. ¿Continuar?';
+
+  @override
+  String get exportRequested => 'Exportación solicitada';
+
+  @override
+  String exportRequestedWithId(Object id) {
+    return 'Exportación solicitada (ID: $id)';
+  }
+
+  @override
+  String get deletionRequested => 'Eliminación solicitada';
+
+  @override
+  String deletionRequestedWithId(Object id) {
+    return 'Eliminación solicitada (ID: $id)';
+  }
+
+  @override
   String get searchHelpArticles => 'Buscar artículos de ayuda';
 
   @override
