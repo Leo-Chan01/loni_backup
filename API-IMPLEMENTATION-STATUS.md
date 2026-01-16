@@ -195,61 +195,61 @@ Most admin endpoints are implemented in the **admin app** (not the consumer app)
 | GET `/v1/admin/overview` | — | ✅ | `admin/lib/core/network/admin_api.dart` |
 | GET `/v1/admin/summary` | — | ✅ | `admin/lib/core/network/admin_api.dart` |
 | GET `/v1/admin/audit` | — | ✅ | `admin/lib/core/network/admin_api.dart` |
-| GET `/v1/admin/system/features` | — | ❌ | — |
-| GET `/v1/admin/system/roles` | — | ❌ | — |
-| GET `/v1/admin/system/settings` | — | ❌ | — |
+| GET `/v1/admin/system/features` | — | ✅ | `admin/lib/features/system/data/services/admin_system_service.dart` |
+| GET `/v1/admin/system/roles` | — | ✅ | `admin/lib/features/system/data/services/admin_system_service.dart` |
+| GET `/v1/admin/system/settings` | — | ✅ | `admin/lib/features/system/data/services/admin_system_service.dart` |
 | GET `/v1/admin/system/status` | — | ✅ | `admin/lib/core/network/admin_api.dart` |
 | GET `/v1/admin/users` | — | ✅ | `admin/lib/features/users/data/services/admin_user_service.dart` |
 | GET `/v1/admin/users/:userId` | — | ✅ | `admin/lib/features/users/data/services/admin_user_service.dart` |
 | PATCH `/v1/admin/users/:userId` | — | ✅ | `admin/lib/features/users/data/services/admin_user_service.dart` |
 | POST `/v1/admin/users/:userId/suspend` | — | ✅ | `admin/lib/features/users/data/services/admin_user_service.dart` |
 | POST `/v1/admin/users/:userId/activate` | — | ✅ | `admin/lib/features/users/data/services/admin_user_service.dart` |
-| POST `/v1/admin/users/:userId/soft-delete` | — | ❌ | — |
+| POST `/v1/admin/users/:userId/soft-delete` | — | ✅ | `admin/lib/features/users/data/services/admin_user_service.dart` |
 | GET `/v1/admin/moderation/tasks` | — | ✅ | `admin/lib/features/moderation/data/services/admin_moderation_service.dart` |
 | GET `/v1/admin/moderation/tasks/:taskId` | — | ✅ | `admin/lib/features/moderation/data/services/admin_moderation_service.dart` |
 | GET `/v1/admin/moderation/tasks/:taskId/events` | — | ✅ | `admin/lib/features/moderation/data/services/admin_moderation_service.dart` |
-| GET `/v1/admin/moderation/tasks/:taskId/epub` | — | ❌ | — |
+| GET `/v1/admin/moderation/tasks/:taskId/epub` | — | ✅ | `admin/lib/features/moderation/data/services/admin_moderation_service.dart` |
 | PATCH `/v1/admin/moderation/tasks/:taskId` | — | ✅ | `admin/lib/features/moderation/data/services/admin_moderation_service.dart` |
-| GET `/v1/admin/refunds` | — | ❌ | — |
-| PATCH `/v1/admin/refunds/:refundId` | — | ❌ | — |
+| GET `/v1/admin/refunds` | — | ✅ | `admin/lib/features/refunds/data/services/admin_refunds_service.dart` |
+| PATCH `/v1/admin/refunds/:refundId` | — | ✅ | `admin/lib/features/refunds/data/services/admin_refunds_service.dart` |
 | GET `/v1/admin/orders` | — | ✅ | `admin/lib/features/orders/data/services/admin_order_service.dart` |
 | GET `/v1/admin/orders/kpis` | — | ✅ | `admin/lib/features/orders/data/services/admin_order_service.dart` |
 | GET `/v1/admin/orders/:orderId` | — | ✅ | `admin/lib/features/orders/data/services/admin_order_service.dart` |
 | POST `/v1/admin/orders/:orderId/cancel` | — | ✅ | `admin/lib/features/orders/data/services/admin_order_service.dart` |
 | POST `/v1/admin/orders/:orderId/escalate` | — | ✅ | `admin/lib/features/orders/data/services/admin_order_service.dart` |
-| POST `/v1/admin/orders/:orderId/reassign-printer` | — | ❌ | — |
+| POST `/v1/admin/orders/:orderId/reassign-printer` | — | ✅ | `admin/lib/features/orders/data/services/admin_order_service.dart` |
 | GET `/v1/admin/catalog/flags` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
 | POST `/v1/admin/catalog/flags/:flagId/status` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
 | GET `/v1/admin/catalog/items/:itemId/compliance` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
 | POST `/v1/admin/catalog/items/:itemId/compliance` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
 | GET `/v1/admin/catalog/compliance` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
-| POST `/v1/admin/catalog/compliance` | — | ❌ | — |
-| PATCH `/v1/admin/catalog/compliance/:ruleId` | — | ❌ | — |
-| DELETE `/v1/admin/catalog/compliance/:ruleId` | — | ❌ | — |
-| POST `/v1/admin/catalog/compliance/simulate` | — | ❌ | — |
-| GET `/v1/admin/catalog/featured` | — | ❌ | — |
-| POST `/v1/admin/catalog/featured/:itemId` | — | ❌ | — |
-| GET `/v1/admin/content/search` | — | ❌ | — |
-| GET `/v1/admin/catalog/items/:itemId` | — | ❌ | — |
-| PUT `/v1/admin/catalog/items/:itemId/lifecycle/schedule` | — | ❌ | — |
-| POST `/v1/admin/catalog/items/:itemId/lifecycle/publish` | — | ❌ | — |
-| POST `/v1/admin/catalog/items/:itemId/lifecycle/unpublish` | — | ❌ | — |
-| POST `/v1/admin/catalog/items/:itemId/lifecycle/cancel` | — | ❌ | — |
-| GET `/v1/admin/economics` | — | ❌ | — |
-| PUT `/v1/admin/economics` | — | ❌ | — |
-| GET `/v1/admin/markets/region-presets` | — | ❌ | — |
-| PUT `/v1/admin/markets/region-presets` | — | ❌ | — |
-| GET `/v1/admin/reporting` | — | ❌ | — |
-| GET `/v1/admin/reporting/export` | — | ❌ | — |
-| GET `/v1/admin/backorders/summary` | — | ❌ | — |
-| GET `/v1/admin/backorders` | — | ❌ | — |
-| GET `/v1/admin/revenue-splits` | — | ❌ | — |
-| GET `/v1/admin/revenue-splits/:splitId` | — | ❌ | — |
-| POST `/v1/admin/revenue-splits` | — | ❌ | — |
-| PUT `/v1/admin/revenue-splits/:splitId` | — | ❌ | — |
-| DELETE `/v1/admin/revenue-splits/:splitId` | — | ❌ | — |
-| POST `/v1/admin/revenue-splits/preview` | — | ❌ | — |
-| POST `/v1/admin/ledger/adjustment` | — | ❌ | — |
+| POST `/v1/admin/catalog/compliance` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| PATCH `/v1/admin/catalog/compliance/:ruleId` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| DELETE `/v1/admin/catalog/compliance/:ruleId` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| POST `/v1/admin/catalog/compliance/simulate` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| GET `/v1/admin/catalog/featured` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| POST `/v1/admin/catalog/featured/:itemId` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| GET `/v1/admin/content/search` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| GET `/v1/admin/catalog/items/:itemId` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| PUT `/v1/admin/catalog/items/:itemId/lifecycle/schedule` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| POST `/v1/admin/catalog/items/:itemId/lifecycle/publish` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| POST `/v1/admin/catalog/items/:itemId/lifecycle/unpublish` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| POST `/v1/admin/catalog/items/:itemId/lifecycle/cancel` | — | ✅ | `admin/lib/features/catalog/data/services/admin_catalog_service.dart` |
+| GET `/v1/admin/economics` | — | ✅ | `admin/lib/features/economics/data/services/admin_economics_service.dart` |
+| PUT `/v1/admin/economics` | — | ✅ | `admin/lib/features/economics/data/services/admin_economics_service.dart` |
+| GET `/v1/admin/markets/region-presets` | — | ✅ | `admin/lib/features/markets/data/services/admin_markets_service.dart` |
+| PUT `/v1/admin/markets/region-presets` | — | ✅ | `admin/lib/features/markets/data/services/admin_markets_service.dart` |
+| GET `/v1/admin/reporting` | — | ✅ | `admin/lib/features/reporting/data/services/admin_reporting_service.dart` |
+| GET `/v1/admin/reporting/export` | — | ✅ | `admin/lib/features/reporting/data/services/admin_reporting_service.dart` |
+| GET `/v1/admin/backorders/summary` | — | ✅ | `admin/lib/features/backorders/data/services/admin_backorders_service.dart` |
+| GET `/v1/admin/backorders` | — | ✅ | `admin/lib/features/backorders/data/services/admin_backorders_service.dart` |
+| GET `/v1/admin/revenue-splits` | — | ✅ | `admin/lib/features/revenue_splits/data/services/admin_revenue_splits_service.dart` |
+| GET `/v1/admin/revenue-splits/:splitId` | — | ✅ | `admin/lib/features/revenue_splits/data/services/admin_revenue_splits_service.dart` |
+| POST `/v1/admin/revenue-splits` | — | ✅ | `admin/lib/features/revenue_splits/data/services/admin_revenue_splits_service.dart` |
+| PUT `/v1/admin/revenue-splits/:splitId` | — | ✅ | `admin/lib/features/revenue_splits/data/services/admin_revenue_splits_service.dart` |
+| DELETE `/v1/admin/revenue-splits/:splitId` | — | ✅ | `admin/lib/features/revenue_splits/data/services/admin_revenue_splits_service.dart` |
+| POST `/v1/admin/revenue-splits/preview` | — | ✅ | `admin/lib/features/revenue_splits/data/services/admin_revenue_splits_service.dart` |
+| POST `/v1/admin/ledger/adjustment` | — | ✅ | `admin/lib/features/ledger/data/services/admin_ledger_service.dart` |
 
 ---
 
@@ -257,13 +257,13 @@ Most admin endpoints are implemented in the **admin app** (not the consumer app)
 
 | Endpoint | Consumer app | Admin app | Evidence (where found) |
 |---|---:|---:|---|
-| GET `/v1/admin/payouts/balances` | — | ❌ | — |
-| GET `/v1/admin/payouts/pending` | — | ❌ | — |
-| GET `/v1/admin/payouts/statements` | — | ❌ | — |
-| GET `/v1/admin/payouts/batches` | — | ❌ | — |
-| POST `/v1/admin/payouts/batch` | — | ❌ | — |
-| POST `/v1/admin/payouts/scheduler/run` | — | ❌ | — |
-| GET `/v1/admin/payouts/batches/:batchId/export` | — | ❌ | — |
+| GET `/v1/admin/payouts/balances` | — | ✅ | `admin/lib/features/payouts/data/services/admin_payouts_service.dart` |
+| GET `/v1/admin/payouts/pending` | — | ✅ | `admin/lib/features/payouts/data/services/admin_payouts_service.dart` |
+| GET `/v1/admin/payouts/statements` | — | ✅ | `admin/lib/features/payouts/data/services/admin_payouts_service.dart` |
+| GET `/v1/admin/payouts/batches` | — | ✅ | `admin/lib/features/payouts/data/services/admin_payouts_service.dart` |
+| POST `/v1/admin/payouts/batch` | — | ✅ | `admin/lib/features/payouts/data/services/admin_payouts_service.dart` |
+| POST `/v1/admin/payouts/scheduler/run` | — | ✅ | `admin/lib/features/payouts/data/services/admin_payouts_service.dart` |
+| GET `/v1/admin/payouts/batches/:batchId/export` | — | ✅ | `admin/lib/features/payouts/data/services/admin_payouts_service.dart` |
 
 ---
 
